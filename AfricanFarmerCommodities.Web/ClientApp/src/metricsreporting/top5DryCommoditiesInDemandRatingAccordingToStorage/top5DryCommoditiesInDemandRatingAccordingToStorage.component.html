@@ -1,0 +1,30 @@
+<div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <div id="resultsViewTop5DryStorageUsage">
+    <h4>Top 5 Demand Available Dry Food Hub Commodities Storage</h4>
+    <div>
+      <canvas id="top5AvailableDryFoodStorageCanvas" style="width:80%; height:auto;"></canvas>
+    </div>
+    <form #resultsViewTop5DryStorageUsageStatsForm>
+      <div class="form-group">
+        <select name="commodityId" id="top5commodityId" ngModel="currentTop5StorageCommodidites.commodityId"  (change)="GetTop5CommoditieByStorage()">
+          <ng-container *ngFor="let optCommodityStoreData of top5DryStorageCommodities;">
+            <option value="{{optCommodityStoreData.commodityId}}">{{optCommodityStoreData.commodityName}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Commodity Category Name</label>
+        <input type="text" name="commodityCategoryName" value="{{currentTop5StorageCommodidites.commodityCategoryName}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Used Dry Storage Capacity</label>
+        <input type="text" name="totalUsedDryStorageCapacity" value="{{currentTop5StorageCommodidites.totalUsedDryStorageCapacity}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Total Dry Storage Capacity</label>
+        <input type="text" name="totalDryStorageCapacity" value="{{currentTop5StorageCommodidites.totalDryStorageCapacity}}" readonly />
+      </div>
+    </form>
+    <div><hr /></div>
+  </div>
+</div>

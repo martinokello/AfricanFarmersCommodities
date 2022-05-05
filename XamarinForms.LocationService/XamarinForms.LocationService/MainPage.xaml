@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamarinForms.LocationService.ViewModels"
+             x:Class="XamarinForms.LocationService.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout VerticalOptions="Start" Padding="5" >
+        <Image AutomationId="CompanyLogo" Source="martin.jpg" HorizontalOptions="Center" Aspect="AspectFill" Margin="10" WidthRequest="150" HeightRequest="150"/>
+        <Label Text="Driver Name"/>
+        <Editor Text="{Binding DriverName}" AutomationId="DriverName" />
+        <Label Text="Driver Phone Number"/>
+        <Editor  Text="{Binding DriverPhoneNumber}" AutomationId="DriverPhoneNumber"/>
+        <Label Text="Update Phone Number"/>
+        <CheckBox IsChecked="{Binding UpdatePhoneNumber}" AutomationId="UpdatePhoneNumber"/>
+        <Label Text="Vehicle Registration"/>
+        <Editor  Text="{Binding VehicleRegistration}" AutomationId="VehicleRegistration"/>
+        
+        <Button VerticalOptions="CenterAndExpand"
+                Text="Start Service"
+                Command="{Binding StartCommand}"
+                IsEnabled="{Binding StartEnabled}"/>
+
+        <Button VerticalOptions="CenterAndExpand"
+                Text="Stop Service"
+                Command="{Binding EndCommand}"
+                IsEnabled="{Binding StopEnabled}"/>
+
+        <Label Text="Coordinates" VerticalOptions="CenterAndExpand" FontSize="Title"/>
+
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Latitude: "/>
+                        <Span Text="{Binding Latitude}"/>
+                        <Span Text="Longitude: "/>
+                        <Span Text="{Binding Longitude}"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label Text="{Binding UserMessage}" VerticalOptions="CenterAndExpand"/>
+
+    </StackLayout>
+
+</ContentPage>

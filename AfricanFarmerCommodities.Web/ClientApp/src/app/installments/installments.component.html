@@ -1,0 +1,19 @@
+﻿<div #mealView class="col-lg-12" style="text-align:left !important; color:black !important;">
+    <form #paymentsForm method="get">
+        <iframe id="payPalPayments" style="display:none;"></iframe>
+        <div #payments>
+            <div>
+                <img src="/images/paypal_logo.gif" alt="paypal logo"/>
+            </div>
+            <div class="form-group">
+                <label>Amount Left to Pay</label>
+                <input type="number" name="amountLeftToPay" value="0" [(ngModel)]="amountLeftToPay" min="0" readonly/>
+            </div>
+            <div class="form-group">
+                <label>Amount Paying</label>
+                <input type="number" name="currentPayment" value="0" [(ngModel)]="currentPayment"  min="0"/>
+            </div>
+        </div>
+        <input type="button" value="Pay Installment" class="but-primary" (click)="makePayment()" />
+    </form>
+</div>

@@ -1,0 +1,60 @@
+<div  class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #transportPricingView="ngForm">
+    <h4>Transport Pricing</h4>
+    <div class="form-group">
+      <label>TransportPricingId - optional</label>
+      <select id="transportPricingId" name="transportPricingId" value="-1" [(ngModel)]="transportPricing.transportPricingId"></select>
+    </div>
+    <div class="form-group">
+      <label>Transport Pricing Name</label>
+      <input type="text" name="transportPricingName" [(ngModel)]="transportPricing.transportPricingName" />
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea name="description" [(ngModel)]="transportPricing.description"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Car Pricing</label>
+      <input type="number" name="carPricing" [(ngModel)]="transportPricing.carPricing" />
+    </div>
+    <div class="form-group">
+      <label>MiniBus Pricing</label>
+      <input type="number" name="miniBusPricing" [(ngModel)]="transportPricing.miniBusPricing" />
+    </div>
+    <div class="form-group">
+      <label>Taxi Pricing</label>
+      <input type="number" name="taxiPricing" [(ngModel)]="transportPricing.taxiPricing" />
+    </div>
+    <div class="form-group">
+      <label>PickupTruck Pricing</label>
+      <input type="number" name="pickupTruckPricing" [(ngModel)]="transportPricing.pickupTruckPricing" />
+    </div>
+    <div class="form-group">
+      <label>Truck Pricing</label>
+      <input type="number" name="truckPricing" [(ngModel)]="transportPricing.truckPricing" />
+    </div>
+    <div class="form-group">
+      <label>Bus Pricing</label>
+      <input type="number" name="busPricing" [(ngModel)]="transportPricing.busPricing" />
+    </div>
+    <div class="form-group">
+      <label>Train Pricing</label>
+      <input type="number" name="trainPricing" [(ngModel)]="transportPricing.trainPricing" />
+    </div>
+    <div class="form-group">
+      <label>Tram Pricing</label>
+      <input type="number" name="tramPricing" [(ngModel)]="transportPricing.tramPricing" />
+    </div>
+    <div class="form-group">
+      <label>Ship Pricing</label>
+      <input type="number" name="shipPricing" [(ngModel)]="transportPricing.shipPricing" />
+    </div>    <div class="form-group">
+      <label>Air Pricing</label>
+      <input type="number" name="airPricing" [(ngModel)]="transportPricing.airPricing" />
+    </div>
+    <input type="button" value="Select Pricing" class="but-primary" (click)="selectTransportPricing()" style="margin-top:10px;" />
+    <input type="button" value="Add Pricing" class="but-primary" (click)="addTransportPricing()" style="margin-top:10px;" />
+    <input type="button" value="Update Pricing" class="but-primary" (click)="updateTransportPricing()" style="margin-top:10px;" />
+    <input type="button" value="Delete Pricing" class="but-primary" (click)="deleteTransportPricing()" style="margin-top:10px;" />
+  </form>
+</div>

@@ -1,0 +1,40 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://africanfarmerscommodities.martinlayooinc.com",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "https://localhost:44387",
+      "sslPort": 44387
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "workingDirectory": "D:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmerCommodities.Web",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:44359",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "ancmHostingModel": "InProcess",
+      "nativeDebugging": false,
+      "use64Bit": true,
+      "applicationUrl": "http://localhost:44359"
+    },
+    "AfricanFarmerCommodities.Web": {
+      "commandName": "IISExpress",
+      "workingDirectory": "D:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmerCommodities.Web",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:44387",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "nativeDebugging": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}

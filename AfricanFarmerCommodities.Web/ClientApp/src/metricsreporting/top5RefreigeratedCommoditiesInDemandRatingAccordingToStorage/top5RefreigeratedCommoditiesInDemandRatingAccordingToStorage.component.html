@@ -1,0 +1,40 @@
+<div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <div id="resultsViewTop5ReferigeratedStorageUsage">
+    <h4>Top 5 usage of Available Referigerated Food Hub Commodities Storage</h4>
+    <div>
+      <canvas id="availableRefregFoodHubStorageCanvas" style="width:80%; height:auto;"></canvas>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="col-lg-offset-1">&nbsp;</span>
+        <div id="availableRefregFoodHubStorageResults" class="col-lg-12">
+          <div id="content">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <form #resultsViewTop5DryStorageUsageStatsForm>
+      <div class="form-group">
+        <select name="commodityId" id="commodityId" ngModel="currentTop5RefgStorageCommodidites.commodityId" (change)="GetTop5CommoditieByStorage()">
+          <ng-container *ngFor="let optCommodityStoreData of top5RefregiratedStorageCommodities;">
+            <option value="{{optCommodityStoreData.commodityId}}">{{optCommodityStoreData.commodityName}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Commodity Category Name</label>
+        <input type="text" name="commodityCategoryName" value="{{currentTop5RefgStorageCommodidites.commodityCategoryName}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Used Refreigerated Storage Capacity</label>
+        <input type="text" name="totalUsedRefegiratedStorageCapacity" value="{{currentTop5RefgStorageCommodidites.totalUsedRefreigeratedStorageCapacity}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Total Refreigerated Capacity</label>
+        <input type="text" name="totalRefegiratedStorageCapacity" value="{{currentTop5RefgStorageCommodidites.totalRefreigeratedStorageCapacity}}" readonly />
+      </div>
+    </form>
+    <div><hr /></div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+﻿<div #vehicleView class="col-lg-12" style="text-align:left !important; color:black !important;">  
+    <form>
+        <h4>Add Vehicle</h4>
+        <div class="form-group">
+            <label>VehicleId - optional</label>
+            <input type="number" name="vehicleId" value="-1" [(ngModel)]="vehicle.vehicleId" />
+        </div>
+        <div #vehicleItem>
+            <div class="form-group">
+                <label>Vehicle Number Plate</label>
+                <input type="text" name="vehicleRegistration" value="" [(ngModel)]="vehicle.vehicleRegistration" />
+            </div>
+            <div class="form-group">
+                <label>Vehicle Type</label>
+                <select name="vehicleType" [ngModel]="vehicle.vehicleType" id="vehicleType"></select>
+            </div>
+            <div class="form-group">
+                <label>Max Number Of Passengers</label>
+                <input type="number" name="maxNumberOfPassengers" value="1" [(ngModel)]="vehicle.maxNumberOfPassengers" />
+            </div>
+            <div class="form-group">
+                <label>Allocated Number Of Passengers</label>
+                <input type="number" name="actualNumberOfPassengersAllocated" value="1" [(ngModel)]="vehicle.actualNumberOfPassengersAllocated" />
+            </div>
+        </div>
+        <input type="button" value="Add Vehicle" class="but-primary" (click)="addVehicle()" />
+        <input type="button" value="Update Vehicle" class="but-primary" (click)="updateVehicle()" />
+    </form>
+</div>

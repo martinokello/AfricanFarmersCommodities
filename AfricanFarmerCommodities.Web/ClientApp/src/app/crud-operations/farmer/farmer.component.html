@@ -1,0 +1,25 @@
+<div  class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #farmerView="ngForm">
+    <h4>Farmer</h4>
+    <div class="form-group">
+      <label>FarmerId - optional</label>
+      <select id="farmerId" name="farmerId" value="-1" [(ngModel)]="farmer.farmerId"></select>
+    </div>
+    <div class="form-group">
+      <label>Farmer Name</label>
+      <input type="text" name="farmerName" [(ngModel)]="farmer.farmerName" />
+    </div>
+    <div class="form-group">
+      <label>Farmer CompanyId</label>
+      <select id="frmcompanyId" name="companyId" [(ngModel)]="farmer.company.companyId"></select>
+    </div>
+    <div class="form-group">
+      <label>AddressId</label>
+      <select id="frmaddressId" name="addressId" [(ngModel)]="farmer.address.addressId"></select>
+    </div>
+    <input type="button" value="Select Farmer" class="but-primary" (click)="selectFarmer()" style="margin-top:10px;" />
+    <input type="button" value="Add Farmer" class="but-primary" (click)="addFarmer()" style="margin-top:10px;" />
+    <input type="button" value="Update Farmer" class="but-primary" (click)="updateFarmer()" style="margin-top:10px;" />
+    <input type="button" value="Delete Farmer" class="but-primary" (click)="deleteFarmer()" style="margin-top:10px;" />
+  </form>
+</div>

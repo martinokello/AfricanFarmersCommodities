@@ -1,0 +1,36 @@
+<div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <div id="resultsViewFoodHubByIdStats">
+    <h4>FoodHub Storage Usage Statistics By FoodHubId</h4>
+    <div>
+      <canvas id="commoditiesFoodHubUsageStorageCanvas" style="width:80%; height:auto;"></canvas>
+    </div>
+    <form>
+      <div class="form-group">
+        <select  name="foodHubId" id="stpfoodHubId"  (change)="GetStorageDataValue()">
+            <option *ngFor="let optFoodHubStoreData of allFoodHubStorageAvailabilityStorage;" value="{{optFoodHubStoreData.foodHubId}}">{{optFoodHubStoreData.foodHubName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>FoodHub Name</label>
+        <input type="text" name="foodHubName" value="{{foodHubStoreData.foodHubName}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Used Refreigerated Storage Capacity</label>
+        <input type="text" name="usedRefreigeratedStorageCapacity" value="{{foodHubStoreData.usedRefreigeratedStorageCapacity}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Refreigerated Storage Capacity</label>
+        <input type="text" name="refreigeratedStorageCapacity" value="{{foodHubStoreData.refreigeratedStorageCapacity}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Used Dry Storage Capacity</label>
+        <input type="text" name="usedDryStorageCapacity" value="{{foodHubStoreData.usedDryStorageCapacity}}" readonly />
+      </div>
+      <div class="form-group">
+        <label>Dry Storage Capacity</label>
+        <input type="text" name="dryStorageCapacity" value="{{foodHubStoreData.dryStorageCapacity}}" readonly />
+      </div>
+    </form>
+    <div><hr /></div>
+  </div>
+</div>

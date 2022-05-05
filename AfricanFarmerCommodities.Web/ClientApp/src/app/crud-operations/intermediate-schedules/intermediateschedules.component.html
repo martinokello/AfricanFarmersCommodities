@@ -1,0 +1,45 @@
+<div  class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #transportScheduleView="ngForm">
+    <h4>Intermediate Schedule</h4>
+    <div class="form-group">
+      <label>Intermediate ScheduleId - optional</label>
+      <select id="intermediateScheduleId" name="intermediateScheduleId" [(ngModel)]="intermediateSchedule.intermediateScheduleId"></select>
+    </div>
+    <div class="form-group">
+      <label>Master Transport ScheduleId</label>
+      <input type="text" name="transportScheduleId" [(ngModel)]="intermediateSchedule.transportScheduleId" readonly/>
+    </div>
+    <div class="form-group">
+      <label>Intermediate Transport Schedule Name</label>
+      <input type="text" name="intermediateTransportScheduleName" [(ngModel)]="intermediateSchedule.intermediateTransportScheduleName" />
+    </div>
+    <div class="form-group">
+      <label>VehicleId</label>
+      <select id="intvehicleId" name="vehicleId" [(ngModel)]="intermediateSchedule.vehicleId"></select>
+    </div>
+    <div class="form-group">
+      <label>Origin Name</label>
+      <select id="intoriginId" name="originName" [(ngModel)]="intermediateSchedule.originLocationId"></select>
+    </div>
+    <div class="form-group">
+      <label>Destination Name</label>
+      <select id="intdestinationId" name="destinationName" [(ngModel)]="intermediateSchedule.destinationLocationId"></select>
+    </div>
+    <div class="form-group">
+      <label>Date From Origin</label>
+      <input type="text" name="dateStartFromOrigin" id="intdateStartFromOrigin" [(ngModel)]="intermediateSchedule.dateStartFromOrigin" />
+    </div> 
+    <div class="form-group">
+      <label>Date At Destination</label>
+      <input type="text" name="dateEndAtDestination" id="intdateEndAtDestination" [(ngModel)]="intermediateSchedule.dateEndAtDestination" />
+    </div>
+    <div class="form-group">
+      <label>Has Reached Final Destination</label>
+      <input type="checkbox" name="hasReachedFinalDestination" [(ngModel)]="intermediateSchedule.hasReachedFinalDestination" />
+    </div>
+    <input type="button" value="Select Schedule" class="but-primary" (click)="selectIntermediateSchedule()" style="margin-top:10px;" />
+    <input type="button" value="Add Schedule" class="but-primary" (click)="addIntermediateSchedule()" style="margin-top:10px;" />
+    <input type="button" value="Update Schedule" class="but-primary" (click)="updateIntermediateSchedule()" style="margin-top:10px;" />
+    <input type="button" value="Delete Schedule" class="but-primary" (click)="deleteIntermediateSchedule()" style="margin-top:10px;" />
+  </form>
+</div>

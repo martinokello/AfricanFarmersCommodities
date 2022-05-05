@@ -1,0 +1,725 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>72135359-b6e1-459f-9473-e6fb88eab146</UserSecretsId>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+    <StartupObject>AfricanFarmerCommodities.Web.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="bootstrap" Version="4.5.1" />
+    <PackageReference Include="Chart.js" Version="2.9.3" />
+    <PackageReference Include="GoogleMaps" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="3.1.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="QRCoder" Version="1.4.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.2" />
+    <PackageReference Include="ZNetCS.AspNetCore.Authentication.Basic" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="AndroidPhoneLocationApp\**" />
+    <Compile Remove="bin\**" />
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="AndroidPhoneLocationApp\**" />
+    <Content Remove="bin\**" />
+    <EmbeddedResource Remove="AndroidPhoneLocationApp\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="AndroidPhoneLocationApp\**" />
+    <None Remove="bin\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.esm.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
+    <Content Remove="C:\Users\martinokello\.nuget\packages\bootstrap\5.0.1\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.min.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.min.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.min.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js.map" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js" />
+    <Content Remove="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js.map" />
+    <Content Remove="wwwroot\assets\css\fontawesome-all.min.css" />
+    <Content Remove="wwwroot\assets\css\images\banner.jpg" />
+    <Content Remove="wwwroot\assets\css\images\bg01.png" />
+    <Content Remove="wwwroot\assets\css\images\bg02.png" />
+    <Content Remove="wwwroot\assets\css\images\bg03.png" />
+    <Content Remove="wwwroot\assets\css\main.css" />
+    <Content Remove="wwwroot\assets\datetimepicker\css\jquery.datetimepicker.min.css" />
+    <Content Remove="wwwroot\assets\datetimepicker\js\jquery.datetimepicker.js" />
+    <Content Remove="wwwroot\assets\datetimepicker\js\jquery.min.js" />
+    <Content Remove="wwwroot\assets\google\googleMaps.js" />
+    <Content Remove="wwwroot\assets\images\africanFarmersLandscapedLong - Copy.jpg" />
+    <Content Remove="wwwroot\assets\js\breakpoints.min.js" />
+    <Content Remove="wwwroot\assets\js\browser.min.js" />
+    <Content Remove="wwwroot\assets\js\html5-qrcode\html5-qrcode.min.js" />
+    <Content Remove="wwwroot\assets\js\jquery.dropotron.min.js" />
+    <Content Remove="wwwroot\assets\js\jquery.min.js" />
+    <Content Remove="wwwroot\assets\js\main.js" />
+    <Content Remove="wwwroot\assets\js\util.js" />
+    <Content Remove="wwwroot\assets\sass\libs\_breakpoints.scss" />
+    <Content Remove="wwwroot\assets\sass\libs\_functions.scss" />
+    <Content Remove="wwwroot\assets\sass\libs\_html-grid.scss" />
+    <Content Remove="wwwroot\assets\sass\libs\_mixins.scss" />
+    <Content Remove="wwwroot\assets\sass\libs\_vars.scss" />
+    <Content Remove="wwwroot\assets\sass\libs\_vendor.scss" />
+    <Content Remove="wwwroot\assets\sass\main.scss" />
+    <Content Remove="wwwroot\assets\webfonts\fa-brands-400.eot" />
+    <Content Remove="wwwroot\assets\webfonts\fa-brands-400.svg" />
+    <Content Remove="wwwroot\assets\webfonts\fa-brands-400.ttf" />
+    <Content Remove="wwwroot\assets\webfonts\fa-brands-400.woff" />
+    <Content Remove="wwwroot\assets\webfonts\fa-brands-400.woff2" />
+    <Content Remove="wwwroot\assets\webfonts\fa-regular-400.eot" />
+    <Content Remove="wwwroot\assets\webfonts\fa-regular-400.svg" />
+    <Content Remove="wwwroot\assets\webfonts\fa-regular-400.ttf" />
+    <Content Remove="wwwroot\assets\webfonts\fa-regular-400.woff" />
+    <Content Remove="wwwroot\assets\webfonts\fa-regular-400.woff2" />
+    <Content Remove="wwwroot\assets\webfonts\fa-solid-900.eot" />
+    <Content Remove="wwwroot\assets\webfonts\fa-solid-900.svg" />
+    <Content Remove="wwwroot\assets\webfonts\fa-solid-900.ttf" />
+    <Content Remove="wwwroot\assets\webfonts\fa-solid-900.woff" />
+    <Content Remove="wwwroot\assets\webfonts\fa-solid-900.woff2" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\Logs\log.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\dist\assets\images\africanFarmers1.jpg" />
+    <None Remove="ClientApp\dist\assets\images\africanFarmers2.jpg" />
+    <None Remove="ClientApp\dist\assets\images\africanFarmersLandscapedLong.jpg" />
+    <None Remove="ClientApp\dist\assets\images\brickWall.jpg" />
+    <None Remove="ClientApp\dist\assets\images\HappyGrad.jpg" />
+    <None Remove="ClientApp\dist\assets\images\martin.jpg" />
+    <None Remove="ClientApp\dist\assets\images\paypal_logo.gif" />
+    <None Remove="ClientApp\dist\assets\images\ug-flag.gif" />
+    <None Remove="ClientApp\dist\assets\images\uk-flag.gif" />
+    <None Remove="ClientApp\src\app\driver-calendar-notes\driverCalendar.component.ts" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\CHANGELOG.txt" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\CONTRIBUTING.txt" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\agenda-views.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\background-events.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\basic-views.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\default.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\external-dragging.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\gcal.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\json.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\json\events.json" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\list-views.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\locales.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\selectable.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\themes.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\timezones.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\demos\week-numbers.html" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.css" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.min.css" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.print.css" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.print.min.css" />
+    <None Remove="ClientApp\src\assets\fullcalendar-3.10.0\LICENSE.txt" />
+    <None Remove="ClientApp\src\assets\js\datetimepicker\jquery.datetimepicker.min.css" />
+    <None Remove="ClientApp\src\assets\js\datetimepicker\jquery.datetimepicker.min.js" />
+    <None Remove="ClientApp\src\assets\js\jquery.ui.js" />
+    <None Remove="ClientApp\src\guards\AuthDriverGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthFarmerGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthGovernmentGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthGuestGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthRetailerGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthStandardUserGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthWholesalerGuard.ts" />
+    <None Remove="ClientApp\src\socialmedia\twitterfeeds\twitterprofilefeeds.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\dist\assets\images\africanFarmers1.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\africanFarmers2.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\africanFarmersLandscapedLong.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\brickWall.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\HappyGrad.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\martin.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\paypal_logo.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\ug-flag.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\dist\assets\images\uk-flag.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\CHANGELOG.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\CONTRIBUTING.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\agenda-views.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\background-events.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\basic-views.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\default.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\external-dragging.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\gcal.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\json.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\json\events.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\list-views.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\locales.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\selectable.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\themes.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\timezones.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\demos\week-numbers.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.print.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\fullcalendar.print.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\fullcalendar-3.10.0\LICENSE.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\js\datetimepicker\jquery.datetimepicker.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\js\datetimepicker\jquery.datetimepicker.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\js\jquery.ui.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\favicon.ico" />
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ClientApp\node_modules\.bin\acorn" />
+    <None Include="ClientApp\node_modules\.bin\acorn.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ansi-html" />
+    <None Include="ClientApp\node_modules\.bin\ansi-html.cmd" />
+    <None Include="ClientApp\node_modules\.bin\atob" />
+    <None Include="ClientApp\node_modules\.bin\atob.cmd" />
+    <None Include="ClientApp\node_modules\.bin\autoprefixer" />
+    <None Include="ClientApp\node_modules\.bin\autoprefixer.cmd" />
+    <None Include="ClientApp\node_modules\.bin\blocking-proxy" />
+    <None Include="ClientApp\node_modules\.bin\blocking-proxy.cmd" />
+    <None Include="ClientApp\node_modules\.bin\browserslist" />
+    <None Include="ClientApp\node_modules\.bin\browserslist.cmd" />
+    <None Include="ClientApp\node_modules\.bin\build-optimizer" />
+    <None Include="ClientApp\node_modules\.bin\build-optimizer.cmd" />
+    <None Include="ClientApp\node_modules\.bin\cssesc" />
+    <None Include="ClientApp\node_modules\.bin\cssesc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\errno" />
+    <None Include="ClientApp\node_modules\.bin\errno.cmd" />
+    <None Include="ClientApp\node_modules\.bin\esparse" />
+    <None Include="ClientApp\node_modules\.bin\esparse.cmd" />
+    <None Include="ClientApp\node_modules\.bin\esvalidate" />
+    <None Include="ClientApp\node_modules\.bin\esvalidate.cmd" />
+    <None Include="ClientApp\node_modules\.bin\image-size" />
+    <None Include="ClientApp\node_modules\.bin\image-size.cmd" />
+    <None Include="ClientApp\node_modules\.bin\import-local-fixture" />
+    <None Include="ClientApp\node_modules\.bin\import-local-fixture.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ivy-ngcc" />
+    <None Include="ClientApp\node_modules\.bin\ivy-ngcc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\jasmine" />
+    <None Include="ClientApp\node_modules\.bin\jasmine.cmd" />
+    <None Include="ClientApp\node_modules\.bin\js-yaml" />
+    <None Include="ClientApp\node_modules\.bin\js-yaml.cmd" />
+    <None Include="ClientApp\node_modules\.bin\jsesc" />
+    <None Include="ClientApp\node_modules\.bin\jsesc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\json5" />
+    <None Include="ClientApp\node_modules\.bin\json5.cmd" />
+    <None Include="ClientApp\node_modules\.bin\JSONStream" />
+    <None Include="ClientApp\node_modules\.bin\JSONStream.cmd" />
+    <None Include="ClientApp\node_modules\.bin\karma" />
+    <None Include="ClientApp\node_modules\.bin\karma.cmd" />
+    <None Include="ClientApp\node_modules\.bin\lessc" />
+    <None Include="ClientApp\node_modules\.bin\lessc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\loose-envify" />
+    <None Include="ClientApp\node_modules\.bin\loose-envify.cmd" />
+    <None Include="ClientApp\node_modules\.bin\miller-rabin" />
+    <None Include="ClientApp\node_modules\.bin\miller-rabin.cmd" />
+    <None Include="ClientApp\node_modules\.bin\mime" />
+    <None Include="ClientApp\node_modules\.bin\mime.cmd" />
+    <None Include="ClientApp\node_modules\.bin\mkdirp" />
+    <None Include="ClientApp\node_modules\.bin\mkdirp.cmd" />
+    <None Include="ClientApp\node_modules\.bin\multicast-dns" />
+    <None Include="ClientApp\node_modules\.bin\multicast-dns.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ng" />
+    <None Include="ClientApp\node_modules\.bin\ng-xi18n" />
+    <None Include="ClientApp\node_modules\.bin\ng-xi18n.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ng.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ngc" />
+    <None Include="ClientApp\node_modules\.bin\ngc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\node" />
+    <None Include="ClientApp\node_modules\.bin\node-gyp" />
+    <None Include="ClientApp\node_modules\.bin\node-gyp.cmd" />
+    <None Include="ClientApp\node_modules\.bin\node-sass" />
+    <None Include="ClientApp\node_modules\.bin\node-sass.cmd" />
+    <None Include="ClientApp\node_modules\.bin\node.cmd" />
+    <None Include="ClientApp\node_modules\.bin\nopt" />
+    <None Include="ClientApp\node_modules\.bin\nopt.cmd" />
+    <None Include="ClientApp\node_modules\.bin\parser" />
+    <None Include="ClientApp\node_modules\.bin\parser.cmd" />
+    <None Include="ClientApp\node_modules\.bin\protractor" />
+    <None Include="ClientApp\node_modules\.bin\protractor.cmd" />
+    <None Include="ClientApp\node_modules\.bin\regjsparser" />
+    <None Include="ClientApp\node_modules\.bin\regjsparser.cmd" />
+    <None Include="ClientApp\node_modules\.bin\rimraf" />
+    <None Include="ClientApp\node_modules\.bin\rimraf.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sass" />
+    <None Include="ClientApp\node_modules\.bin\sass.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sassgraph" />
+    <None Include="ClientApp\node_modules\.bin\sassgraph.cmd" />
+    <None Include="ClientApp\node_modules\.bin\semver" />
+    <None Include="ClientApp\node_modules\.bin\semver.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sha.js" />
+    <None Include="ClientApp\node_modules\.bin\sha.js.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-conv" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-conv.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-sign" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-sign.cmd" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-verify" />
+    <None Include="ClientApp\node_modules\.bin\sshpk-verify.cmd" />
+    <None Include="ClientApp\node_modules\.bin\strip-indent" />
+    <None Include="ClientApp\node_modules\.bin\strip-indent.cmd" />
+    <None Include="ClientApp\node_modules\.bin\stylus" />
+    <None Include="ClientApp\node_modules\.bin\stylus.cmd" />
+    <None Include="ClientApp\node_modules\.bin\terser" />
+    <None Include="ClientApp\node_modules\.bin\terser.cmd" />
+    <None Include="ClientApp\node_modules\.bin\tree-kill" />
+    <None Include="ClientApp\node_modules\.bin\tree-kill.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ts-node" />
+    <None Include="ClientApp\node_modules\.bin\ts-node-script" />
+    <None Include="ClientApp\node_modules\.bin\ts-node-script.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ts-node-transpile-only" />
+    <None Include="ClientApp\node_modules\.bin\ts-node-transpile-only.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ts-node.cmd" />
+    <None Include="ClientApp\node_modules\.bin\ts-script" />
+    <None Include="ClientApp\node_modules\.bin\ts-script.cmd" />
+    <None Include="ClientApp\node_modules\.bin\tsc" />
+    <None Include="ClientApp\node_modules\.bin\tsc.cmd" />
+    <None Include="ClientApp\node_modules\.bin\tslint" />
+    <None Include="ClientApp\node_modules\.bin\tslint.cmd" />
+    <None Include="ClientApp\node_modules\.bin\tsserver" />
+    <None Include="ClientApp\node_modules\.bin\tsserver.cmd" />
+    <None Include="ClientApp\node_modules\.bin\uuid" />
+    <None Include="ClientApp\node_modules\.bin\uuid.cmd" />
+    <None Include="ClientApp\node_modules\.bin\webdriver-manager" />
+    <None Include="ClientApp\node_modules\.bin\webdriver-manager.cmd" />
+    <None Include="ClientApp\node_modules\.bin\webpack" />
+    <None Include="ClientApp\node_modules\.bin\webpack-dev-server" />
+    <None Include="ClientApp\node_modules\.bin\webpack-dev-server.cmd" />
+    <None Include="ClientApp\node_modules\.bin\webpack.cmd" />
+    <None Include="ClientApp\node_modules\.bin\which" />
+    <None Include="ClientApp\node_modules\.bin\which.cmd" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\assets\css\fontawesome-all.min.css" />
+    <None Include="wwwroot\assets\css\images\banner.jpg" />
+    <None Include="wwwroot\assets\css\images\bg01.png" />
+    <None Include="wwwroot\assets\css\images\bg02.png" />
+    <None Include="wwwroot\assets\css\images\bg03.png" />
+    <None Include="wwwroot\assets\css\main.css" />
+    <None Include="wwwroot\assets\datetimepicker\css\jquery.datetimepicker.min.css" />
+    <None Include="wwwroot\assets\datetimepicker\js\jquery.datetimepicker.js" />
+    <None Include="wwwroot\assets\datetimepicker\js\jquery.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\demos\js\theme-chooser.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\demos\php\get-events.php" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\demos\php\get-timezones.php" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\demos\php\utils.php" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\fullcalendar.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\fullcalendar.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\gcal.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\gcal.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\lib\jquery-ui.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\lib\jquery.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\lib\moment.min.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale-all.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\af.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-dz.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-kw.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-ly.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-ma.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-sa.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar-tn.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ar.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\be.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\bg.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\bs.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ca.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\cs.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\da.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\de-at.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\de-ch.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\de.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\el.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\en-au.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\en-ca.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\en-gb.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\en-ie.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\en-nz.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\es-do.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\es-us.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\es.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\et.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\eu.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\fa.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\fi.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\fr-ca.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\fr-ch.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\fr.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\gl.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\he.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\hi.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\hr.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\hu.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\id.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\is.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\it.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ja.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ka.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\kk.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ko.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\lb.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\lt.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\lv.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\mk.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ms-my.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ms.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\nb.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\nl-be.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\nl.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\nn.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\pl.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\pt-br.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\pt.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ro.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\ru.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sk.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sl.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sq.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sr-cyrl.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sr.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\sv.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\th.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\tr.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\uk.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\vi.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-cn.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-hk.js" />
+    <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-tw.js" />
+    <None Include="wwwroot\assets\google\googleMaps.js" />
+    <None Include="wwwroot\assets\images\africanFarmersLandscapedLong - Copy.jpg" />
+    <None Include="wwwroot\assets\js\breakpoints.min.js" />
+    <None Include="wwwroot\assets\js\browser.min.js" />
+    <None Include="wwwroot\assets\js\html5-qrcode\html5-qrcode.min.js" />
+    <None Include="wwwroot\assets\js\jquery.dropotron.min.js" />
+    <None Include="wwwroot\assets\js\jquery.min.js" />
+    <None Include="wwwroot\assets\js\main.js" />
+    <None Include="wwwroot\assets\js\util.js" />
+    <None Include="wwwroot\assets\sass\libs\_breakpoints.scss" />
+    <None Include="wwwroot\assets\sass\libs\_functions.scss" />
+    <None Include="wwwroot\assets\sass\libs\_html-grid.scss" />
+    <None Include="wwwroot\assets\sass\libs\_mixins.scss" />
+    <None Include="wwwroot\assets\sass\libs\_vars.scss" />
+    <None Include="wwwroot\assets\sass\libs\_vendor.scss" />
+    <None Include="wwwroot\assets\sass\main.scss" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\Logs\log.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AfricanFarmerCommodities.DataAccess\AfricanFarmerCommodities.DataAccess.csproj" />
+    <ProjectReference Include="..\AfricanFarmerCommodities.UnitOfWork\AfricanFarmerCommodities.UnitOfWork.csproj" />
+    <ProjectReference Include="..\AfricanFarmersCommodities.AppConfigurations\AfricanFarmersCommodities.AppConfigurations.csproj" />
+    <ProjectReference Include="..\AfricanFarmersCommodities.Domain\AfricanFarmersCommodities.Domain.csproj" />
+    <ProjectReference Include="..\AfricanFarmersCommodities.ServiceEndPoint\AfricanFarmersCommodities.ServiceEndPoint.csproj" />
+    <ProjectReference Include="..\AfricanFarmersCommodities.Services\AfricanFarmersCommodities.Services.csproj" />
+    <ProjectReference Include="..\BLG.Business\BLG.Business.csproj" />
+    <ProjectReference Include="..\BLGWeather.Domain\BLGWeather.Domain.csproj" />
+    <ProjectReference Include="..\ExcelAccessDataEngine\ExcelAccessDataEngine.csproj" />
+    <ProjectReference Include="..\PaymentGateway\PaymentsGateway.csproj" />
+    <ProjectReference Include="..\SimbaToursEastAfrica.Caching\SimbaToursEastAfrica.Caching.csproj" />
+    <ProjectReference Include="..\SimbaToursEastAfrica.SocialMedia\SimbaToursEastAfrica.SocialMedia.csproj" />
+    <ProjectReference Include="..\Twitter\Twitter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AesCryptoSystemExtra">
+      <HintPath>extLibs\AesCryptoSystemExtra.dll</HintPath>
+    </Reference>
+    <Reference Include="EpsilonCryptoSystemEngine">
+      <HintPath>extLibs\EpsilonCryptoSystemEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\driver-calendar-notes\driverCalendar.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AdminAuthGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthFarmerGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthDriverGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthGovernmentGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthRetailerGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthWholeSalerGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthGuestGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthStandardUserGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\interceptors\app.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\africanFarmerCommoditiesService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\socialmedia\twitterfeeds\twitterprofilefeeds.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\node_modules\.cache\angular-build-dl\content-v2\sha512\03\81\" />
+    <Folder Include="ClientApp\src\assets\js\zxing\" />
+    <Folder Include="IosPhoneLocationApp\" />
+    <Folder Include="wwwroot\assets\js\datetimepicker\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="call attrib -r &quot;$(ProjectDir)&quot; /s" />
+  </Target>
+
+</Project>

@@ -1,0 +1,9 @@
+body {
+}
+.fc-scroller {
+  height: auto !important;
+}
+a.fc-daygrid-day-number{
+  color:gray !important; font-weight:bold !important;
+}
+
