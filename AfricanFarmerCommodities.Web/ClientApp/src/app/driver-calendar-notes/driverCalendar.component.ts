@@ -120,7 +120,17 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
-
+  public goToDateAtOrigin(): void {
+    this.calendar.gotoDate(this.driver.transportSchedule.dateStartFromOrigin);
+    document.getElementById('mainbodycontent').scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+  public goToDateAtDestination(): void {
+    this.calendar.gotoDate(this.driver.transportSchedule.dateEndAtDestination); document.getElementById('mainbodycontent').scrollIntoView({
+      behavior: "smooth"
+    });
+  }
   public ngOnInit(): void {
     this.events = [];
     this.driver = {

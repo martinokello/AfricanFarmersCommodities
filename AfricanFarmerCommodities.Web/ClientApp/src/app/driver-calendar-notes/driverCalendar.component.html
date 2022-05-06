@@ -31,10 +31,12 @@
       <div class="form-group">
         <label>Date From Origin</label>
         <input type="text" name="dateStartFromOrigin" id="dateStartFromOrigin" [(ngModel)]="driver.transportSchedule.dateStartFromOrigin" readonly />
+        <input type="button" name="btnDateAtOrigin" (click)="goToDateAtOrigin()" value="Go To Calendar Date"/>
       </div>
       <div class="form-group">
         <label>Date At Destination</label>
         <input type="text" name="dateEndAtDestination" id="dateEndAtDestination" [(ngModel)]="driver.transportSchedule.dateEndAtDestination" readonly />
+        <input type="button" name="btnDateAtDestination" (click)="goToDateAtDestination()" value="Go To Calendar Date" />
       </div>
       <div class="form-group" style="margin: 5px 0px !important;">
         <textarea cols="12" placeholder="Origin Notes" rows="5" name="originDriverScheculeNotes" [(ngModel)]="driverOriginNoteContent"></textarea><br /><br />
