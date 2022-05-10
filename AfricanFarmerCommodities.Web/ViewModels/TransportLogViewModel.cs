@@ -11,5 +11,7 @@ namespace AfricanFarmerCommodities.Web.ViewModels
         public string TransportLogName { get; set; }
         public int TransportScheduleId { get; set; }
         public int InvoiceId { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateUpdated { get; set; } = DateTime.Now;
     }
 }

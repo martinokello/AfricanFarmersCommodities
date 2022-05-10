@@ -82,3 +82,4 @@ C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\Exc
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.pdb
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.csproj.AssemblyReference.cache

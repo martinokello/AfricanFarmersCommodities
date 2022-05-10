@@ -109,23 +109,39 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
         [HttpPost]
         [AuthorizeIdentity]
-        public async Task<IActionResult> CreateTransportScheduleLog([FromBody] TransportLogViewModel transportLogViewModel)
+        public async Task<IActionResult> CreateOrUpdateTransportScheduleLog([FromBody] TransportLogViewModel transportLogViewModel)
         {
             try
             {
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 var transportLog = _mapper.Map<TransportLog>(transportLogViewModel);
-                bool result = await _serviceEndPoint.PostCreateTransportScheduleLog(transportLog);
-                if (!result)
+                var currentTrLog =_unitOfWork._transportLogRepository.GetById(transportLogViewModel.TransportLogId);
+                
+                if(currentTrLog == null)
                 {
-                    return NotFound(transportLogViewModel);
+                    bool result = await _serviceEndPoint.PostCreateTransportScheduleLog(transportLog);
+                    if (!result)
+                    {
+                        return NotFound(transportLogViewModel);
+                    }
+                    return Ok(new { message = "Succesfully Created!", result = result });
                 }
-                return Ok(new { message = "Succesfully Deleted!", result = result });
+                else
+                {
+                    var success = _unitOfWork._transportLogRepository.Update(transportLog);
+                    _unitOfWork.SaveChanges();
+                    if (success)
+                    {
+                        return Ok(new { message = "Succesfully Updated!", result = success });
+                    }
+
+                }
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+            return NotFound(new { message = "Failed to Update!", result = false });
         }
 
         [HttpPost]

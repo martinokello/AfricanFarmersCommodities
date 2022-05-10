@@ -9,7 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 @Injectable()
 export class AfricanFarmerCommoditiesService {
 
-  private baseServerUrl: string = /*"https://localhost:44387";*/ "https://africanfarmerscommodities.martinlayooinc.com";
+  private baseServerUrl: string = /*"https://localhost:44387";*/  "https://africanfarmerscommodities.martinlayooinc.com";
   public static isLoginPage: boolean = false;
   public actionResult: any;
   public httpClient: HttpClient;
@@ -18,7 +18,7 @@ export class AfricanFarmerCommoditiesService {
   public getCityLocationWeatherFocus: string = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
   public postRemoveVehicleFromMonitorUrl: string = this.baseServerUrl + "/VehicleSchedules/RemoveVehicleFromMonitor";
 
-  public createTransLogUrl: string = this.baseServerUrl + "/Home/CreateTransportScheduleLog";
+  public createTransLogUrl: string = this.baseServerUrl + "/Home/CreateOrUpdateTransportScheduleLog";
   public deleteTransLogUrl: string = this.baseServerUrl + "/Home/DeleteTransportScheduleLog"
   public getDriverMobileLocationAppUrl: string = this.baseServerUrl + "/Transport/GetLocationEmitterApp";
 

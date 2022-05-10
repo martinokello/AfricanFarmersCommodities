@@ -378,7 +378,8 @@ namespace AfricanFarmersCommodities.Web
             services.AddScoped<AbstractRepository<ActiveEnrouteCommodityMonitor>, ActiveEnrouteCommodityMonitorRepository>();
             services.AddScoped<AbstractRepository<TransportSchedule>, TransportScheduleRepository>();
             services.AddScoped<AbstractRepository<Company>, CompanyRepository>();
-            services.AddScoped<AbstractRepository<DriverSchedulesNote>, DriverSchedulesNotesRepository>(); 
+            services.AddScoped<AbstractRepository<DriverSchedulesNote>, DriverSchedulesNotesRepository>();
+            services.AddScoped<AbstractRepository<TransportLog>, TransportLogRepository>();
             services.AddScoped<AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint, AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
             services.AddScoped<InitializeDatabaseRoles>();
 

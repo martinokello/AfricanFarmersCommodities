@@ -39,6 +39,7 @@ namespace AfricanFarmerCommodities.UnitOfWork.Concretes
         public TransportScheduleRepository _transportScheduleRepostiory;
         public CompanyRepository _companyRepository;
         public DriverSchedulesNotesRepository _driverSchedulesNotesRepository;
+        public TransportLogRepository _transportLogRepository;
         public AfricanFarmerCommoditiesDBContext AfricanFarmerCommoditiesDbContext { get; set; }
         public AfricanFarmerCommoditiesUnitOfWork(
             AbstractRepository<Address> addressRepository,
@@ -65,6 +66,7 @@ namespace AfricanFarmerCommodities.UnitOfWork.Concretes
             AbstractRepository<Company> companyRepository,
             AbstractRepository<Farmer> farmerRepository,
             AbstractRepository<DriverSchedulesNote> driverSchedulesNotesRepository,
+            AbstractRepository<TransportLog> transportLogRepository,
             AfricanFarmerCommoditiesDBContext africanFarmerCommoditiesDbContext)
         {
             AfricanFarmerCommoditiesDbContext = africanFarmerCommoditiesDbContext as AfricanFarmerCommoditiesDBContext;
@@ -116,6 +118,8 @@ namespace AfricanFarmerCommodities.UnitOfWork.Concretes
             _farmerRepository.AfricanFarmerCommoditiesDBContext = africanFarmerCommoditiesDbContext;
             _driverSchedulesNotesRepository = driverSchedulesNotesRepository as DriverSchedulesNotesRepository;
             _driverSchedulesNotesRepository.AfricanFarmerCommoditiesDBContext = africanFarmerCommoditiesDbContext;
+            _transportLogRepository = transportLogRepository as TransportLogRepository;
+            _transportLogRepository.AfricanFarmerCommoditiesDBContext = africanFarmerCommoditiesDbContext;
 
 
         }

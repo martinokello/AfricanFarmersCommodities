@@ -19,6 +19,9 @@ namespace AfricanFarmerCommodities.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<TransportLog>()
+            .HasIndex(p => new { p.TransportScheduleId, p.InvoiceId }).IsUnique();
             modelBuilder.Entity<User>().HasAlternateKey("Username").HasName("User_Username");
             modelBuilder.Entity<UserRole>().HasKey("UserRoleId");
             modelBuilder.Entity<UserRole>().HasAlternateKey("UserId", "RoleId").HasName("UserRole_UserIdRoleId");

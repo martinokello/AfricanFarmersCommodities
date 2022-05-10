@@ -11,9 +11,12 @@ namespace AfricanFarmersCommodities.Domain
         [Key]
         public int TransportLogId { set; get; }
         public string TransportLogName { get; set; }
+
         [ForeignKey("TransportSchedule")]
         public int TransportScheduleId { get; set; }
         [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateUpdated { get; set; } = DateTime.Now;
     }
 }
