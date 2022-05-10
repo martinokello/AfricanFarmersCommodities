@@ -237,7 +237,7 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
 
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.CreateTransportScheduleLog(transLog);
     actualResult.map((p: any) => {
-      alert('TransportSchedule Added: ' + p.result);
+      alert('TransportSchedule Added: ' + p.message);
       if (p.result) {
 
         this.router.navigateByUrl('success');
@@ -260,7 +260,7 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
 
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteTransportScheduleLog(transLog);
     actualResult.map((p: any) => {
-      alert('Invoice Removed: ' + p.result);
+      alert('Invoice Removed: ' + p.message);
       if (p.result) {
 
         this.router.navigateByUrl('success');

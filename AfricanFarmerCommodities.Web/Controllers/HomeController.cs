@@ -155,9 +155,9 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 bool result = await _serviceEndPoint.DeleteTransportScheduleLog(transportLog);
                 if (!result)
                 {
-                    return NotFound(transportLogViewModel);
+                    return NotFound(new { message = "Not Found", result = false });
                 }
-                return Ok(new { message = "Succesfully Created!", result = result });
+                return Ok(new { message = "Succesfully Deleted!", result = result });
             }
             catch (Exception ex)
             {
