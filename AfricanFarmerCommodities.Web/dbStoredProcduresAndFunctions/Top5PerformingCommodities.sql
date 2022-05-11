@@ -174,7 +174,7 @@ create procedure dbo.Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(
 )
 As
 --Top 5 Commodities Sold By Capacity Over Date:begin, Date:end
-SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Cost) as GrossReturns
+SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossReturns
   FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join

@@ -27,4 +27,3 @@ C:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\netcoreapp
 C:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.csproj.CoreCompileInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.dll
 C:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.pdb
-C:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.csproj.AssemblyReference.cache
