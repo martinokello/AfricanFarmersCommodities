@@ -990,7 +990,7 @@ namespace AfricanFarmerCommodities.DataAccess
             }
             return listItems;
         }
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDatBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
@@ -1009,7 +1009,7 @@ namespace AfricanFarmerCommodities.DataAccess
             cmd.Parameters.Add(datStParam);
             cmd.Parameters.Add(datEdParam);
 
-            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDatBeginDateEnd]";
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
             var reader = cmd.ExecuteReader();

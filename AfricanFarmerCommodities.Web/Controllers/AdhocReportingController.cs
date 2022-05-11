@@ -121,7 +121,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var foodHubCommoditiesStorageUsage = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1),DateTime.Now);
+                var foodHubCommoditiesStorageUsage = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(foodHubCommoditiesStorageUsage));
             }
             catch (Exception e)
@@ -135,7 +135,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var allFoodHubCommoditiesStorageUsage = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1),DateTime.Now);
+                var allFoodHubCommoditiesStorageUsage = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(allFoodHubCommoditiesStorageUsage));
             }
             catch (Exception e)
@@ -149,7 +149,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var top5DryStorageCommoditisInDemand = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime.Now.AddYears(-1),DateTime.Now);
+                var top5DryStorageCommoditisInDemand = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(top5DryStorageCommoditisInDemand));
             }
             catch (Exception e)
@@ -162,7 +162,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var top5RefreigeratedCommoditisInDemand = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime.Now.AddYears(-1),DateTime.Now);
+                var top5RefreigeratedCommoditisInDemand = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(top5RefreigeratedCommoditisInDemand));
             }
             catch (Exception e)
@@ -205,6 +205,245 @@ namespace AfricanFarmerCommodities.Web.Controllers
             catch (Exception e)
             {
                 return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
+            }
+        }
+        //////////////////////////////////////////
+        ////New Content
+        ////////////////////////////////////////// 
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCapacityOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverAll();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverthePastYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverAll();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCapacityOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverthePastYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        //////////////////////////////////////////////////////////////
+        ////Vehicle Queries
+        ///////////////////////////////////////////////////////////////
+           
+        public async Task<IActionResult> GetTop5VehicleCategoriesUsedByCapacityOvertheyear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehicleCategoriesUsedByCapacityOvertheyear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear();
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
     }
