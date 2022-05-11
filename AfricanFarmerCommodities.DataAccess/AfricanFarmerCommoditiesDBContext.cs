@@ -106,7 +106,7 @@ namespace AfricanFarmerCommodities.DataAccess
             foodHub.ParameterName = "@foodHubId";
             foodHub.Value = foodHubId;
             cmd.Parameters.Add(foodHub);
-            
+
             cmd.CommandText = "dbo.FoodHubCommoditiesStockStorageUsageByFoodHubId";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
@@ -132,9 +132,9 @@ namespace AfricanFarmerCommodities.DataAccess
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>(); 
+            var listItems = new List<dynamic>();
 
-             var cmd = con.CreateCommand();
+            var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.Top5FoodHubDryStorageUsage";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
@@ -176,7 +176,7 @@ namespace AfricanFarmerCommodities.DataAccess
             }
             return listItems;
         }
-        
+
         public List<dynamic> GetTop5FarmerCommoditiesInUnitPricings()
         {
             var con = this.Database.GetDbConnection();
@@ -316,7 +316,7 @@ namespace AfricanFarmerCommodities.DataAccess
                     CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommCommodityCategoryNameodityName"],
                     TotalUsedDryStorageCapacity = reader["TotalUsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalUsedDryStorageCapacity"],
                     TotalDryStorageCapacity = reader["TotalDryStorageCapacity"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                 });
+                });
             }
             return listItems;
         }
@@ -474,7 +474,538 @@ namespace AfricanFarmerCommodities.DataAccess
             }
             return listItems;
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////New StoredProcedure Access
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverAll()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverAll]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverAll()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverAll]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (int)reader["GrossReturns"],
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverthePastYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverthePastYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
+                });
+            }
+            return listItems;
+        }
+
+
+        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverAll()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverAll]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCostReturnsOverAll]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverthePastYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverthePastYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverthePastYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (decimal)reader["Quantity"]
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverDate]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"]
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"]
+                });
+            }
+            return listItems;
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////Vehicle Queries
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<dynamic> GetTop5VehicleCategoriesUsedByCapacityOvertheyear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5VehicleCategoriesUsedByCapacityOvertheyear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    NumbersOfSchedules = reader["NumbersOfSchedules"] == DBNull.Value ? 0 : (int)reader["NumbersOfSchedules"]
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    NumbersOfSchedules = reader["NumbersOfSchedules"] == DBNull.Value ? 0 : (int)reader["NumbersOfSchedules"]
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByCostReturnsOverYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCostReturnsOverYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    GrossCostReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    GrossCostReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    VehicleCagegoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
+                    NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
+                });
+            }
+            return listItems;
+        }
+
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
+                    NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
+                    NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
+                });
+            }
+            return listItems;
+        }
+        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDatBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            var con = this.Database.GetDbConnection();
+
+            var listItems = new List<dynamic>();
+
+            var cmd = con.CreateCommand();
+            var datStParam = cmd.CreateParameter();
+            var datEdParam = cmd.CreateParameter();
+
+            datStParam.ParameterName = "@dateBegin";
+            datStParam.Value = dateBegin;
+
+            datEdParam.ParameterName = "@dateEnd";
+            datEdParam.Value = dateEnd;
+
+            cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDatBeginDateEnd]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listItems.Add(new
+                {
+                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (int)reader["GrossReturns"]
+                });
+            }
+            return listItems;
+        }
     }
-    
+
 
 }
