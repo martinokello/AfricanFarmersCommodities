@@ -694,6 +694,9 @@ namespace AfricanFarmerCommodities.DataAccess
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
 
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
+
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverDate]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
@@ -725,6 +728,9 @@ namespace AfricanFarmerCommodities.DataAccess
 
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
+
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
 
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -758,6 +764,9 @@ namespace AfricanFarmerCommodities.DataAccess
 
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
+
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
 
             cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -820,6 +829,9 @@ namespace AfricanFarmerCommodities.DataAccess
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
 
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
+
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
@@ -872,6 +884,9 @@ namespace AfricanFarmerCommodities.DataAccess
 
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
+
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
 
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -931,6 +946,9 @@ namespace AfricanFarmerCommodities.DataAccess
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
 
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
+
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
@@ -987,6 +1005,9 @@ namespace AfricanFarmerCommodities.DataAccess
 
             datEdParam.ParameterName = "@dateEnd";
             datEdParam.Value = dateEnd;
+
+            cmd.Parameters.Add(datStParam);
+            cmd.Parameters.Add(datEdParam);
 
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDatBeginDateEnd]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
