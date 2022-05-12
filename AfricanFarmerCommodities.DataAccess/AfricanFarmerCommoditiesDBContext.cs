@@ -1,5 +1,6 @@
 ﻿using AfricanFarmerCommodities.Domain;
 using AfricanFarmersCommodities.Domain;
+using ExcelAccessDataEngine.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -478,11 +479,11 @@ namespace AfricanFarmerCommodities.DataAccess
         ////New StoredProcedure Access
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverAll()
+        public List<CommodityAndQuantity> GetTop5CommoditiesSoldByCapacityOverAll()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverAll]";
@@ -492,21 +493,21 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndQuantity
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0: (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" :(string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverAll()
+        public List<CommodityAndGrossReturns> GetTop5CommoditiesSoldByCostReturnsOverAll()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndGrossReturns>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverAll]";
@@ -516,21 +517,21 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndGrossReturns
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
-                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (int)reader["GrossReturns"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverthePastYear()
+        public List<CommodityAndGrossReturns> GetTop5CommoditiesSoldByCostReturnsOverthePastYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndGrossReturns>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCostReturnsOverthePastYear]";
@@ -540,10 +541,10 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndGrossReturns
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "not found" : (string)reader["CommodityName"],
                     GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
                 });
             }
@@ -551,11 +552,11 @@ namespace AfricanFarmerCommodities.DataAccess
         }
 
 
-        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverAll()
+        public List<FarmerCommodityAndQuantity> GetTop5CommoditiesByFarmerSoldByCapacityOverAll()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerCommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverAll]";
@@ -565,22 +566,22 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerCommodityAndQuantity
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0: (int)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
         }
-        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll()
+        public List<FarmerCommodityAndGrossReturns> GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerCommodityAndGrossReturns>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCostReturnsOverAll]";
@@ -590,23 +591,23 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerCommodityAndGrossReturns
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
+        public List<FarmerCommodityAndGrossReturns> GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerCommodityAndGrossReturns>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear]";
@@ -616,23 +617,23 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerCommodityAndGrossReturns
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverthePastYear()
+        public List<CommodityAndQuantity> GetTop5CommoditiesSoldByCapacityOverthePastYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesSoldByCapacityOverthePastYear]";
@@ -642,21 +643,21 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndQuantity
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
+        public List<FarmerCommodityAndQuantity> GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerCommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5CommoditiesByFarmerSoldByCapacityOverthePastYear]";
@@ -666,23 +667,23 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerCommodityAndQuantity
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
-                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (decimal)reader["Quantity"]
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        public List<CommodityAndQuantity> GetTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -704,20 +705,20 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndQuantity
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
         }
-        public List<dynamic> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<CommodityAndGrossReturns> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<CommodityAndGrossReturns>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -739,21 +740,21 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new CommodityAndGrossReturns
                 {
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
-                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"]
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "not found" : (string)reader["CommodityName"],
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<FarmerCommodityAndQuantity> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerCommodityAndQuantity>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -775,13 +776,13 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerCommodityAndQuantity
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? "Not Found" : (string)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    CommodityNameId = reader["CommodityNameId"] == DBNull.Value ? "Not Found" : (string)reader["CommodityNameId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? 0 : (int)reader["CommodityName"],
-                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"]
+                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
+                    CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
+                    Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
                 });
             }
             return listItems;
@@ -790,11 +791,11 @@ namespace AfricanFarmerCommodities.DataAccess
         ////Vehicle Queries
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public List<dynamic> GetTop5VehicleCategoriesUsedByCapacityOvertheyear()
+        public List<VehicleNumbersScheduled> GetTop5VehicleCategoriesUsedByCapacityOvertheyear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<VehicleNumbersScheduled>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5VehicleCategoriesUsedByCapacityOvertheyear]";
@@ -804,7 +805,7 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new VehicleNumbersScheduled
                 {
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     NumbersOfSchedules = reader["NumbersOfSchedules"] == DBNull.Value ? 0 : (int)reader["NumbersOfSchedules"]
@@ -813,11 +814,11 @@ namespace AfricanFarmerCommodities.DataAccess
             return listItems;
         }
 
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<VehicleNumbersScheduled> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<VehicleNumbersScheduled>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -839,7 +840,7 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new VehicleNumbersScheduled
                 {
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     NumbersOfSchedules = reader["NumbersOfSchedules"] == DBNull.Value ? 0 : (int)reader["NumbersOfSchedules"]
@@ -847,11 +848,11 @@ namespace AfricanFarmerCommodities.DataAccess
             }
             return listItems;
         }
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByCostReturnsOverYear()
+        public List<VehicleCostReturnsScheduled> GetTop5VehiclesCategoriesUsedByCostReturnsOverYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<VehicleCostReturnsScheduled>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByCostReturnsOverYear]";
@@ -861,19 +862,19 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new VehicleCostReturnsScheduled
                 {
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
-                    GrossCostReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
+                    GrossReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
                 });
             }
             return listItems;
         }
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<VehicleCostReturnsScheduled> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<VehicleCostReturnsScheduled>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -895,20 +896,20 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new VehicleCostReturnsScheduled
                 {
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
-                    GrossCostReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
+                    GrossReturns = reader["GrossCostReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossCostReturns"]
                 });
             }
             return listItems;
         }
 
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
+        public List<FarmerVehicleCategoryUsageByNumber> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerVehicleCategoryUsageByNumber>();
 
             var cmd = con.CreateCommand();
 
@@ -919,10 +920,10 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerVehicleCategoryUsageByNumber
                 {
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
-                    VehicleCagegoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
                     NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
                 });
@@ -930,11 +931,11 @@ namespace AfricanFarmerCommodities.DataAccess
             return listItems;
         }
 
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<FarmerVehicleCategoryUsageByNumber> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerVehicleCategoryUsageByNumber>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -956,9 +957,9 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerVehicleCategoryUsageByNumber
                 {
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
                     NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
@@ -966,11 +967,11 @@ namespace AfricanFarmerCommodities.DataAccess
             }
             return listItems;
         }
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
+        public List<FarmerVehicleCategoryUsageByCostReturns> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerVehicleCategoryUsageByCostReturns>();
 
             var cmd = con.CreateCommand();
             cmd.CommandText = "dbo.[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear]";
@@ -980,21 +981,21 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerVehicleCategoryUsageByCostReturns
                 {
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
-                    NumberOfVehicles = reader["NumberOfVehicles"] == DBNull.Value ? 0 : (int)reader["NumberOfVehicles"]
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"]
                 });
             }
             return listItems;
         }
-        public List<dynamic> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public List<FarmerVehicleCategoryUsageByCostReturns> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             var con = this.Database.GetDbConnection();
 
-            var listItems = new List<dynamic>();
+            var listItems = new List<FarmerVehicleCategoryUsageByCostReturns>();
 
             var cmd = con.CreateCommand();
             var datStParam = cmd.CreateParameter();
@@ -1016,12 +1017,12 @@ namespace AfricanFarmerCommodities.DataAccess
 
             while (reader.Read())
             {
-                listItems.Add(new
+                listItems.Add(new FarmerVehicleCategoryUsageByCostReturns
                 {
-                    FamerName = reader["FamerName"] == DBNull.Value ? 0 : (int)reader["FamerName"],
+                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
                     VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
                     VechicleCapacity = reader["VechicleCapacity"] == DBNull.Value ? 0 : (decimal)reader["VechicleCapacity"],
-                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (int)reader["GrossReturns"]
+                    GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"]
                 });
             }
             return listItems;

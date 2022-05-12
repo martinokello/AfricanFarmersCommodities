@@ -46,6 +46,7 @@ using AfricanFarmersCommodities.Web.IdentityServices;
 using AfricanFarmerCommodities.Domain;
 using AfricanFarmerCommodities.Web.IdentityServices;
 using AesCryptoSystemExtra.AESCryptoSystem.ExternalCryptoUnit;
+using ExcelAccessDataEngine.Concretes;
 
 namespace AfricanFarmersCommodities.Web
 {
@@ -344,6 +345,7 @@ namespace AfricanFarmersCommodities.Web
             services.AddScoped<PayPalHandler>(pHandle => new PayPalHandler(paypalSettings.GetSection("PaypalBaseUrl").Value,
               paypalSettings.GetSection("BusinessEmail").Value, paypalSettings.GetSection("SuccessUrl").Value, paypalSettings.GetSection("CancelUrl").Value,
               paypalSettings.GetSection("NotifyUrl").Value, ""));
+            services.AddScoped<ExcelEngine>();
             services.AddScoped<PaymentsManager>();
             services.AddScoped<Mapper>(map => new Mapper(mapperConfiguration));
             services.AddSingleton<IConfiguration>(Configuration);

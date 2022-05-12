@@ -37,6 +37,9 @@
             "projectReferences": {
               "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj": {
                 "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj"
+              },
+              "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+                "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
               }
             }
           }
@@ -192,6 +195,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.104\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj",
+        "projectName": "ExcelAccessDataEngine",
+        "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj",
+        "frameworks": {
+          "net461": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {}
       }
     }
   }

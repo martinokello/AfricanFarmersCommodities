@@ -13,64 +13,396 @@ namespace ExcelAccessDataEngine.Concretes
     public class ExcelEngine : IExcelReader
     {
 
-        public UserBadgeTo[] ReadExcel(string FilePath)
+        public Stream GenerateExcelFile(List<CommodityAndQuantity> rowContent)
         {
-            List<UserBadgeTo> dataRows = new List<UserBadgeTo>();
-            //Title Row:
-            var excelRowNumber = 1;
-            var fileInfo = new FileInfo(FilePath);
-
-            
-
             using (var memoryStream = new MemoryStream())
             {
-                using (var stream = fileInfo.OpenRead())
-                {
-                    byte[] buf = new byte[4096];
-                    int bytesRead = -1;
-                    while ((bytesRead = stream.Read(buf, 0, buf.Length)) > 0)
-                    {
-                        memoryStream.Write(buf, 0, bytesRead);
-                    }
-                    stream.Flush();
-                    stream.Close();
-                }
-                memoryStream.Seek(0, SeekOrigin.Begin);
                 using (var exPackage = new ExcelPackage(memoryStream))
                 {
-                    ExcelWorksheet wsht = null;
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Quantity";
 
-                    if (exPackage.Workbook.Worksheets.Any())
-                        wsht = exPackage.Workbook.Worksheets.First();
-                    if (wsht == null)
+                    foreach (var rowQuant in rowContent)
                     {
-
-                        throw (new Exception("Excel File Missing WorkSheet!"));
-                    }
-                    if (excelRowNumber == 1)
-                    {
-                        //Consume Title Header
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.Quantity;
                         excelRowNumber++;
                     }
-                    while (true)
-                    {
-                        if (string.IsNullOrEmpty(wsht.Cells[string.Format("A{0}", excelRowNumber)].Value as string)) break;
-
-                        dataRows.Add(new UserBadgeTo
-                        {
-                            EmailAddress = wsht.Cells[string.Format("A{0}", excelRowNumber)].Value as string,
-                            CandidateFullName = wsht.Cells[string.Format("B{0}", excelRowNumber)].Value as string,
-                            CellPhoneNumber = wsht.Cells[string.Format("C{0}", excelRowNumber)].Value as string,
-                            ProvinceDelimitedByComma = wsht.Cells[string.Format("D{0}", excelRowNumber)].Value as string,
-                            BadgeType = wsht.Cells[string.Format("E{0}", excelRowNumber)].Value as string
-                        });
-
-                        excelRowNumber++;
-                    }
-
+                    return exPackage.Stream;
                 }
             }
-            return dataRows.ToArray();
+        }
+        public Stream GenerateExcelFile(List<CommodityAndQuantity> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Quantity";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.Quantity;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+
+        public Stream GenerateExcelFile(List<CommodityAndGrossReturns> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "GrossReturns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<CommodityAndGrossReturns> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "GrossReturns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+
+        public Stream GenerateExcelFile(List<FarmerCommodityAndQuantity> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Quantity";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.Quantity;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerCommodityAndQuantity> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Farmer Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Quantity";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.Quantity;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+
+        public Stream GenerateExcelFile(List<FarmerCommodityAndGrossReturns> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook;
+                    var ws = wb.Worksheets.Add("Commodity Grouped By Farmer & Gross Returns");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Farmer & Gross Returns";
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerCommodityAndGrossReturns> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                { 
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+
+        public Stream GenerateExcelFile(List<VehicleNumbersScheduled> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicle Categories Used Over the Year");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicle Categories Used Over the Year";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Number Of Vehicles scheduled";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.NumbersOfSchedules;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<VehicleNumbersScheduled> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Number Of Vehicles scheduled";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.NumbersOfSchedules;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+
+        public Stream GenerateExcelFile(List<VehicleCostReturnsScheduled> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used with Gross returns Over the Year");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Vehicles Categories Used with Gross returns Over the Year";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<VehicleCostReturnsScheduled> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy-MM-dd")}  to date: {dateEnd.ToString("yyyy-MM-dd")}"); 
+                   
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy - MM - dd")}  to date: {dateEnd.ToString("yyyy - MM - dd")}";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerVehicleCategoryUsageByNumber> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Over the Year");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Farmer, Vehicles Categories Used Over the Year";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Number Of Vehicles";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.NumberOfVehicles;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerVehicleCategoryUsageByNumber> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Number Of Vehicles";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.NumberOfVehicles;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerVehicleCategoryUsageByCostReturns> rowContent)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Against Gross returns Over the Year");
+                    ws.Cells[string.Format("A{0}", 1)].Value = "Farmer, Vehicles Categories Used Against Gross Returns Over the Year";
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
+        }
+        public Stream GenerateExcelFile(List<FarmerVehicleCategoryUsageByCostReturns> rowContent, DateTime dateBegin, DateTime dateEnd)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var exPackage = new ExcelPackage(memoryStream))
+                {
+                    var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Against Gross returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                    ws.Cells[string.Format("A{0}", 1)].Value = $"Farmer, Vehicles Categories Used Against Gross Returns Between Between date: {dateBegin.ToString("yyyy - MM - dd")} to date: {dateEnd.ToString("yyyy - MM - dd")}"; 
+
+                    var excelRowNumber = 3;
+                    ws.Cells[string.Format("A{0}", 2)].Value = "Farmer Name";
+                    ws.Cells[string.Format("B{0}", 2)].Value = "Vehicle Category";
+                    ws.Cells[string.Format("C{0}", 2)].Value = "Gross Returns";
+
+                    foreach (var rowQuant in rowContent)
+                    {
+                        ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                        ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.VehicleCategoryName;
+                        ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
+                        excelRowNumber++;
+                    }
+                    return exPackage.Stream;
+                }
+            }
         }
     }
 }

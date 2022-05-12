@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AfricanFarmersCommodities.Domain\AfricanFarmersCommodities.Domain.csproj" />
+    <ProjectReference Include="..\ExcelAccessDataEngine\ExcelAccessDataEngine.csproj" />
   </ItemGroup>
 
 </Project>

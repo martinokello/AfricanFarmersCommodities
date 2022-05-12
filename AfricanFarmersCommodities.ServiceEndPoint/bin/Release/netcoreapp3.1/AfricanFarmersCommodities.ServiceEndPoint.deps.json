@@ -1055,6 +1055,7 @@
       "AfricanFarmerCommodities.DataAccess/1.0.0": {
         "dependencies": {
           "AfricanFarmersCommodities.Domain": "1.0.0",
+          "ExcelAccessDataEngine": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.14",
           "Microsoft.EntityFrameworkCore": "3.1.14",
           "Microsoft.EntityFrameworkCore.Analyzers": "3.1.14",

@@ -9,6 +9,7 @@
       "AfricanFarmerCommodities.DataAccess/1.0.0": {
         "dependencies": {
           "AfricanFarmersCommodities.Domain": "1.0.0",
+          "ExcelAccessDataEngine": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.14",
           "Microsoft.EntityFrameworkCore": "3.1.14",
           "Microsoft.EntityFrameworkCore.Analyzers": "3.1.14",
@@ -991,6 +992,19 @@
         "runtime": {
           "AfricanFarmersCommodities.Domain.dll": {}
         }
+      },
+      "ExcelAccessDataEngine/1.0.0": {
+        "runtime": {
+          "ExcelAccessDataEngine.dll": {}
+        }
+      },
+      "EPPlus/3.1.2.0": {
+        "runtime": {
+          "EPPlus.dll": {
+            "assemblyVersion": "3.1.2.0",
+            "fileVersion": "3.1.2.0"
+          }
+        }
       }
     }
   },
@@ -1688,6 +1702,16 @@
     },
     "AfricanFarmersCommodities.Domain/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ExcelAccessDataEngine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EPPlus/3.1.2.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

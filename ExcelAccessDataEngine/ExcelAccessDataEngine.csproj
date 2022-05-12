@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concretes\ExcelEngine.cs" />
-    <Compile Include="DomainModel\UserBadgeTo.cs" />
+    <Compile Include="DomainModel\CollectiveModels.cs" />
     <Compile Include="Interfaces\IExcelReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

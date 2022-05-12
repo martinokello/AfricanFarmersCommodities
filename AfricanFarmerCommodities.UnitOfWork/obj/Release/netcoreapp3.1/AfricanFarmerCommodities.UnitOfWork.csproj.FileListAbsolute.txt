@@ -239,7 +239,6 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\b
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\AfricanFarmersCommodities.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\AfricanFarmersCommodities.Services.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\ExcelAccessDataEngine.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\EPPlus.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\AfricanFarmersCommodities.Services.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\AfricanFarmerCommodities.DataAccess.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\AfricanFarmersCommodities.AppConfigurations.pdb
@@ -254,3 +253,4 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\o
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\obj\Release\netcoreapp3.1\AfricanFarmerCommodities.UnitOfWork.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\obj\Release\netcoreapp3.1\AfricanFarmerCommodities.UnitOfWork.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\obj\Release\netcoreapp3.1\AfricanFarmerCommodities.UnitOfWork.genruntimeconfig.cache
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmerCommodities.UnitOfWork\bin\Release\netcoreapp3.1\EPPlus.dll

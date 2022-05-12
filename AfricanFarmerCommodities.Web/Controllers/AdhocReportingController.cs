@@ -11,17 +11,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using AfricanFarmersCommodities.Web.IdentityServices;
+using ExcelAccessDataEngine.Concretes;
+using ExcelAccessDataEngine.DomainModel;
 
 namespace AfricanFarmerCommodities.Web.Controllers
 {
     [EnableCors(PolicyName = "CorsPolicy")]
     public class AdhocReportingController : Controller
     {
+        private ExcelEngine _excelEngine;
         private IMailService _emailService;
         private AfricanFarmerCommoditiesUnitOfWork _unitOfWork;
 
-        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork)
+        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork, ExcelEngine excelEngine)
         {
+            _excelEngine = excelEngine;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
 
@@ -222,13 +226,40 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-
+        public async Task<IActionResult> GetReportTop5CommoditiesSoldByCapacityOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverAll();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+                
+                return await Task.FromResult(new FileStreamResult(stream,"application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverAll()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> GetReportTop5CommoditiesSoldByCostReturnsOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -247,12 +278,42 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCostReturnsOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverAll()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverAll();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCapacityOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverAll();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -271,12 +332,43 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCostReturnsOverAll()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -295,12 +387,42 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCapacityOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverthePastYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCapacityOverthePastYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -319,12 +441,40 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -343,10 +493,25 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         //////////////////////////////////////////////////////////////
         ////Vehicle Queries
         ///////////////////////////////////////////////////////////////
-           
+
         public async Task<IActionResult> GetTop5VehicleCategoriesUsedByCapacityOvertheyear()
         {
             try
@@ -359,13 +524,41 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+        public async Task<IActionResult> ReportTop5VehicleCategoriesUsedByCapacityOvertheyear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehicleCategoriesUsedByCapacityOvertheyear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverYear()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverYear();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCostReturnsOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -384,12 +577,40 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear();
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear()
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear();
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -408,6 +629,20 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             try
@@ -420,13 +655,40 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
         public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
         {
             try
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {
@@ -440,6 +702,20 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
+            }
+        }
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        {
+            try
+            {
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
+
+                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
             }
             catch (Exception e)
             {

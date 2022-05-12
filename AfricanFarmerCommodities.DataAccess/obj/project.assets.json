@@ -1431,6 +1431,15 @@
         "runtime": {
           "bin/placeholder/AfricanFarmersCommodities.Domain.dll": {}
         }
+      },
+      "ExcelAccessDataEngine/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/ExcelAccessDataEngine.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExcelAccessDataEngine.dll": {}
+        }
       }
     }
   },
@@ -5363,11 +5372,17 @@
       "type": "project",
       "path": "../AfricanFarmersCommodities.Domain/AfricanFarmersCommodities.Domain.csproj",
       "msbuildProject": "../AfricanFarmersCommodities.Domain/AfricanFarmersCommodities.Domain.csproj"
+    },
+    "ExcelAccessDataEngine/1.0.0": {
+      "type": "project",
+      "path": "../ExcelAccessDataEngine/ExcelAccessDataEngine.csproj",
+      "msbuildProject": "../ExcelAccessDataEngine/ExcelAccessDataEngine.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AfricanFarmersCommodities.Domain >= 1.0.0",
+      "ExcelAccessDataEngine >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.14",
       "Microsoft.EntityFrameworkCore >= 3.1.14",
       "Microsoft.EntityFrameworkCore.Analyzers >= 3.1.14",
@@ -5416,6 +5431,9 @@
           "projectReferences": {
             "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj": {
               "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj"
+            },
+            "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+              "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
             }
           }
         }

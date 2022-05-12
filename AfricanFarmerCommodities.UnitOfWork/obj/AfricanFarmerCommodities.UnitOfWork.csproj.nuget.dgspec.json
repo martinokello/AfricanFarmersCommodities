@@ -37,6 +37,9 @@
             "projectReferences": {
               "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj": {
                 "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj"
+              },
+              "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+                "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
               }
             }
           }
