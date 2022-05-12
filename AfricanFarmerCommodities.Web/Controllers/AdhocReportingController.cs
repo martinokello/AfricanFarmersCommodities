@@ -232,8 +232,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                
-                return await Task.FromResult(new FileStreamResult(stream,"application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCapacityOverAll.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream,"application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -259,7 +259,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverAll.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -286,7 +287,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverthePastYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -313,7 +315,9 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverAll.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
+
             }
             catch (Exception e)
             {
@@ -340,7 +344,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCostReturnsOverAll.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
 
             }
             catch (Exception e)
@@ -368,7 +373,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -395,7 +401,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCapacityOverthePastYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -422,7 +429,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverthePastYea.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -448,7 +456,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCapacityOverDate.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -474,7 +483,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -501,7 +511,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -531,7 +542,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehicleCategoriesUsedByCapacityOvertheyear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehicleCategoriesUsedByCapacityOvertheyea.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -558,7 +570,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCostReturnsOverYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -584,7 +597,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -610,7 +624,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -636,7 +651,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -662,7 +678,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -688,7 +705,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
@@ -715,7 +733,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                return await Task.FromResult(new FileStreamResult(stream, "application/xlsx"));
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd.xlsx\"");
+                return await Task.FromResult(new FileStreamResult(stream, "application/vnd.ms-excel"));
             }
             catch (Exception e)
             {
