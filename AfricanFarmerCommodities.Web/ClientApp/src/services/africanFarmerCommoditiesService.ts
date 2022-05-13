@@ -2269,5 +2269,56 @@ export interface IDriverNote {
   driverNote: string;
   isOriginNote: boolean;
 }
+export interface IDatePair {
+  dateBegin: Date,
+  dateEnd: Date
+}
+export interface ICommodityAndQuantity {
+  commodityId: number,
+  commodityName:string,
+  quantity:number
+}
 
+export interface ICommodityAndGrossReturns {
+  commodityId: number,
+  commodityName: string,
+  GrossReturns: number
+}
 
+export interface IFarmerCommodityAndQuantity {
+  farmerId: number,
+  farmerName:string,
+  commodityId: number,
+  commodityName: string
+  quantity: number
+}
+
+export interface IFarmerCommodityAndGrossReturns {
+  farmerId: number,
+  farmerName: string,
+  commodityId: number,
+  commodityName: string,
+  grossReturns: number
+}
+
+export interface IVehicleNumbersScheduled {
+  numbersOfSchedules: number,
+  vehicleCategoryName: string
+}
+export interface IVehicleCostReturnsScheduled {
+  grossReturns: number,
+  vehicleCategoryName: string
+}
+
+export interface IFarmerVehicleCategoryUsageByNumber {
+  farmerName: string,
+  vechicleCapacity: number,
+  vehicleCategoryName: string,
+  numberOfVehicles: number
+}
+export interface IFarmerVehicleCategoryUsageByCostReturns {
+  farmerName: string,
+  vechicleCapacity: number,
+  vehicleCategoryName: string,
+  grossReturns: number
+}

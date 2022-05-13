@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Cors;
 using AfricanFarmersCommodities.Web.IdentityServices;
 using ExcelAccessDataEngine.Concretes;
 using ExcelAccessDataEngine.DomainModel;
+using AfricanFarmerCommodities.Web.ViewModels;
 
 namespace AfricanFarmerCommodities.Web.Controllers
 {
@@ -437,11 +438,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCapacityOverDate([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -449,11 +450,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5CommoditiesSoldByCapacityOverDate(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCapacityOverDate([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCapacityOverDate.xlsx\"");
@@ -464,11 +465,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -476,11 +477,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd.xlsx\"");
@@ -491,11 +492,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -504,11 +505,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
             }
         }
 
-        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd.xlsx\"");
@@ -632,11 +633,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -644,11 +645,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd.xlsx\"");
@@ -659,11 +660,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -671,11 +672,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd.xlsx\"");
@@ -686,11 +687,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -698,11 +699,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd.xlsx\"");
@@ -714,11 +715,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
             }
         }
 
-        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
             }
             catch (Exception e)
@@ -726,11 +727,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(DateTime dateBegin, DateTime dateEnd)
+        public async Task<IActionResult> ReportTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd([FromBody] DatePair dateBeginAndEnd)
         {
             try
             {
-                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBegin, dateEnd);
+                var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
                 Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd.xlsx\"");
