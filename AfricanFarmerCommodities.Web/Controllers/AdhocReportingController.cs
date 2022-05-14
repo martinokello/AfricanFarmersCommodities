@@ -579,7 +579,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 return await Task.FromResult(BadRequest(new { Message = "You have used some bad arguments. Check and Try Again" }));
             }
         }
-        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear()
+        public async Task<IActionResult> GetTop5VehiclesCategoriesUsedByFarmerOverYear()
         {
             try
             {

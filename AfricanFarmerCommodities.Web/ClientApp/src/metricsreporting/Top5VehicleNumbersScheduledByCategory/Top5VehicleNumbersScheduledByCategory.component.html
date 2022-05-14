@@ -1,49 +1,10 @@
 <div class="col-lg-12" style="text-align:left !important; color:black !important;">
-  <div id="#scheduledVehicleWithCapacity">
-    <form #scheduledVehicleWithCapacityForm="ngForm">
-      <h4>Vehicle Currently Scheduled Grouped with Capacity</h4>
-      <div>
-        <canvas id="vehicleScheduledCanvas" style="width:80%; height:auto;"></canvas>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <span class="col-lg-offset-1">&nbsp;</span>
-          <div id="vehicleScheduledResults" class="col-lg-12">
-            <div id="content">
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <select type="text" name="vehicleId" id="sshvehicleId" ngModel="scheduledVehicle.vehicleId" (change)="GetVehicleCostDataByCategory()">
-          <ng-container *ngFor="let optVehicleData of allscheduledVehicle;">
-            <option value="{{optVehicleData.vehicleId}}">{{optVehicleData.vehicleRegistration}}</option>
-          </ng-container>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Vehicle Registration</label>
-        <input type="text" name="vehicleRegistration" [(ngModel)]="scheduledVehicle.vehicleRegistration" readonly/>
-      </div>
-      <div class="form-group">
-        <label>Vehicle Category</label>
-        <input type="text" id="vehicleCategoryName" name="vehicleCategoryName" [(ngModel)]="scheduledVehicle.vehicleCategoryName" readonly/>
-      </div>
-      <div class="form-group">
-        <label>Vehicle company Name</label>
-        <input type="text" id="companyName" name="companyName" [(ngModel)]="scheduledVehicle.companyName" readonly/>
-      </div>
-      <div class="form-group">
-        <label>Vehicle Scheduled Cost</label>
-        <input type="text" id="cost" name="cost" [(ngModel)]="scheduledVehicle.cost" readonly/>
-      </div>
-      <div class="form-group">
-        <label>Vehicle Scheduled Description</label>
-        <textarea id="description" name="description">
-          {{scheduledVehicle.description}}
-        </textarea>
-      </div>
-    </form>
+  <h2>Excel Reporting &amp; Charts Of Data, For Insights</h2>
+  <div id="resultsViewTop5FarmerPricingStats">
+    <h4>Top 5 Vehicle Categories Used Over The Year</h4>
+    <div>
+      <canvas id="top5CommoditiesSoldByQuantityCanvas" style="width:80%; height:auto;"></canvas>
+    </div>
+    <div><hr /></div>
   </div>
 </div>

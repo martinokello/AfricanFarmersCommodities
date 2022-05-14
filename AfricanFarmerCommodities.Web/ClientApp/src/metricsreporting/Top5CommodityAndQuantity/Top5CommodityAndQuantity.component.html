@@ -1,56 +1,10 @@
 <div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <h2>Excel Reporting &amp; Charts Of Data, For Insights</h2>
   <div id="resultsViewTop5FarmerPricingStats">
-    <h4>Top 5 Farmer Commodities Storage By Unit Price</h4>
+    <h4>Top 5 Commodities Sold By Quantity</h4>
     <div>
-      <canvas id="top5FarmersCommoditiesByUnitPriceCanvas" style="width:80%; height:auto;"></canvas>
+      <canvas id="top5CommoditiesSoldByQuantityCanvas" style="width:80%; height:auto;"></canvas>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <span class="col-lg-offset-1">&nbsp;</span>
-        <div id="top5FarmersCommoditiesByUnitPriceResults" class="col-lg-12">
-          <div id="content">
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <form #resultsViewFoodHubByIdStatsForm>
-      <div class="form-group">
-        <select name="farmerId" id="farmerId" ngModel="currentFarmerPricingStats.farmerId" (change)="GetStorageDataValue()">
-          <ng-container *ngFor="let optFoodHubStoreData of top5FarmerPricingStats;">
-            <option value="{{optFoodHubStoreData.farmerId}}">{{optFoodHubStoreData.farmerName}}</option>
-          </ng-container>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>FarmerId</label>
-        <input type="text" name="farmerId" value="{{currentFarmerPricingStats.farmerId}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>Farmer Name</label>
-        <input type="text" name="farmerName" value="{{currentFarmerPricingStats.farmerName}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>CommodityId</label>
-        <input type="text" name="commodityId" value="{{currentFarmerPricingStats.commodityId}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>Commodity Name</label>
-        <input type="text" name="commodityName" value="{{currentFarmerPricingStats.commodityName}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>Commodity Category Name</label>
-        <input type="text" name="commodityCategoryName" value="{{currentFarmerPricingStats.commodityCategoryName}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>Commodity Unit Name</label>
-        <input type="text" name="commodityUnitName" value="{{currentFarmerPricingStats.commodityUnitName}}" readonly />
-      </div>
-      <div class="form-group">
-        <label>Commodity Unit Price</label>
-        <input type="text" name="farmerCommodityUnitPrice" value="{{currentFarmerPricingStats.farmerCommodityUnitPrice}}" readonly />
-      </div>
-    </form>
     <div><hr /></div>
   </div>
 </div>

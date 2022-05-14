@@ -73,6 +73,15 @@ import { Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageComponent }
 import { Top5FarmerCommoditiesAnalysisInUnitPricingComponent } from '../metricsreporting/top5FarmerCommoditiesAnalysisInUnitPricing/top5FarmerCommoditiesAnalysisInUnitPricing.component';
 import { IntermediateScheduleComponent } from './crud-operations/intermediate-schedules/intermediateschedules.component';
 import { TwitterProfileFeedsComponent } from '../socialmedia/twitterfeeds/twitterprofilefeeds.component';
+import { Top5CommodityAndQuantityComponent } from '../metricsreporting/Top5CommodityAndQuantity/Top5CommodityAndQuantity.component';
+import { Top5CommodityAndGrossReturnsComponent } from '../metricsreporting/Top5CommodityAndGrossReturns/Top5CommodityAndGrossReturns.component';
+import { Top5FarmerCommodityAndGrossReturnsComponent } from '../metricsreporting/Top5FarmerCommodityAndGrossReturns/Top5FarmerCommodityAndGrossReturns.component';
+import { Top5FarmerCommodityAndQuantityComponent } from '../metricsreporting/Top5FarmerCommodityAndQuantity/Top5FarmerCommodityAndQuantity.component';
+import { Top5FarmerVehicleCategoryUsageByNumberComponent } from '../metricsreporting/Top5FarmerVehicleCategoryUsageByNumber/Top5FarmerVehicleCategoryUsageByNumber.component';
+import { Top5VehicleCostReturnsScheduledByCategoryComponent } from '../metricsreporting/Top5VehicleCostReturnsScheduledByCategory/Top5VehicleCostReturnsScheduledByCategory.component';
+import { Top5VehicleNumbersScheduledByCategoryComponent } from '../metricsreporting/Top5VehicleNumbersScheduledByCategory/Top5VehicleNumbersScheduledByCategory.component';
+import { ReportingComponent } from './reporting/reporting.component';
+import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metricsreporting/Top5FarmerVehicleCategoryUsageByCostReturns/Top5FarmerVehicleCategoryUsageByCostReturns.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +137,7 @@ import { TwitterProfileFeedsComponent } from '../socialmedia/twitterfeeds/twitte
     TwitterProfileFeedsComponent,
     BasketComponent,
     DriverCalendarComponent,
+    ReportingComponent,
 
     UnScheduledVehiclesByStorageCapacityComponent,
     ScheduledVehiclesByStorageCapacityComponent,
@@ -135,7 +145,16 @@ import { TwitterProfileFeedsComponent } from '../socialmedia/twitterfeeds/twitte
     AllFoodHubCommoditiesStockStorageUsageComponent,
     Top5DryCommoditiesInDemandRatingAccordingToStorageComponent,
     Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageComponent,
-    Top5FarmerCommoditiesAnalysisInUnitPricingComponent
+    Top5FarmerCommoditiesAnalysisInUnitPricingComponent,
+
+    Top5CommodityAndQuantityComponent,
+    Top5CommodityAndGrossReturnsComponent,
+    Top5FarmerCommodityAndGrossReturnsComponent,
+    Top5FarmerCommodityAndQuantityComponent,
+    Top5FarmerVehicleCategoryUsageByNumberComponent,
+    Top5VehicleCostReturnsScheduledByCategoryComponent,
+    Top5VehicleNumbersScheduledByCategoryComponent,
+    Top5FarmerVehicleCategoryUsageByCostReturnsComponent
     
   ],
   imports: [
@@ -183,10 +202,19 @@ import { TwitterProfileFeedsComponent } from '../socialmedia/twitterfeeds/twitte
       { path: 'top5FarmerCommoditiesunitpricing', component: Top5FarmerCommoditiesAnalysisInUnitPricingComponent, canActivate: [AuthGuard] },
       { path: 'top5FarmerCommodScheduledvehiclesByStorageCapacity', component: ScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
       { path: 'unscheduledvehiclesByStorageCapacity', component: UnScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
-      { path: 'driver-calendar-schedule', component: DriverCalendarComponent, canActivate:[AuthGuard] }
+      { path: 'top5CommodityAndQuantity', component: Top5CommodityAndQuantityComponent, canActivate: [AuthGuard] },
+      { path: 'top5CommodityAndGrossReturns', component: Top5CommodityAndGrossReturnsComponent, canActivate: [AuthGuard] },
+      { path: 'top5FarmerCommodityAndGrossReturns', component: Top5FarmerCommodityAndGrossReturnsComponent, canActivate: [AuthGuard] },
+      { path: 'top5FarmerCommodityAndQuantity', component:Top5FarmerCommodityAndQuantityComponent, canActivate: [AuthGuard] },
+      { path: 'top5FarmerVehicleCategoryUsageByNumber', component: Top5FarmerVehicleCategoryUsageByNumberComponent, canActivate: [AuthGuard] },
+      { path: 'top5FarmerVehicleCategoryUsageByCostReturns', component: Top5FarmerVehicleCategoryUsageByCostReturnsComponent, canActivate: [AuthGuard] },
+      { path: 'top5VehicleCostReturnsScheduledByCategory', component: Top5VehicleCostReturnsScheduledByCategoryComponent, canActivate: [AuthGuard] }, 
+      { path: 'top5VehicleNumbersScheduledByCategory', component: Top5VehicleNumbersScheduledByCategoryComponent, canActivate: [AuthGuard] },
+      { path: 'reporting', component: ReportingComponent, canActivate: [AuthGuard] },
+      { path: 'drivercalendarschedule', component: DriverCalendarComponent, canActivate: [AuthGuard] }
    ])
   ],
-  providers: [{ provide: AdminAuthGuard, useClass: AdminAuthGuard },
+  providers: [{ provide: AdminAuthGuard, useClass: AdminAuthGuard }, 
     { provide: AuthDriverGuard, useClass: AuthDriverGuard },
     { provide: AuthFarmerGuard, useClass: AuthFarmerGuard },
     { provide: AuthGovernmentGuard, useClass: AuthGovernmentGuard },

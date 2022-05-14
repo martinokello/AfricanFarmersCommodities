@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IAllscheduledVehiclesByStorageCapacity, IVehicle,IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicleCategory, ICompany } from '../../services/africanFarmerCommoditiesService';
+import { IAllscheduledVehiclesByStorageCapacity, IVehicle,IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicleCategory, ICompany, IFarmerVehicleCategoryUsageByCostReturns } from '../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
@@ -17,106 +17,55 @@ import Chart from 'chart.js/auto';
 @Injectable()
 export class Top5FarmerVehicleCategoryUsageByCostReturnsComponent implements OnInit, AfterContentInit {
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
-  canvas: any;
-  ctx: any;
-  indexIntoData: number;
-  unScheduledVehiclesChart: any;
-
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
-    }
-  public scheduledVehicle: IAllscheduledVehiclesByStorageCapacity;
-
-  public allscheduledVehicle: IAllscheduledVehiclesByStorageCapacity[];
-
-  public getallScheduledVehiclesGroupedByStorageCapacity(): Observable<IAllscheduledVehiclesByStorageCapacity[]> {
-
-    let actualResult: Observable<IAllscheduledVehiclesByStorageCapacity[]> = this.africanFarmerCommoditiesService.GetallScheduledVehiclesGroupedByStorageCapacity();
-    return actualResult;
   }
+  canvas: any;
+  ctx: any;
+  unScheduledVehiclesChart: any;
 
-  public GetVehicleCostDataByCategory(): void {
-    let select: HTMLSelectElement = document.querySelector('select#sshvehicleId');
-    let vehicleId: number = parseInt(select.value);
-
-    this.scheduledVehicle = this.allscheduledVehicle.find(q => q.vehicleId == vehicleId);
-
-    let dataLabels: string[] = ["cost"];
-    this.drawSelectedChartData(dataLabels);
-  }
   ngAfterContentInit(): void {
-    let actualResult = this.getallScheduledVehiclesGroupedByStorageCapacity();
-    actualResult.map((p: IAllscheduledVehiclesByStorageCapacity[]) => {
+    let actualResult = this.africanFarmerCommoditiesService.GetTop5FarmerVehicleCategoryUsageByCostReturnsOverYear();
+    actualResult.map((p: IFarmerVehicleCategoryUsageByCostReturns[]) => {
       if (p && p.length > 0) {
-        this.allscheduledVehicle = p;
-        this.scheduledVehicle = p[0];
-        this.canvas = document.querySelector('canvas#vehicleScheduledCanvas');
+        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
         this.ctx = this.canvas.getContext('2d');
 
-        let dataGroups: any = [];
+        let dataGroups: IFarmerVehicleCategoryUsageByCostReturns[] = p;
 
-        this.allscheduledVehicle.forEach(
-          (availableScheduledVehicle: IAllscheduledVehiclesByStorageCapacity, index: number, elements) => {
-            let scheduledVehs = elements.filter((q: IAllscheduledVehiclesByStorageCapacity) => {
-              q.vehicleCategoryName == this.scheduledVehicle.vehicleCategoryName
-                && q.companyName == this.scheduledVehicle.companyName;
-            });
-            let cost: number = 0;
-            scheduledVehs.map((fh) => {
-              cost += fh.cost;
-            });
-            let scheduledVehiclesByCompanyAndCategory: any[] = [cost];
-            dataGroups.push(scheduledVehiclesByCompanyAndCategory);
-          });
-
-        let dataLabels: string[] = ["cost"];
-        this.drawCharts(dataGroups, dataLabels);
+        this.drawCharts(dataGroups);
       }
       else {
-        this.allscheduledVehicle = [];
+        p = [];
       }
     }).subscribe();
-    $('div#scheduledVehicleWithCapacity').css('display', 'block').slideDown();
-  }
 
-
-  drawSelectedChartData(dataLabels: string[]): void {
-    if (this.unScheduledVehiclesChart) this.unScheduledVehiclesChart.destroy();
-    this.unScheduledVehiclesChart = new Chart(this.ctx, {
-      type: 'bar',
-      data: {
-        labels: dataLabels,
-        datasets: [{
-          label: this.scheduledVehicle.companyName+", "+ this.scheduledVehicle.vehicleCategoryName,
-          data: [this.scheduledVehicle.cost],
-          backgroundColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: false
-      }
-    });
+    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }
-  drawCharts(dataGroups: any, dataLabels: string[]): void {
+  drawCharts(dataGroups: IFarmerVehicleCategoryUsageByCostReturns[]): void {
+    let labels: string[] = [];
+    let data: number[] = [];
+
+    dataGroups.map((q: IFarmerVehicleCategoryUsageByCostReturns) => {
+      labels.push(q.farmerName + ", " + q.vehicleCategoryName);
+      data.push(q.grossReturns);
+    });
 
     if (this.unScheduledVehiclesChart) this.unScheduledVehiclesChart.destroy();
     this.unScheduledVehiclesChart = new Chart(this.ctx, {
       type: 'bar',
       data: {
-        labels: dataLabels,
+        labels: labels,
         datasets: [{
-          label: this.scheduledVehicle.companyName + ", " + this.scheduledVehicle.vehicleCategoryName,
-          data: [this.scheduledVehicle.cost],
+          label: "Top 5 Commodities Sold By Gross Returns",
+          data: data,
           backgroundColor: [
             'rgba(255, 99, 132, 1)',
             'rgba(54, 162, 235, 1)',
+            'rgba(58, 169, 235, 1)',
+            'rgba(124, 162, 235, 1)',
             'rgba(255, 206, 86, 1)'
           ],
           borderWidth: 1
@@ -127,5 +76,4 @@ export class Top5FarmerVehicleCategoryUsageByCostReturnsComponent implements OnI
       }
     });
   }
-
 }

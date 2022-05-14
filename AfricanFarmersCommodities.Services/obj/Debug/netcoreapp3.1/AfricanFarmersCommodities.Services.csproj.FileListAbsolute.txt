@@ -229,14 +229,11 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bi
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.AppConfigurations.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\ExcelAccessDataEngine.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\PasswordEncryptorEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EpsilonCryptoSystemEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmerCommodities.DataAccess.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.AppConfigurations.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\ExcelAccessDataEngine.pdb
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EpsilonCryptoSystemEngine.dll.config
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.AssemblyInfoInputs.cache
