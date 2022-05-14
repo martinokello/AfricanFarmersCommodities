@@ -202,14 +202,6 @@ import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metrics
       { path: 'top5FarmerCommoditiesunitpricing', component: Top5FarmerCommoditiesAnalysisInUnitPricingComponent, canActivate: [AuthGuard] },
       { path: 'top5FarmerCommodScheduledvehiclesByStorageCapacity', component: ScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
       { path: 'unscheduledvehiclesByStorageCapacity', component: UnScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
-      { path: 'top5CommodityAndQuantity', component: Top5CommodityAndQuantityComponent, canActivate: [AuthGuard] },
-      { path: 'top5CommodityAndGrossReturns', component: Top5CommodityAndGrossReturnsComponent, canActivate: [AuthGuard] },
-      { path: 'top5FarmerCommodityAndGrossReturns', component: Top5FarmerCommodityAndGrossReturnsComponent, canActivate: [AuthGuard] },
-      { path: 'top5FarmerCommodityAndQuantity', component:Top5FarmerCommodityAndQuantityComponent, canActivate: [AuthGuard] },
-      { path: 'top5FarmerVehicleCategoryUsageByNumber', component: Top5FarmerVehicleCategoryUsageByNumberComponent, canActivate: [AuthGuard] },
-      { path: 'top5FarmerVehicleCategoryUsageByCostReturns', component: Top5FarmerVehicleCategoryUsageByCostReturnsComponent, canActivate: [AuthGuard] },
-      { path: 'top5VehicleCostReturnsScheduledByCategory', component: Top5VehicleCostReturnsScheduledByCategoryComponent, canActivate: [AuthGuard] }, 
-      { path: 'top5VehicleNumbersScheduledByCategory', component: Top5VehicleNumbersScheduledByCategoryComponent, canActivate: [AuthGuard] },
       { path: 'reporting', component: ReportingComponent, canActivate: [AuthGuard] },
       { path: 'drivercalendarschedule', component: DriverCalendarComponent, canActivate: [AuthGuard] }
    ])

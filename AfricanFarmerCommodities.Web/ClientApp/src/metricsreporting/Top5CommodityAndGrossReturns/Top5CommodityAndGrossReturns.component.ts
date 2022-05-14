@@ -25,7 +25,7 @@ export class Top5CommodityAndGrossReturnsComponent implements OnInit, AfterConte
   unScheduledVehiclesChart: any;
 
   ngAfterContentInit(): void {
-    let actualResult = this.africanFarmerCommoditiesService.GetTop5CommoditiesSoldByICommodityAndGrossReturns();
+    let actualResult = this.africanFarmerCommoditiesService.GetTop5CommoditiesSoldByCommodityAndGrossReturns();
     actualResult.map((p: ICommodityAndGrossReturns[]) => {
       if (p && p.length > 0) {
         this.canvas = document.querySelector('canvas#top5CommoditiesSoldByGrossReturns');

@@ -46,7 +46,7 @@ export class AfricanFarmerCommoditiesService {
   public static clientEmailAddress = "";
   public postSendEmail: string = this.baseServerUrl + "/Home/SendEmail";
   public postVerifyQrcodeScan: string = this.baseServerUrl + "/Home/GetClientEmailAndMobilePhoneNumber";
-  public getDriverTransportSchedulesUrl: string = "/Transport/GetDriverTransportSchedules"; 
+  public getDriverTransportSchedulesUrl: string = "/Transport/GetDriverTransportSchedules";
   public getDriverScheduleNotesUrl: string = "/Transport/GetDriverScheduleNotes";
 
   public getallFoodHubStorageAvailabilityStorage: string = this.baseServerUrl + "/AdhocReporting/GetAllFoodHubCommoditiesStockStorageUsage";
@@ -157,22 +157,29 @@ export class AfricanFarmerCommoditiesService {
   public deleteDriverUrl: string = this.baseServerUrl + "/Company/DeleteDriver";
   public postOrCreateDriverNoteUrl: string = this.baseServerUrl + "/Company/CreateDriverNote";
   public getDriverByTransportScheduleIdUrl: string = this.baseServerUrl + "/Company/GetDriverByTransportScheduleId";
-  
+
   public getTop5CommoditiesSoldByQuantityOverallUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByCapacityOverAll";
   public getTop5CommoditiesSoldByCostReturnsOverallUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByCostReturnsOverAll";
   public getTop5CommoditiesSoldByCostReturnsOverthePastYearUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByCostReturnsOverthePastYear";
   public getTop5FarmerCommoditiesSoldByGrossReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll";
   public getTop5FarmerCommoditiesSoldByQuantityUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesByFarmerSoldByCapacityOverAll";
   public getTop5FarmerVehicleCategoryUsageByCostReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear";
-  public getTop5VehiclesCategoriesUsedByFarmerOverYearUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear";
+  public getTop5VehiclesCategoriesUsedByFarmerOverYearUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5VehiclesCategoriesUsedByFarmerOverYear";
   public getTop5VehiclesCategoriesGrossReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5VehiclesCategoriesUsedByCostReturnsOverYear";
   public getTop5VehiclesCategoriesUsedByNumberUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5VehicleCategoriesUsedByCapacityOvertheyear";
-
-
   public getTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYearUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear";
-
-  public getTop5CommoditiesSoldByQuantityOverallBetweenDatesUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByCostReturnsOverAll";
+  public getTop5CommoditiesSoldByQuantityOverallBetweenDatesUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByQuantityOverallBetweenDates";
   
+  public getReportTop5CommoditiesSoldByQuantityOverallUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesByFarmerSoldByCapacityOverAll";
+  public getReportTop5FarmerCommoditiesAndGrossReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesByFarmerSoldByCostReturnsOverAll";
+  public getReportTop5CommoditiesSoldByCostReturnsOverallUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesSoldByCostReturnsOverAll";
+  public getReportTop5CommoditiesSoldByCostReturnsOverthePastYearUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesSoldByCostReturnsOverthePastYear";
+  public getReportTop5VehicleNumbersScheduledByCategoryUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5VehicleCategoriesUsedByCapacityOvertheyear";
+  public getReportTop5FarmerCommoditiesSoldByQuantityUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesByFarmerSoldByCapacityOverAll";
+  public getReportTop5FarmerVehicleCategoryUsageByCostReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear";
+  public getReportTop5VehicleCostReturnsScheduledByCategoryUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5VehiclesCategoriesUsedByCostReturnsOverYear";
+  public getReportTop5FarmerVehicleCatergoryUsageByNumberUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear";
+
   
   public static actUserStatus: IUserStatus = {
     isUserLoggedIn: false,
@@ -294,17 +301,17 @@ export class AfricanFarmerCommoditiesService {
       map((res: any) => {
         return res;
       });
-  } 
+  }
   public GetDriverMobileLocationApp(appType: string): Observable<Blob> {
 
-    let requestUrl = this.getDriverMobileLocationAppUrl+"/"+ appType;
+    let requestUrl = this.getDriverMobileLocationAppUrl + "/" + appType;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
       responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions).map((res:any) => {
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
       let result: Blob = res;
       return result;
     });
@@ -1976,7 +1983,7 @@ export class AfricanFarmerCommoditiesService {
       return res;
     });
   }
-  public GetTop5CommoditiesSoldByQuantityBetweenDates(datePair:IDatePair): Observable<ICommodityAndQuantity[]> {
+  public GetTop5CommoditiesSoldByQuantityBetweenDates(datePair: IDatePair): Observable<ICommodityAndQuantity[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getTop5CommoditiesSoldByQuantityOverallBetweenDatesUrl;
     let requestOptions: any = {
@@ -1991,9 +1998,9 @@ export class AfricanFarmerCommoditiesService {
     });
   }
 
-  public GetTop5CommoditiesSoldByICommodityAndGrossReturns(): Observable<ICommodityAndGrossReturns[]> {
+  public GetTop5CommoditiesSoldByCommodityAndGrossReturns(): Observable<ICommodityAndGrossReturns[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    let requestUrl = this.getTop5CommoditiesSoldByQuantityOverallBetweenDatesUrl;
+    let requestUrl = this.getTop5CommoditiesSoldByCostReturnsOverallUrl;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
@@ -2105,8 +2112,110 @@ export class AfricanFarmerCommoditiesService {
       return res;
     });
   }
-  
-} 
+  public GetReportTop5CommodityAndQuantityOverall(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5CommoditiesSoldByQuantityOverallUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+
+  public GetReportTop5CommodityAndGrossReturnssOverall(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getTop5CommoditiesSoldByCostReturnsOverallUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+
+  public GetReportTop5FarmerVehicleCategoryUsageByCostReturns(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5FarmerVehicleCategoryUsageByCostReturnsUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+  public GetReportTop5VehicleCostReturnsScheduledByCategory(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5VehicleCostReturnsScheduledByCategoryUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+  public GetReportTop5FarmerCommoditiesByGrossReturns(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5FarmerCommoditiesAndGrossReturnsUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+
+  public GetReportTop5VehicleNumbersScheduledByCategory(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5VehicleNumbersScheduledByCategoryUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+
+
+  public GetReportTop5FarmerVehicleCategoryUsageByNumber(): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getReportTop5FarmerVehicleCatergoryUsageByNumberUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+}
 export interface IExtraCharges {
   tourClientId: number;
   tourClientExtraChargesId: number;

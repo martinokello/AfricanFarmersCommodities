@@ -17,14 +17,14 @@
       <div class="col-lg-6">
         <h4>Download Excel Reports</h4>
         <ul>
-          <li id="excelReplistTop5CommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Commodities Quantity" /></li>
-          <li id="excelReplistTop5CommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Commodities Gross Returns" /></li>
-          <li id="excelReplistTop5FarmerCommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Commodities Gross Returns" /></li>
-          <li id="excelReplistTop5FarmerCommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Commodities Quantity" /></li>
-          <li id="excelReplistTop5FarmerVehicleCategoryUsageByCostReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Vehicle Categories Gross Returns" /></li>
-          <li id="excelReplistTop5FarmerVehicleCategoryUsageByNumber" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Vehicle Categories Number" /></li>
-          <li id="excelReplistTop5VehicleCostReturnsScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Vehicle Categories Gross Returns" /></li>
-          <li id="excelReplistTop5VehicleNumbersScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Vehicles Categories Scheduled" /></li>
+          <li id="excelReplistTop5CommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Commodities Quantity" (click)="GetReportTop5CommodityAndQuantity($event)" /></li>
+          <li id="excelReplistTop5CommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Commodities Gross Returns" (click)="GetReportTop5CommodityAndGrossReturns($event)"/></li>
+          <li id="excelReplistTop5FarmerCommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Commodities Gross Returns" (click)="GetReportTop5FarmerCommoditiesByGrossReturns($event)"/></li>
+          <li id="excelReplistTop5FarmerCommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Commodities Quantity" (click)="GetReportTop5FarmerVehicleCategoryUsageByCostReturns($event)"/></li>
+          <li id="excelReplistTop5FarmerVehicleCategoryUsageByCostReturns" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Vehicle Categories Gross Returns" (click)="GetReportTop5FarmerVehicleCategoryUsageByNumber($event)"/></li>
+          <li id="excelReplistTop5FarmerVehicleCategoryUsageByNumber" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Farmer Vehicle Categories Number" (click)="GetReportTop5VehicleCostReturnsScheduledByCategory($event)"/></li>
+          <li id="excelReplistTop5VehicleCostReturnsScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Vehicle Categories Gross Returns" (click)="GetReportTop5VehicleCostReturnsScheduledByCategory($event)"/></li>
+          <li id="excelReplistTop5VehicleNumbersScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Excel: Top 5 Vehicles Categories Scheduled" (click)="GetReportTop5VehicleNumbersScheduledByCategory($event)"/></li>
         </ul>
       </div>
     </div>

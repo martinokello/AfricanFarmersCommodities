@@ -18,8 +18,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                var wb = exPackage.Workbook; 
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Commodity Grouped By Quantity"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add("Commodity Grouped By Quantity"); ;
+                }
+                
                 ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
                 var excelRowNumber = 3;
                 ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
@@ -42,7 +47,12 @@ namespace ExcelAccessDataEngine.Concretes
             using (var exPackage = new ExcelPackage(memoryStream))
             {
                 var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"); ;
+                }
+
                 ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
                 var excelRowNumber = 3;
                 ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
@@ -66,7 +76,12 @@ namespace ExcelAccessDataEngine.Concretes
             using (var exPackage = new ExcelPackage(memoryStream))
             {
                 var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Commodity Grouped By Quantity"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add("Commodity Grouped By Quantity"); 
+                }
+
                 ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
                 var excelRowNumber = 3;
                 ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
@@ -89,7 +104,11 @@ namespace ExcelAccessDataEngine.Concretes
             using (var exPackage = new ExcelPackage(memoryStream))
             {
                 var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
 
                 var excelRowNumber = 3;
@@ -114,7 +133,11 @@ namespace ExcelAccessDataEngine.Concretes
             using (var exPackage = new ExcelPackage(memoryStream))
             {
                 var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Commodity Grouped By Quantity"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add("Commodity Grouped By Quantity");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Quantity";
                 var excelRowNumber = 3;
                 ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
@@ -139,7 +162,12 @@ namespace ExcelAccessDataEngine.Concretes
 
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                     ws = wb.Worksheets.Add($"Commodity Grouped By Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Farmer Quantity Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
 
                 var excelRowNumber = 3;
@@ -165,7 +193,11 @@ namespace ExcelAccessDataEngine.Concretes
             using (var exPackage = new ExcelPackage(memoryStream))
             {
                 var wb = exPackage.Workbook;
-                var ws = wb.Worksheets.Add("Commodity Grouped By Farmer & Gross Returns");
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Commodity Grouped By Farmer & Gross Returns"));
+                if (ws == null)
+                {
+                    ws = ws = wb.Worksheets.Add("Commodity Grouped By Farmer & Gross Returns");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = "Commodity Grouped By Farmer & Gross Returns";
                 var excelRowNumber = 3;
                 ws.Cells[string.Format("A{0}", 2)].Value = "Commodity Name";
@@ -190,7 +222,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ");
+                var wb = exPackage.Workbook; 
+                 
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Commodity Grouped By Farmer & Gross Returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
 
                 var excelRowNumber = 3;
@@ -217,7 +255,12 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicle Categories Used Over the Year");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Vehicle Categories Used Over the Year"));
+                if(ws == null)
+                {
+                    ws = wb.Worksheets.Add("Vehicle Categories Used Over the Year");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicle Categories Used Over the Year";
 
                 var excelRowNumber = 3;
@@ -240,7 +283,12 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                var wb = exPackage.Workbook; 
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Vehicles Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Vehicles Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")} ";
 
                 var excelRowNumber = 3;
@@ -264,7 +312,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used with Gross returns Over the Year");
+                var wb = exPackage.Workbook; 
+                
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Vehicles Categories Used with Gross returns Over the Year"));
+                if (ws == null)
+                {
+                   ws = wb.Worksheets.Add("Vehicles Categories Used with Gross returns Over the Year");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = "Vehicles Categories Used with Gross returns Over the Year";
 
                 var excelRowNumber = 3;
@@ -287,7 +341,12 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy-MM-dd")}  to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy-MM-dd")}  to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy-MM-dd")}  to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
 
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Vehicles Categories Used with Gross returns Between date: { dateBegin.ToString("yyyy - MM - dd")}  to date: {dateEnd.ToString("yyyy - MM - dd")}";
 
@@ -311,7 +370,12 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Over the Year");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Farmer, Vehicles Categories Used Over the Year"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add("Farmer, Vehicles Categories Used Over the Year");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = "Farmer, Vehicles Categories Used Over the Year";
 
                 var excelRowNumber = 3;
@@ -336,7 +400,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
+
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Farmer against Vehicle Categories Used Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}";
 
                 var excelRowNumber = 3;
@@ -361,7 +431,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Against Gross returns Over the Year");
+                var wb = exPackage.Workbook;
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals("Farmer, Vehicles Categories Used Against Gross returns Over the Year"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add("Farmer, Vehicles Categories Used Against Gross returns Over the Year");
+                }
+                
                 ws.Cells[string.Format("A{0}", 1)].Value = "Farmer, Vehicles Categories Used Against Gross Returns Over the Year";
 
                 var excelRowNumber = 3;
@@ -386,7 +462,13 @@ namespace ExcelAccessDataEngine.Concretes
             var memoryStream = new MemoryStream();
             using (var exPackage = new ExcelPackage(memoryStream))
             {
-                var wb = exPackage.Workbook; var ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Against Gross returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                var wb = exPackage.Workbook;
+
+                var ws = wb.Worksheets.FirstOrDefault(s => s.Name.Equals($"Farmer, Vehicles Categories Used Against Gross returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}"));
+                if (ws == null)
+                {
+                    ws = wb.Worksheets.Add($"Farmer, Vehicles Categories Used Against Gross returns Between date: {dateBegin.ToString("yyyy-MM-dd")} to date: {dateEnd.ToString("yyyy-MM-dd")}");
+                }
                 ws.Cells[string.Format("A{0}", 1)].Value = $"Farmer, Vehicles Categories Used Against Gross Returns Between Between date: {dateBegin.ToString("yyyy - MM - dd")} to date: {dateEnd.ToString("yyyy - MM - dd")}";
 
                 var excelRowNumber = 3;

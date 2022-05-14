@@ -341,6 +341,7 @@ namespace AfricanFarmerCommodities.DataAccess
             cmd.Parameters.Add(to);
             cmd.CommandText = "dbo.[Top5FarmerHighesRefreigeratedStoragePriceUsageBtwDates]";
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
             con.Open();
             var reader = cmd.ExecuteReader();
 

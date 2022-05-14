@@ -178,3 +178,6 @@ C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\obj\Debug\BLG.Business.c
 C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\obj\Debug\BLG.Business.dll
 C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\obj\Debug\BLG.Business.pdb
+C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\bin\Debug\System.IO.Packaging.dll
+C:\Development\AfricanFarmersCommoditiesV2\BLG.Business\bin\Debug\System.IO.Packaging.xml
