@@ -77,8 +77,8 @@ E:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.Asse
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\bin\Debug\Twitter.dll
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\bin\Debug\Twitter.pdb
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\bin\Debug\Newtonsoft.Json.dll
-C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.CoreCompileInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.dll
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.pdb
+C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.AssemblyReference.cache

@@ -170,7 +170,7 @@ export class AfricanFarmerCommoditiesService {
   public getTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYearUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear";
   public getTop5CommoditiesSoldByQuantityOverallBetweenDatesUrl: string = this.baseServerUrl + "/AdhocReporting/GetTop5CommoditiesSoldByQuantityOverallBetweenDates";
   
-  public getReportTop5CommoditiesSoldByQuantityOverallUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesByFarmerSoldByCapacityOverAll";
+  public getReportTop5CommoditiesSoldByQuantityOverallUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesSoldByCapacityOverAll";
   public getReportTop5FarmerCommoditiesAndGrossReturnsUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesByFarmerSoldByCostReturnsOverAll";
   public getReportTop5CommoditiesSoldByCostReturnsOverallUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesSoldByCostReturnsOverAll";
   public getReportTop5CommoditiesSoldByCostReturnsOverthePastYearUrl: string = this.baseServerUrl + "/AdhocReporting/ReportTop5CommoditiesSoldByCostReturnsOverthePastYear";

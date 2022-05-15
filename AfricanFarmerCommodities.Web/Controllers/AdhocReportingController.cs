@@ -24,9 +24,9 @@ namespace AfricanFarmerCommodities.Web.Controllers
         private IMailService _emailService;
         private AfricanFarmerCommoditiesUnitOfWork _unitOfWork;
 
-        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork, ExcelEngine excelEngine)
+        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork)
         {
-            _excelEngine = excelEngine;
+            _excelEngine = new ExcelEngine();
             _emailService = emailService;
             _unitOfWork = unitOfWork;
 
@@ -233,16 +233,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
-                Response.ContentType = "application/vnd.ms-excel";
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                var bytes = new byte[4096];
 
-                await Response.BodyWriter.FlushAsync();
+                Response.ContentType = "application/octet-stream";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesSoldByCapacityOverAll.xlsx\"");
 
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
+
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -267,16 +275,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
-                Response.ContentType = "application/vnd.ms-excel";
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                var bytes = new byte[4096];
 
-                await Response.BodyWriter.FlushAsync();
+                Response.ContentType = "application/octet-stream";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverAll.xlsx\"");
 
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
+
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -302,16 +318,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverthePastYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -337,17 +361,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverAll.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
-
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -373,16 +404,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverAll();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCostReturnsOverAll.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -409,16 +448,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCostReturnsOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -444,16 +491,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesSoldByCapacityOverthePastYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -480,16 +535,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverthePastYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverthePastYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -515,16 +577,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCapacityOverDate(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverthePastYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -549,16 +618,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -585,16 +662,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -624,16 +708,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehicleCategoriesUsedByCapacityOvertheyear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehicleCategoriesUsedByCapacityOvertheyear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -660,16 +751,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByCostReturnsOverYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -694,16 +792,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -729,16 +835,23 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear();
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
 
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -763,16 +876,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+                
+                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd.xlsx\"");
                 Response.ContentType = "application/vnd.ms-excel";
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                var bytes = new byte[4096];
 
-                await Response.BodyWriter.FlushAsync();
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -797,16 +918,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                var bytes = new byte[4096];
 
-                await Response.BodyWriter.FlushAsync();
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -831,16 +960,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {
@@ -866,16 +1003,24 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var top5PricingsUncheduledVehicles = _unitOfWork.AfricanFarmerCommoditiesDbContext.GetTop5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd(dateBeginAndEnd.DateBegin, dateBeginAndEnd.DateEnd);
                 var stream = _excelEngine.GenerateExcelFile(top5PricingsUncheduledVehicles);
-                Response.Headers.Add("Content-Disposition", "attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear.xlsx\"");
+
+                var bytes = new byte[4096];
+
                 Response.ContentType = "application/vnd.ms-excel";
+                Response.Headers.Add("Content-Disposition", $"attachment; filename=\"Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd.xlsx\"");
 
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                await Response.BodyWriter.WriteAsync(bytes);
+                using (var wstr = Response.BodyWriter.AsStream())
+                {
+                    var bytesRead = 0;
 
-                await Response.BodyWriter.FlushAsync();
-
-                return await Task.FromResult(Ok(new { Message = "Excel File Downloaded!" }));
+                    while ((bytesRead = stream.Read(bytes, 0, bytes.Length)) > 0)
+                    {
+                        wstr.Write(bytes, 0, bytesRead);
+                    }
+                    wstr.Flush();
+                    wstr.Close();
+                }
+                return await Task.FromResult(Ok(new { Message = "Download Completed" }));
             }
             catch (Exception e)
             {

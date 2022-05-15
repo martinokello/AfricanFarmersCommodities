@@ -607,13 +607,13 @@
         "projectName": "ExcelAccessDataEngine",
         "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj",
         "frameworks": {
-          "net461": {
+          "net472": {
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
-        "net461": {}
+        "net472": {}
       }
     }
   }

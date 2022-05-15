@@ -71,9 +71,14 @@ E:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\Excel
 E:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\ExcelAccessDataEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\ExcelAccessDataEngine.pdb
-C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\System.IO.FileSystem.Primitives.dll
-C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.CoreCompileInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.pdb
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlus.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlus.Interfaces.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlus.System.Drawing.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlus.xml
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.AssemblyReference.cache
