@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import { AfricanFarmerCommoditiesService } from '../../services/africanFarmerCommoditiesService';
+import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'reporting',
   templateUrl: './reporting.component.html',
@@ -55,51 +56,80 @@ export class ReportingComponent {
   //////////////////
   GetReportTop5CommodityAndQuantity($event): void {
     var resultsObs: any = this.africanFarmerCommoditiesService.GetReportTop5CommodityAndQuantityOverall();
-    resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5CommodityAndQuantityOverall.xlsx";
+      a.click();
+    }).subscribe();
+
     $event.preventDefault();
   }
   GetReportTop5CommodityAndGrossReturns($event): void {
-    this.africanFarmerCommoditiesService.GetReportTop5CommodityAndGrossReturnssOverall();
-    var resultsObs: any = resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    let resultsObs = this.africanFarmerCommoditiesService.GetReportTop5CommodityAndGrossReturnssOverall();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5CommodityAndGrossReturnssOverall.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
   GetReportTop5FarmerCommoditiesByGrossReturns($event): void {
     var resultsObs: any = this.africanFarmerCommoditiesService.GetReportTop5FarmerCommoditiesByGrossReturns();
-    resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5FarmerCommoditiesByGrossReturns.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
   GetReportTop5FarmerVehicleCategoryUsageByCostReturns($event): void {
     var resultsObs: any = this.africanFarmerCommoditiesService.GetReportTop5FarmerVehicleCategoryUsageByCostReturns();
-    resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5FarmerVehicleCategoryUsageByCostReturns.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
   GetReportTop5VehicleCostReturnsScheduledByCategory($event): void {
     var resultsObs: any = this.africanFarmerCommoditiesService.GetReportTop5VehicleCostReturnsScheduledByCategory();
-    resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5VehicleCostReturnsScheduledByCategory.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
   GetReportTop5VehicleNumbersScheduledByCategory($event): void {
     var resultsObs: any = this.africanFarmerCommoditiesService.GetReportTop5VehicleNumbersScheduledByCategory();
-    resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5VehicleNumbersScheduledByCategory.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
   GetReportTop5FarmerVehicleCategoryUsageByNumber($event): void {
-    this.africanFarmerCommoditiesService.GetReportTop5FarmerVehicleCategoryUsageByNumber();
-    var resultsObs: any = resultsObs.map((q => {
-      alert(q.message);
-    })).subscribe();
+    let resultsObs:Observable<Blob> = this.africanFarmerCommoditiesService.GetReportTop5FarmerVehicleCategoryUsageByNumber();
+    resultsObs.map((blob: Blob) => {
+      var url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = "Top5FarmerVehicleCategoryUsageByNumber.xlsx";
+      a.click();
+    }).subscribe();
     $event.preventDefault();
   }
 }

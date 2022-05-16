@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -2112,48 +2112,51 @@ export class AfricanFarmerCommoditiesService {
       return res;
     });
   }
-  public GetReportTop5CommodityAndQuantityOverall(): Observable<any> {
+  public GetReportTop5CommodityAndQuantityOverall(): Observable<Blob> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getReportTop5CommoditiesSoldByQuantityOverallUrl;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
 
-  public GetReportTop5CommodityAndGrossReturnssOverall(): Observable<any> {
+  public GetReportTop5CommodityAndGrossReturnssOverall(): Observable<Blob> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getTop5CommoditiesSoldByCostReturnsOverallUrl;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
 
-  public GetReportTop5FarmerVehicleCategoryUsageByCostReturns(): Observable<any> {
+  public GetReportTop5FarmerVehicleCategoryUsageByCostReturns(): Observable<Blob> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getReportTop5FarmerVehicleCategoryUsageByCostReturnsUrl;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
   public GetReportTop5VehicleCostReturnsScheduledByCategory(): Observable<any> {
@@ -2163,25 +2166,28 @@ export class AfricanFarmerCommoditiesService {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
   public GetReportTop5FarmerCommoditiesByGrossReturns(): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getReportTop5FarmerCommoditiesAndGrossReturnsUrl;
+
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
 
@@ -2192,11 +2198,12 @@ export class AfricanFarmerCommoditiesService {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
 
@@ -2208,11 +2215,12 @@ export class AfricanFarmerCommoditiesService {
       url: requestUrl,
       method: 'GET',
       headers: headers,
-      responseType: 'application/json'
+      responseType: 'blob'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      return res;
+    return this.httpClient.get(requestOptions.url, requestOptions).map((res: any) => {
+      let result: Blob = res;
+      return result;
     });
   }
 }

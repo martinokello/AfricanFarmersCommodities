@@ -24,9 +24,9 @@ namespace AfricanFarmerCommodities.Web.Controllers
         private IMailService _emailService;
         private AfricanFarmerCommoditiesUnitOfWork _unitOfWork;
 
-        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork)
+        public AdhocReportingController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork, ExcelEngine excelEngine)
         {
-            _excelEngine = new ExcelEngine();
+            _excelEngine = excelEngine;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
 
