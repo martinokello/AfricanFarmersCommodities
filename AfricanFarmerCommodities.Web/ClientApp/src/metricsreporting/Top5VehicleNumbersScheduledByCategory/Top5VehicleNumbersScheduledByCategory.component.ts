@@ -28,7 +28,7 @@ export class Top5VehicleNumbersScheduledByCategoryComponent implements OnInit, A
     let actualResult = this.africanFarmerCommoditiesService.GetTop5VehiclesCategoriesUsedByNumber();
     actualResult.map((p: IVehicleNumbersScheduled[]) => {
       if (p && p.length > 0) {
-        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
+        this.canvas = document.querySelector('canvas#top5VehicleNumbersScheduledByCategoryCanvas');
         this.ctx = this.canvas.getContext('2d');
 
         let dataGroups: IVehicleNumbersScheduled[] = p;

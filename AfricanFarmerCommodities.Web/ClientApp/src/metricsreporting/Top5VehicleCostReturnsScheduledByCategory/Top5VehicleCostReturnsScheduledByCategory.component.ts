@@ -28,7 +28,7 @@ export class Top5VehicleCostReturnsScheduledByCategoryComponent implements OnIni
     let actualResult = this.africanFarmerCommoditiesService.GetTop5VehiclesCategoriesGrossReturns();
     actualResult.map((p: IVehicleCostReturnsScheduled[]) => {
       if (p && p.length > 0) {
-        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
+        this.canvas = document.querySelector('canvas#top5VehicleCostReturnsScheduledByCategoryCanvas');
         this.ctx = this.canvas.getContext('2d');
 
         let dataGroups: IVehicleCostReturnsScheduled[] = p;
@@ -40,7 +40,6 @@ export class Top5VehicleCostReturnsScheduledByCategoryComponent implements OnIni
       }
     }).subscribe();
 
-    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }

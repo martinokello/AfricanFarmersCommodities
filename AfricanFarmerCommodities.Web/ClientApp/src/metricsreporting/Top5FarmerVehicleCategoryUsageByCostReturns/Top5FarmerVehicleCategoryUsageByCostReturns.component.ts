@@ -28,7 +28,7 @@ export class Top5FarmerVehicleCategoryUsageByCostReturnsComponent implements OnI
     let actualResult = this.africanFarmerCommoditiesService.GetTop5FarmerVehicleCategoryUsageByCostReturnsOverYear();
     actualResult.map((p: IFarmerVehicleCategoryUsageByCostReturns[]) => {
       if (p && p.length > 0) {
-        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
+        this.canvas = document.querySelector('canvas#top5FarmerVehicleCategoryUsageByCostReturnsCanvas');
         this.ctx = this.canvas.getContext('2d');
 
         let dataGroups: IFarmerVehicleCategoryUsageByCostReturns[] = p;
@@ -39,8 +39,6 @@ export class Top5FarmerVehicleCategoryUsageByCostReturnsComponent implements OnI
         p = [];
       }
     }).subscribe();
-
-    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }

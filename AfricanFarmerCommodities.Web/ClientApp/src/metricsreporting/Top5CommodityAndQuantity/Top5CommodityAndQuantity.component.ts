@@ -40,7 +40,6 @@ export class Top5CommodityAndQuantityComponent implements OnInit, AfterContentIn
       }
     }).subscribe();
 
-    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }

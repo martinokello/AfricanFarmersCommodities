@@ -28,7 +28,7 @@ export class Top5FarmerCommodityAndGrossReturnsComponent implements OnInit, Afte
     let actualResult = this.africanFarmerCommoditiesService.GetTop5FarmerCommoditiesSoldByGrossReturns();
     actualResult.map((p: IFarmerCommodityAndGrossReturns[]) => {
       if (p && p.length > 0) {
-        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
+        this.canvas = document.querySelector('canvas#top5FarmerCommoditiesSoldByGrossReturnsCanvas');
         this.ctx = this.canvas.getContext('2d');
 
         let dataGroups: IFarmerCommodityAndGrossReturns[] = p;
@@ -40,7 +40,6 @@ export class Top5FarmerCommodityAndGrossReturnsComponent implements OnInit, Afte
       }
     }).subscribe();
 
-    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }

@@ -28,7 +28,7 @@ export class Top5FarmerCommodityAndQuantityComponent implements OnInit, AfterCon
     let actualResult = this.africanFarmerCommoditiesService.GetTop5FarmerCommoditiesSoldByQuantity();
     actualResult.map((p: IFarmerCommodityAndQuantity[]) => {
       if (p && p.length > 0) {
-        this.canvas = document.querySelector('canvas#top5CommoditiesSoldByQuantityCanvas');
+        this.canvas = document.querySelector('canvas#top5FarmerCommoditiesSoldByQuantityCanvas');
         this.ctx = this.canvas.getContext('2d');
 
         let dataGroups: IFarmerCommodityAndQuantity[] = p;
@@ -40,7 +40,6 @@ export class Top5FarmerCommodityAndQuantityComponent implements OnInit, AfterCon
       }
     }).subscribe();
 
-    $('div#resultsViewTop5FarmerPricingStats').css('display', 'block').slideDown();
   }
   ngOnInit() {
   }
