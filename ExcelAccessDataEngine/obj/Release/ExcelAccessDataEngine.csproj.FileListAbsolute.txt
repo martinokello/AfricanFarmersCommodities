@@ -83,3 +83,9 @@ C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\Exc
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.pdb
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Release\ExcelAccessDataEngine.csproj.AssemblyReference.cache
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\EPPlus.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\EPPlus.Interfaces.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\EPPlus.System.Drawing.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\EPPlus.xml
+C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml

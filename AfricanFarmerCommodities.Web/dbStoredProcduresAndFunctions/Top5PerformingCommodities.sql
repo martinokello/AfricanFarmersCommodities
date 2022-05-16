@@ -1,13 +1,14 @@
-use AfricanFarmersCommoditiesV2
+use [AfricanFarmersCommodities]
+go
 
 --Top5CommoditiesSoldByCapacityOverAll
 if OBJECT_ID('Top5CommoditiesSoldByCapacityOverAll') IS NOT NULL
 drop procedure dbo.Top5CommoditiesSoldByCapacityOverAll
 go
-create procedure Top5CommoditiesSoldByCapacityOverAll
+create procedure dbo.Top5CommoditiesSoldByCapacityOverAll
 AS
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -20,10 +21,10 @@ go
 if OBJECT_ID('Top5CommoditiesSoldByCostReturnsOverAll') IS NOT NULL
 drop procedure dbo.Top5CommoditiesSoldByCostReturnsOverAll
 go
-create procedure Top5CommoditiesSoldByCostReturnsOverAll
+create procedure dbo.Top5CommoditiesSoldByCostReturnsOverAll
 AS
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -36,10 +37,10 @@ go
 if OBJECT_ID('Top5CommoditiesSoldByCapacityOverthePastYear') IS NOT NULL
 drop procedure dbo.Top5CommoditiesSoldByCapacityOverthePastYear
 go
-create procedure Top5CommoditiesSoldByCapacityOverthePastYear
+create procedure dbo.Top5CommoditiesSoldByCapacityOverthePastYear
 AS
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -53,10 +54,10 @@ go
 if OBJECT_ID('Top5CommoditiesSoldByCostReturnsOverthePastYear') IS NOT NULL
 drop procedure dbo.Top5CommoditiesSoldByCostReturnsOverthePastYear
 go
-create procedure Top5CommoditiesSoldByCostReturnsOverthePastYear
+create procedure dbo.Top5CommoditiesSoldByCostReturnsOverthePastYear
 AS
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -70,10 +71,10 @@ go
 if OBJECT_ID('Top5CommoditiesByFarmerSoldByCapacityOverAll') IS NOT NULL
 drop procedure dbo.Top5CommoditiesByFarmerSoldByCapacityOverAll
 go
-create procedure Top5CommoditiesByFarmerSoldByCapacityOverAll
+create procedure dbo.Top5CommoditiesByFarmerSoldByCapacityOverAll
 AS
 SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,  sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -88,10 +89,10 @@ go
 if OBJECT_ID('Top5CommoditiesByFarmerSoldByCapacityOverthePastYear') IS NOT NULL
 drop procedure dbo.Top5CommoditiesByFarmerSoldByCapacityOverthePastYear
 go
-create procedure Top5CommoditiesByFarmerSoldByCapacityOverthePastYear
+create procedure dbo.Top5CommoditiesByFarmerSoldByCapacityOverthePastYear
 AS
 SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,  sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -107,10 +108,10 @@ go
 if OBJECT_ID('Top5CommoditiesByFarmerSoldByCostReturnsOverAll') IS NOT NULL
 drop procedure dbo.Top5CommoditiesByFarmerSoldByCostReturnsOverAll
 go
-create procedure Top5CommoditiesByFarmerSoldByCostReturnsOverAll
+create procedure dbo.Top5CommoditiesByFarmerSoldByCostReturnsOverAll
 AS
 SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,  sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -129,7 +130,7 @@ create procedure dbo.Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear
 As
 --Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear
 SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,  sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -153,7 +154,7 @@ create procedure dbo.Top5CommoditiesSoldByCapacityOverDate(
 As
 --Top 5 Commodities Sold By Capacity Over Date:begin, Date:end
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -175,7 +176,7 @@ create procedure dbo.Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd(
 As
 --Top 5 Commodities Sold By Capacity Over Date:begin, Date:end
 SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -197,7 +198,7 @@ create procedure dbo.Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd(
 )
 As
 SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,  sum(it.Quantity) as Quantity
-  FROM [AfricanFarmersCommoditiesV2].[dbo].[Invoices] inv  join
+  FROM [AfricanFarmersCommodities].[dbo].[Invoices] inv  join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
@@ -218,7 +219,7 @@ go
 create procedure dbo.Top5VehicleCategoriesUsedByCapacityOvertheyear
 As
 SELECT TOP (5) vhcat.VehicleCategoryName, count(*) NumbersOfSchedules
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId
   where DateDiff(Y,getDate(), transch.DateEndAtDestination) <= 1 and  DateDiff(Y,getDate(), transch.DateStartFromOrigin) <= 1 
@@ -237,7 +238,7 @@ create procedure dbo.Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd(
 )
 As
 SELECT TOP (5) vhcat.VehicleCategoryName, count(*) NumbersOfSchedules
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId
   where transch.DateStartFromOrigin <= @dateBegin and transch.DateEndAtDestination <= @dateEnd
@@ -254,7 +255,7 @@ go
 create procedure dbo.Top5VehiclesCategoriesUsedByCostReturnsOverYear
 As
 SELECT TOP (5) vhcat.VehicleCategoryName, sum(inv.GrossCost) GrossCostReturns
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
@@ -275,7 +276,7 @@ create procedure dbo.Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd
 )
 As
 SELECT TOP (5) vhcat.VehicleCategoryName, sum(inv.GrossCost) GrossCostReturns
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
@@ -294,7 +295,7 @@ go
 create procedure dbo.Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear
 As
 SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity, count(*) NumberOfVehicles
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.VehicleCapacities vcap on vcap.VehicleCapacityId = vh.VehicleCapacityId join
@@ -318,7 +319,7 @@ create procedure dbo.Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDa
 )
 AS
 SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity, count(*) NumberOfVehicles
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.VehicleCapacities vcap on vcap.VehicleCapacityId = vh.VehicleCapacityId join
@@ -339,7 +340,7 @@ go
 create procedure dbo.Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear
 AS
 SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,  sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.VehicleCapacities vcap on vcap.VehicleCapacityId = vh.VehicleCapacityId join
@@ -364,7 +365,7 @@ create procedure dbo.Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBegi
 )
 AS
 SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,  sum(it.ItemCost) as GrossReturns
-  FROM [AfricanFarmersCommoditiesV2].dbo.TransportSchedules transch  join
+  FROM [AfricanFarmersCommodities].dbo.TransportSchedules transch  join
   dbo.Vehicles vh on transch.VehicleId = vh.VehicleId join
   dbo.VehicleCategories vhcat on vh.VehicleCategoryId = vhCat.VehicleCategoryId join
   dbo.VehicleCapacities vcap on vcap.VehicleCapacityId = vh.VehicleCapacityId join
