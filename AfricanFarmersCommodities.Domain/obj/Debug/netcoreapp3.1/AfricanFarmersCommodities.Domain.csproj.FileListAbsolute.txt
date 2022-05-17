@@ -99,7 +99,6 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\bin\
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.runtimeconfig.dev.json
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.pdb
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.AssemblyInfoInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Domain\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.AssemblyInfo.cs

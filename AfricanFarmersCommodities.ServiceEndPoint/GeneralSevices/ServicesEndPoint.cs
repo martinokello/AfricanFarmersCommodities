@@ -115,6 +115,24 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
             }
         }
 
+        public async Task<Invoice[]> GetUnpaidInvoicesByUsername(string emailAddress)
+        {
+            try
+            {
+                var result = _africanFarmersCommoditiesUnitOfWork._invoiceRepository.GetAll().Where(q=> !q.HasFullyPaid);
+                if (result.Any())
+                {
+                    return await Task.FromResult(result.ToArray());
+                }
+                return await Task.FromResult(new Invoice[0]);
+
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(new Invoice[0]);
+            }
+        }
+
         public async Task<bool> UpdateAddress(Address address)
         {
             try

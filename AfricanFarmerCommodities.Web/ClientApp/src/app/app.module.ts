@@ -82,6 +82,7 @@ import { Top5VehicleCostReturnsScheduledByCategoryComponent } from '../metricsre
 import { Top5VehicleNumbersScheduledByCategoryComponent } from '../metricsreporting/Top5VehicleNumbersScheduledByCategory/Top5VehicleNumbersScheduledByCategory.component';
 import { ReportingComponent } from './reporting/reporting.component';
 import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metricsreporting/Top5FarmerVehicleCategoryUsageByCostReturns/Top5FarmerVehicleCategoryUsageByCostReturns.component';
+import { UnpaidInvoicesComponent } from './unpaid-invoices/unpaidinvoices.component';
 
 @NgModule({
   declarations: [
@@ -138,6 +139,7 @@ import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metrics
     BasketComponent,
     DriverCalendarComponent,
     ReportingComponent,
+    UnpaidInvoicesComponent,
 
     UnScheduledVehiclesByStorageCapacityComponent,
     ScheduledVehiclesByStorageCapacityComponent,
@@ -203,6 +205,7 @@ import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metrics
       { path: 'top5FarmerCommodScheduledvehiclesByStorageCapacity', component: ScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
       { path: 'unscheduledvehiclesByStorageCapacity', component: UnScheduledVehiclesByStorageCapacityComponent, canActivate: [AuthGuard] },
       { path: 'reporting', component: ReportingComponent, canActivate: [AuthGuard] },
+      { path: 'unpaid-invoices', component: UnpaidInvoicesComponent, canActivate: [AuthGuard] },
       { path: 'drivercalendarschedule', component: DriverCalendarComponent, canActivate: [AuthGuard] }
    ])
   ],

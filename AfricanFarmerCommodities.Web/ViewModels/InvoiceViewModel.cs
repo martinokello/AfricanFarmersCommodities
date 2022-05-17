@@ -8,8 +8,10 @@ namespace AfricanFarmerCommodities.Web.ViewModels
     public class InvoiceViewModel
     {
         public int InvoiceId { get; set; } = 0;
+        public int UserId { get; set; } = 0; 
         public string InvoiceName { get; set; }
         public bool HasFullyPaid { get; set; }
+        public decimal GrossCost { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

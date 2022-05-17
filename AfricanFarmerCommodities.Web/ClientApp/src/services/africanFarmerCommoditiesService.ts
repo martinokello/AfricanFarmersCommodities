@@ -17,7 +17,7 @@ export class AfricanFarmerCommoditiesService {
   public getTwitterFeedsUrl: string = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
   public getCityLocationWeatherFocus: string = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
   public postRemoveVehicleFromMonitorUrl: string = this.baseServerUrl + "/VehicleSchedules/RemoveVehicleFromMonitor";
-
+  public getUnpaidInvoicesUrl: string = this.baseServerUrl + "/Home/MakeLatePayment";
   public createTransLogUrl: string = this.baseServerUrl + "/Home/CreateOrUpdateTransportScheduleLog";
   public deleteTransLogUrl: string = this.baseServerUrl + "/Home/DeleteTransportScheduleLog"
   public getDriverMobileLocationAppUrl: string = this.baseServerUrl + "/Transport/GetLocationEmitterApp";
@@ -33,6 +33,7 @@ export class AfricanFarmerCommoditiesService {
   public updateTransportPricingUrl: string = this.baseServerUrl + "/Transport/UpdateTransportPricing"
   public getTransportPricingById: string = this.baseServerUrl + "/Transport/GetTransportPricingById";
   public postCurrentPaymentUrl: string = this.baseServerUrl + "/Home/MakePayment";
+  public postMakeLatePaymentUrl: string = this.baseServerUrl + "/Home/MakeLatePayment";
   public schedulesPricingsUrl: string = this.baseServerUrl + "/Home/GetSchedulesPricing";
   public dealsPricingsUrl: string = this.baseServerUrl + "/Home/GetDealsPricing";
   public transportPricingsUrl: string = this.baseServerUrl + "/Home/GetTransportPricing";
@@ -237,8 +238,23 @@ export class AfricanFarmerCommoditiesService {
       return driverNotes;
     });
   }
+  public GetUnpaidInvoices(userEmail:string): Observable<IInvoice[]> {
 
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getUnpaidInvoicesUrl + "/" + userEmail;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
 
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IInvoice[] => {
+      let unpaideInvoices: IInvoice[] = res;
+      return unpaideInvoices;
+    });
+  }
+  
   public GetDriverTransportSchedules(): Observable<ITransportSchedule[]> {
 
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -644,6 +660,23 @@ export class AfricanFarmerCommoditiesService {
 
     let requestOptions: any = {
       url: this.postCurrentPaymentUrl,
+      headers: headers,
+      body: body
+    };
+
+    return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
+      return res;
+    });
+  }
+
+  public MakeLatePayment(currentInvoice: IInvoice, username: string): Observable<any> {
+
+    let body = JSON.stringify(currentInvoice);
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let requestOptions: any = {
+      url: this.postMakeLatePaymentUrl +"/"+username,
       headers: headers,
       body: body
     };
@@ -2232,10 +2265,11 @@ export interface IExtraCharges {
 }
 export interface IInvoice {
   invoiceId: number;
+  userId: number;
   invoiceName: string;
   netCost: number;
   percentTaxAppliable: number;
-  grossTotalCost: number;
+  grossCost: number;
   dateUpdated: Date;
   dateCreated: Date;
 }
@@ -2378,11 +2412,6 @@ export interface IFoodHubStorage {
   commodityUnit: ICommodityUnit;
   foodHub: IFoodHub;
   foodHubId: number;
-}
-export interface IInvoice {
-  invoiceId: number;
-  InvoiceName: string;
-  hasFullyPaid: boolean;
 }
 export interface ILocation {
   locationId: number;

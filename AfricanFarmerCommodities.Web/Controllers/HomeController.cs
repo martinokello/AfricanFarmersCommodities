@@ -81,6 +81,20 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
             return Ok(pricing);
         }
+        
+        [AuthorizeIdentity]
+        [Route("~/Home/GetUnpaidInvoices/{emailAddress}")]
+        public async Task<IActionResult> GetUnpaidInvoices(string emailAddress)
+        {
+
+            _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+
+            var invoices = await _serviceEndPoint.GetUnpaidInvoicesByUsername(emailAddress);
+            var unpaidInvoicesViewModel = _mapper.Map<InvoiceViewModel[]>(invoices);
+
+            return Ok(unpaidInvoicesViewModel);
+
+        }
 
         [AuthorizeIdentity]
         public async Task<IActionResult> GetDealsPricing()
@@ -239,6 +253,46 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 DateUpdated = DateTime.Now,
                 EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.InvoiceMessage).Replace("[[FirstName]]", user.FirstName).
                 Replace("[[TransactionCommoditesList]]", commoditiesBought.ToString() + System.Environment.NewLine + "Gross Total: " + grossPayment)
+            });
+            return await Task.FromResult(Ok(new { paypalUrl = paypalUrl }));
+        }
+
+        
+       [HttpPost]
+        [AuthorizeIdentity]
+        [Route("~/Home/MakeLatePayment/{username}")]
+        public async Task<IActionResult> MakeLatePayment([FromBody] InvoiceViewModel invoice, string username)
+        {
+            var user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q=> q.Username.ToLower().Equals(username.ToLower()));
+            var items = new List<Item>();
+            var products = new List<Product>();
+
+
+            var curInvoice = _unitOfWork._invoiceRepository.GetById(invoice.InvoiceId);
+
+            if (user != null && curInvoice != null)
+            {
+                curInvoice.InvoiceName = invoice.InvoiceName;
+                curInvoice.GrossCost = invoice.GrossCost;
+                curInvoice.DateUpdated = DateTime.Now;
+                curInvoice.UserId = user.UserId;
+            }
+            else {
+                return await Task.FromResult(BadRequest(new { Message = "Username not found Or Current Invoice not found" }));
+            }
+            var latePaymentProduct = new Product { Amount = curInvoice.GrossCost, ProductName =curInvoice.InvoiceName, ProductDescription = "Late Payments: " + curInvoice.InvoiceName + "----InvoiceId-" + curInvoice.InvoiceId };
+            //Call Paypal Facilities:
+            var paypalUrl = await PaymentsManager.MakePayments(user.Username, new List<Product> { latePaymentProduct });
+            var commoditiesBought = new StringBuilder();
+
+            _emailService.SendEmail(new EmailDao
+            {
+                EmailTo = user.Email,
+                EmailSubject = "Late Payment For Commodity By Invoice Id: " + latePaymentProduct.ProductName + " is being processed.",
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.InvoiceMessage).Replace("[[FirstName]]", user.FirstName).
+                Replace("[[TransactionCommoditesList]]", latePaymentProduct.ProductName + System.Environment.NewLine + "Gross Total: " + curInvoice.GrossCost)
             });
             return await Task.FromResult(Ok(new { paypalUrl = paypalUrl }));
         }

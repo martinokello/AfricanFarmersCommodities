@@ -1,0 +1,24 @@
+<div #unpaidInvoicesView class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <div #payments>
+    <div>
+      <img src="/images/paypal_logo.gif" alt="paypal logo" /><br />
+      <span>Total Cost Left To pay: {{amountLeftToPay}}</span>
+    </div>
+    <div *ngFor="let invoice of unpaidInvoices">
+      <form #unpaidInvoicesForm+`${invoice.invoiceId}` method="get"  (onSubmit)="makePayment($event)">
+        <div class="form-group">
+          <label>Amount Left to Pay</label>
+          <input type="number" name="amountLeftToPay" value="{{invoice.grossCost}}" min="0" readonly />
+          <input type="hidden" name="invoiceId" value="{{invoice.invoiceId}}" />
+          <input type="hidden" name="userId" value="{{invoice.userId}}" />
+        </div>
+        <div class="form-group">
+          <label>Amount Paying</label>
+          <input type="number" name="currentPayment" value="{{invoice.grossCost}}" min="0" />
+        </div>
+        <input type="button" value="Pay Installment" class="but-primary" (click)="makePayment()" /><br/>
+        <hr />
+      </form>
+    </div>
+  </div>
+</div>
