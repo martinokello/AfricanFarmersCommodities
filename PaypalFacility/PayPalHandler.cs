@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
@@ -18,7 +19,7 @@ namespace PaypalFacility
         private string buyerEmail;
         public HttpContext _HttpContext { get; set; }
 
-        public PayPalHandler(string baseUrl, string businessEmail, string successUrl, string cancelUrl,string notifyUrl, string buyerEmail)
+        public PayPalHandler(string baseUrl, string businessEmail, string successUrl, string cancelUrl, string notifyUrl, string buyerEmail)
         {
             this.baseUrl = baseUrl;
             this.hasBeenRedirected = false;
@@ -32,22 +33,26 @@ namespace PaypalFacility
         public string RedirectToPayPal(List<Product> productArray)
         {
             //fill In invoice Details
-            
+
             StringBuilder prodNames = new StringBuilder();
             decimal amount = 0;
-            foreach(var prod in productArray)
+            foreach (var prod in productArray)
             {
                 amount += prod.Amount;
                 prodNames.Append(prod.ProductName + ";");
             }
-            
-            invoice = new Invoice(productArray, amount,buyerEmail);
-            
-            
-            hasBeenRedirected = true;
-            URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl,buyerEmail,invoice);
-            string requestUrl = baseUrl + urlBuilder.getFullCommandParameters();
-            return requestUrl;
+
+            invoice = new Invoice(productArray, amount, buyerEmail);
+            if (productArray.Any())
+            {
+                invoice.InvoiceNo = productArray.First().InvoiceId;
+
+                hasBeenRedirected = true;
+                URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl, buyerEmail, invoice);
+                string requestUrl = baseUrl + urlBuilder.getFullCommandParameters();
+                return requestUrl;
+            }
+            return string.Empty;
         }
 
         public bool HasBeenRequested
@@ -58,8 +63,8 @@ namespace PaypalFacility
 
         public string CancelUrl
         {
-            get { return cancelUrl;  }
-            set { cancelUrl=value; }
+            get { return cancelUrl; }
+            set { cancelUrl = value; }
         }
         public string NotifyUrl
         {

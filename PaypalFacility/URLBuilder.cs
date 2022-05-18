@@ -36,12 +36,15 @@ namespace PaypalFacility
             sbUrl.Append("cmd=_cart&upload=1");
             sbUrl.AppendFormat("&business={0}",HttpUtility.UrlEncode(businessEmail));
             var index = 1;
+
+            sbUrl.AppendFormat("&invoice={0}", HttpUtility.UrlEncode(invoice.InvoiceNo.ToString()));
+
             foreach (var prod in invoice.Products)
             {
                 sbUrl.AppendFormat("&item_name_{0}={1}",index, HttpUtility.UrlEncode(prod.ProductName));
-                sbUrl.AppendFormat("&quantity_{0}={1}", index, HttpUtility.UrlEncode(index.ToString()));
+                sbUrl.AppendFormat("&quantity_{0}={1}", index, HttpUtility.UrlEncode(prod.Quantity.ToString()));
                 sbUrl.AppendFormat("&amount_{0}={1}", index, HttpUtility.UrlEncode(invoice.Ammount.ToString()));
-                sbUrl.AppendFormat("&invoice={0}", HttpUtility.UrlEncode(index.ToString()));
+
                 index++;
             }
 

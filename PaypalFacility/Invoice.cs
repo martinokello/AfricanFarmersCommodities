@@ -20,11 +20,11 @@ namespace PaypalFacility
             this.buyerEmail = buyerEmail;
         }
 
-        public long GenerateUniqueInvoiceNo()
+      /*  ublic long GenerateUniqueInvoiceNo()
         {
-            invoiceNo = randomGenerator.Next(beginGenerate);
+            //invoiceNo = randomGenerator.Next(beginGenerate);
             return (long)invoiceNo;
-        }
+        }*/
 
         public int InvoiceNo
         {

@@ -445,4 +445,3 @@ C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Debu
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.dll
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.pdb
-C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.csproj.AssemblyReference.cache

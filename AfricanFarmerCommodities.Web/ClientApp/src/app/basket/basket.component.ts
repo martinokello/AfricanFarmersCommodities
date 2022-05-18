@@ -52,7 +52,7 @@ export class BasketComponent implements OnInit, AfterViewInit {
     let result: Observable<any> = this.africanFarmerCommoditiesService.MakePayment(this.currentPayment, this.actualOrderGoingForward, AfricanFarmerCommoditiesService.clientEmailAddress);
 
     result.map((q: any) => {
-      window.open(q.paypalUrl);
+      window.open(q.payPalRedirectUrl);
       console.log('Response received');
       console.log(q.paypalUrl);
       sessionStorage.removeItem("Orders");

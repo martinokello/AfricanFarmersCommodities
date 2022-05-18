@@ -213,6 +213,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 products.Add(new Product
                 {
+                    InvoiceId=invoice.InvoiceId,
                     Amount = cmd.CommodityUnitPrice * cmd.NumberOfUnits,
                     HasPaidInfull = false,
                     ProductDescription = cmd.CommodityName,
@@ -260,7 +261,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.InvoiceMessage).Replace("[[FirstName]]", user.FirstName).
                 Replace("[[TransactionCommoditesList]]", commoditiesBought.ToString() + System.Environment.NewLine + "Gross Total: " + grossPayment)
             });
-            return await Task.FromResult(Ok(new { paypalUrl = paypalUrl }));
+            return await Task.FromResult(Ok(new { payPalRedirectUrl = paypalUrl }));
         }
 
         
@@ -286,7 +287,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
             else {
                 return await Task.FromResult(BadRequest(new { Message = "Username not found Or Current Invoice not found" }));
             }
-            var latePaymentProduct = new Product { Amount = curInvoice.GrossCost, ProductName =curInvoice.InvoiceName, ProductDescription = "Late Payments: " + curInvoice.InvoiceName + "----InvoiceId-" + curInvoice.InvoiceId };
+            var latePaymentProduct = new Product { Amount = curInvoice.GrossCost, ProductName = curInvoice.InvoiceName, InvoiceId= curInvoice.InvoiceId, ProductDescription = "Late Payments: " + curInvoice.InvoiceName + "----InvoiceId-" + curInvoice.InvoiceId };
             //Call Paypal Facilities:
             var paypalUrl = await PaymentsManager.MakePayments(user.Username, new List<Product> { latePaymentProduct });
             var commoditiesBought = new StringBuilder();
@@ -300,14 +301,15 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.InvoiceMessage).Replace("[[FirstName]]", user.FirstName).
                 Replace("[[TransactionCommoditesList]]", latePaymentProduct.ProductName + System.Environment.NewLine + "Gross Total: " + curInvoice.GrossCost)
             });
-            return await Task.FromResult(Ok(new { paypalUrl = paypalUrl }));
+            return await Task.FromResult(Ok(new { payPalRedirectUrl = paypalUrl }));
         }
 
         public async Task<JsonResult> CheckAndValidatePaypalPayments(FormCollection formsCollection)
         {
             decimal amountPaid = Decimal.Parse(formsCollection["amount"]);
             int clientId = Int32.Parse(formsCollection["clientId"]);
-            var userInvoice = _unitOfWork._invoiceRepository.GetAll().FirstOrDefault(q => q.User.Username.ToLower().Equals(formsCollection["buyer_id"]));
+            int invoiceId = Int32.Parse(formsCollection["invoice"]);
+            var userInvoice = _unitOfWork._invoiceRepository.GetById(invoiceId); ;
 
             try
             {
