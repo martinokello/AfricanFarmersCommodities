@@ -88,12 +88,18 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
 
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+            var user =_unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Email.ToLower().Equals(emailAddress.ToLower()));
+            if(user != null)
+            {
+                var invoices = await _serviceEndPoint.GetUnpaidInvoicesByUsername(user.UserId);
+                if (invoices.Any())
+                {
+                    var unpaidInvoicesViewModel = _mapper.Map<InvoiceViewModel[]>(invoices);
 
-            var invoices = await _serviceEndPoint.GetUnpaidInvoicesByUsername(emailAddress);
-            var unpaidInvoicesViewModel = _mapper.Map<InvoiceViewModel[]>(invoices);
-
-            return Ok(unpaidInvoicesViewModel);
-
+                    return await Task.FromResult(Ok(unpaidInvoicesViewModel));
+                }
+            }
+            return await Task.FromResult(NotFound(new { Message = "No Invoices are unpaid" }));
         }
 
         [AuthorizeIdentity]

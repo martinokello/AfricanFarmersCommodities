@@ -9,7 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 @Injectable()
 export class AfricanFarmerCommoditiesService {
 
-  private baseServerUrl: string = /*"https://localhost:44387";*/  "https://africanfarmerscommodities.martinlayooinc.com";
+  private baseServerUrl: string = /*"https://localhost:44387";*/ "https://africanfarmerscommodities.martinlayooinc.com";
   public static isLoginPage: boolean = false;
   public actionResult: any;
   public httpClient: HttpClient;
@@ -17,7 +17,7 @@ export class AfricanFarmerCommoditiesService {
   public getTwitterFeedsUrl: string = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
   public getCityLocationWeatherFocus: string = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
   public postRemoveVehicleFromMonitorUrl: string = this.baseServerUrl + "/VehicleSchedules/RemoveVehicleFromMonitor";
-  public getUnpaidInvoicesUrl: string = this.baseServerUrl + "/Home/MakeLatePayment";
+  public getUnpaidInvoicesUrl: string = this.baseServerUrl + "/Home/GetUnpaidInvoices";
   public createTransLogUrl: string = this.baseServerUrl + "/Home/CreateOrUpdateTransportScheduleLog";
   public deleteTransLogUrl: string = this.baseServerUrl + "/Home/DeleteTransportScheduleLog"
   public getDriverMobileLocationAppUrl: string = this.baseServerUrl + "/Transport/GetLocationEmitterApp";
@@ -238,10 +238,10 @@ export class AfricanFarmerCommoditiesService {
       return driverNotes;
     });
   }
-  public GetUnpaidInvoices(userEmail:string): Observable<IInvoice[]> {
+  public GetUnpaidInvoices(username: string): Observable<IInvoice[]> {
 
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    let requestUrl = this.getUnpaidInvoicesUrl + "/" + userEmail;
+    let requestUrl = this.getUnpaidInvoicesUrl + "/" + username;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
@@ -676,7 +676,7 @@ export class AfricanFarmerCommoditiesService {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
     let requestOptions: any = {
-      url: this.postMakeLatePaymentUrl +"/"+username,
+      url: this.postMakeLatePaymentUrl + "/" + username,
       headers: headers,
       body: body
     };
@@ -2265,7 +2265,7 @@ export interface IExtraCharges {
 }
 export interface IInvoice {
   invoiceId: number;
-  userId: number;
+  userId: string;
   invoiceName: string;
   netCost: number;
   percentTaxAppliable: number;

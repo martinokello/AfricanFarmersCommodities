@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    let userDetail: IUserDetail = {
+    let userDetails = {
       password: "",
       role: "",
       emailAddress: "",
@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
       keepLoggedIn: false,
       authToken: ""
     };
-    this.userDetail = userDetail;
+    let useDet = localStorage.getItem("userDetails");
+    if (useDet) {
+      this.userDetail = JSON.parse(useDet);
+    }
+    else this.userDetail = userDetails;
   }
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
@@ -53,12 +57,15 @@ export class LoginComponent implements OnInit {
     loginResults.map((q: any) => {
       console.log(q.toString());
       if (q.isLoggedIn === true) {
-        localStorage.setItem("userDetails", this.userDetail);
-        AfricanFarmerCommoditiesService.userDetails = this.userDetail;
 
         if (q.authToken) {
           localStorage.setItem('authToken', q.authToken);
+          this.userDetail.authToken = q.authToken;
         }
+        localStorage.setItem("userDetails", JSON.stringify(this.userDetail));
+        AfricanFarmerCommoditiesService.userDetails = this.userDetail;
+
+
         this.actUserStatus.isUserLoggedIn = AfricanFarmerCommoditiesService.actUserStatus.isUserLoggedIn = true;
         if (q.isAdministrator) {
           this.actUserStatus.isUserAdministrator = AfricanFarmerCommoditiesService.actUserStatus.isUserAdministrator = true;
@@ -83,6 +90,7 @@ export class LoginComponent implements OnInit {
         localStorage.removeItem("actUserStatus");
         localStorage.removeItem('authToken');
         localStorage.removeItem("userRoles");
+        localStorage.removeItem("userDetails");
       }
     }).subscribe();
   }

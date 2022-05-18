@@ -1,8 +1,11 @@
 <div #mealView class="col-lg-12" style="text-align:left !important; color:black !important;">
   <iframe id="payPalPayments" style="display:none;"></iframe>
   <div #payments>
+    <div style="margin-bottom:14px !important;">
+      <a [routerLink]="['/unpaid-invoices']">Your Previous Unpaid Invoices</a>
+    </div>
     <div>
-      <img src="/images/paypal_logo.gif" alt="paypal logo" /><img src="/images/shopBasketFigure.jpg" alt="shop basket!" style="width:190px;height:auto;background-color:white !important;"/>
+      <img src="/images/paypal_logo.gif" alt="paypal logo" /><img src="/images/shopBasketFigure.jpg" alt="shop basket!" style="width:190px;height:auto;background-color:white !important;" />
     </div>
     <div id="basketDiv">
       <span id="runningTotal">
@@ -35,10 +38,5 @@
       <label>Amount Paying</label>
       <input type="text" value="{{runningTotalPrice}} " [(ngModel)]="currentPayment" min="0" readonly />
     </div>
-  </div>
-
-  <div class="container">
-    <h4>Your Unpaid Invoices</h4>
-    <unpaid-invoices></unpaid-invoices>
   </div>
 </div>
