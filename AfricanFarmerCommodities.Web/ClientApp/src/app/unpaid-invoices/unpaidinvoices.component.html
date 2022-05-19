@@ -7,7 +7,7 @@
     <div *ngFor="let invoice of unpaidInvoices">
       <div>Invoice Name: {{invoice.InvoiceName}}:</div>
       <div>Invoice Id: {{invoice.invoiceId}}</div>
-      <div>Invoice Date: {{invoice.dateCreated.toUTCString()}}</div>
+      <div>Invoice Date: {{invoice.dateCreated.toString()}}</div>
       <form id="unpaidInvoicesForm{{invoice.invoiceId}}" method="get">
         <div class="form-group">
           <label>Amount Left to Pay</label>
