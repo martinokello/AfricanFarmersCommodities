@@ -157,7 +157,7 @@ namespace ExcelAccessDataEngine.Concretes
                 foreach (var rowQuant in rowContent)
                 {
                     ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
-                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FarmerName;
                     ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.Quantity;
                     excelRowNumber++;
                 }
@@ -190,7 +190,7 @@ namespace ExcelAccessDataEngine.Concretes
                 foreach (var rowQuant in rowContent)
                 {
                     ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
-                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FarmerName;
                     ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.Quantity;
                     excelRowNumber++;
                 }
@@ -221,7 +221,7 @@ namespace ExcelAccessDataEngine.Concretes
                 foreach (var rowQuant in rowContent)
                 {
                     ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
-                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FarmerName;
                     ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
                     excelRowNumber++;
                 }
@@ -255,7 +255,7 @@ namespace ExcelAccessDataEngine.Concretes
                 foreach (var rowQuant in rowContent)
                 {
                     ws.Cells[string.Format("A{0}", excelRowNumber)].Value = rowQuant.CommodityName;
-                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FamerName;
+                    ws.Cells[string.Format("B{0}", excelRowNumber)].Value = rowQuant.FarmerName;
                     ws.Cells[string.Format("C{0}", excelRowNumber)].Value = rowQuant.GrossReturns;
                     excelRowNumber++;
                 }

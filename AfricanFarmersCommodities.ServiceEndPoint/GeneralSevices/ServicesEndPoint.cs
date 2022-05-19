@@ -429,7 +429,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
                 transportSchedule.TransportPricing = null;
                 var result = _africanFarmersCommoditiesUnitOfWork._transportScheduleRepostiory.Insert(transportSchedule);
                 _africanFarmersCommoditiesUnitOfWork.SaveChanges();
-                if (!transportSchedule.HasIntermediateDrops)
+                if (transportSchedule.HasIntermediateDrops)
                 {
                     //Create intemediate Drop as a copy of TransportSchedule:
                     var intTranSche = new IntermediateSchedule

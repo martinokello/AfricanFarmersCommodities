@@ -23,7 +23,7 @@ namespace ExcelAccessDataEngine.DomainModel
     public class FarmerCommodityAndQuantity
     {
         public int FarmerId { get; set; }
-        public string FamerName { get; set; }
+        public string FarmerName { get; set; }
         public string CommodityName { get; set; }
         public int CommodityId { get; set; }
         public int Quantity { get; set; }
@@ -31,7 +31,7 @@ namespace ExcelAccessDataEngine.DomainModel
     public class FarmerCommodityAndGrossReturns
     {
         public int FarmerId { get; set; }
-        public string FamerName { get; set; }
+        public string FarmerName { get; set; }
         public string CommodityName { get; set; }
         public int CommodityId { get; set; }
         public decimal GrossReturns { get; set; }

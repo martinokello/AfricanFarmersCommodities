@@ -570,7 +570,7 @@ namespace AfricanFarmerCommodities.DataAccess
                 listItems.Add(new FarmerCommodityAndQuantity
                 {
                     FarmerId = reader["FarmerId"] == DBNull.Value ? 0: (int)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    FarmerName = reader["FarmerName"] == DBNull.Value ? "" : (string)reader["FarmerName"],
                     CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
                     CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
@@ -595,7 +595,7 @@ namespace AfricanFarmerCommodities.DataAccess
                 listItems.Add(new FarmerCommodityAndGrossReturns
                 {
                     FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    FarmerName = reader["FarmerName"] == DBNull.Value ? "" : (string)reader["FarmerName"],
                     CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
                     CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
@@ -621,7 +621,7 @@ namespace AfricanFarmerCommodities.DataAccess
                 listItems.Add(new FarmerCommodityAndGrossReturns
                 {
                     FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    FarmerName = reader["FarmerName"] == DBNull.Value ? "" : (string)reader["FarmerName"],
                     CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
                     CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     GrossReturns = reader["GrossReturns"] == DBNull.Value ? 0 : (decimal)reader["GrossReturns"],
@@ -671,7 +671,7 @@ namespace AfricanFarmerCommodities.DataAccess
                 listItems.Add(new FarmerCommodityAndQuantity
                 {
                     FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    FarmerName = reader["FarmerName"] == DBNull.Value ? "" : (string)reader["FarmerName"],
                     CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
                     CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
@@ -780,7 +780,7 @@ namespace AfricanFarmerCommodities.DataAccess
                 listItems.Add(new FarmerCommodityAndQuantity
                 {
                     FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FamerName = reader["FamerName"] == DBNull.Value ? "" : (string)reader["FamerName"],
+                    FarmerName = reader["FramerName"] == DBNull.Value ? "" : (string)reader["FarmerName"],
                     CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
                     CommodityName = reader["CommodityName"] == DBNull.Value ? "" : (string)reader["CommodityName"],
                     Quantity = reader["Quantity"] == DBNull.Value ? 0 : (int)reader["Quantity"],
