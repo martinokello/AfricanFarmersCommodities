@@ -33,11 +33,6 @@
               Transport
             </a>
           </li>
-          <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/schedules-admin']">
-              Schedules
-            </a>
-          </li>
         </ng-container>
         <ng-container *ngIf="!actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
@@ -67,6 +62,11 @@
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a [routerLink]="['/scanqrcode']">
               Scan Qr-Code
+            </a>
+          </li>
+          <li style="margin: 10px 0px !important; padding: 10px !important;">
+            <a [routerLink]="['/schedules-admin']">
+              Schedules
             </a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
