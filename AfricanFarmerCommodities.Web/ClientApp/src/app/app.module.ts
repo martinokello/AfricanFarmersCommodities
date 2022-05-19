@@ -169,7 +169,7 @@ import { UnpaidInvoicesComponent } from './unpaid-invoices/unpaidinvoices.compon
       { path: 'basket', component: BasketComponent },
       { path: 'crud', component: ActiveCrudOperationsComponent, canActivate:[AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard]},
-      { path: 'schedules-admin', component: TransportScheduleComponent, canActivate: [AdminAuthGuard] },
+      { path: 'schedules-admin', component: TransportScheduleComponent, canActivate: [AuthGuard] },
       { path: 'schedules-pricing', component: TransportPricingComponent, canActivate: [AdminAuthGuard] },
       { path: 'add-location', component: LocationComponent, canActivate: [AdminAuthGuard] },
       { path: 'add-vehicle', component: VehicleComponent, canActivate: [AdminAuthGuard] },
