@@ -5,7 +5,10 @@
       <span>Total Cost Left To pay: {{amountLeftToPay}}</span>
     </div>
     <div *ngFor="let invoice of unpaidInvoices">
-      <form id=`unpaidInvoicesForm${invoice.invoiceId}` method="get">
+      <div>Invoice Name: {{invoice.InvoiceName}}:</div>
+      <div>Invoice Id: {{invoice.invoiceId}}</div>
+      <div>Invoice Date: {{invoice.dateCreated.toUTCString()}}</div>
+      <form id="unpaidInvoicesForm{{invoice.invoiceId}}" method="get">
         <div class="form-group">
           <label>Amount Left to Pay</label>
           <input type="number" name="grossCost" value="{{invoice.grossCost}}" min="0" readonly />
@@ -16,7 +19,7 @@
           <label>Amount Paying</label>
           <input type="number" name="currentPayment" value="{{invoice.grossCost}}" min="0" />
         </div>
-        <input type="button" value="Pay Installment" class="but-primary" (click)="makePayment($event)" /><br/>
+        <input type="button" value="Pay Installment" class="but-primary" (click)="makePayment($event)" /><br />
         <hr />
       </form>
     </div>

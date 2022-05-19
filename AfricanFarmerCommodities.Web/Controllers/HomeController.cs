@@ -279,7 +279,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
             if (user != null && curInvoice != null)
             {
-                curInvoice.InvoiceName = invoice.InvoiceName;
                 curInvoice.GrossCost = invoice.GrossCost;
                 curInvoice.DateUpdated = DateTime.Now;
                 curInvoice.UserId = user.UserId;
@@ -313,9 +312,10 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
             try
             {
-                if (userInvoice.User.Username.ToLower().Equals(formsCollection["buyer_email"].First().ToLower()) && amountPaid == userInvoice.GrossCost)
+                if (userInvoice != null && userInvoice.User.Username.ToLower().Equals(formsCollection["buyer_email"].First().ToLower()) && amountPaid == userInvoice.GrossCost)
                 {
                     userInvoice.HasFullyPaid = true;
+
                     _unitOfWork.SaveChanges();
                     _emailService.SendEmail(new EmailDao
                     {
