@@ -50,7 +50,7 @@ namespace ExcelAccessDataEngine.DomainModel
 
     public class FarmerVehicleCategoryUsageByNumber
     {
-        public string FamerName { get; set; }
+        public string FarmerName { get; set; }
         public string VehicleCategoryName { get; set; }
         public decimal VechicleCapacity { get; set; }
         public int NumberOfVehicles { get; set; }
@@ -58,7 +58,7 @@ namespace ExcelAccessDataEngine.DomainModel
 
     public class FarmerVehicleCategoryUsageByCostReturns
     {
-        public string FamerName { get; set; }
+        public string FarmerName { get; set; }
         public string VehicleCategoryName { get; set; }
         public decimal VechicleCapacity { get; set; }
         public decimal GrossReturns { get; set; }

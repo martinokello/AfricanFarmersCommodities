@@ -81,4 +81,3 @@ C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlu
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\EPPlus.xml
 C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Development\AfricanFarmersCommoditiesV2\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.AssemblyReference.cache
