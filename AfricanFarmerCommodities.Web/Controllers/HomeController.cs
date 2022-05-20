@@ -228,7 +228,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     InvoiceId = invoice.InvoiceId,
-                    ItemName = cmd.CommodityName
+                    ItemName = cmd.CommodityName,
+                    CommodityId = cmd.CommodityId
                 };
 
                 _unitOfWork._itemRepository.Insert(itm);

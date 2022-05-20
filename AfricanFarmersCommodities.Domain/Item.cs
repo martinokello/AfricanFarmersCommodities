@@ -16,6 +16,9 @@ namespace AfricanFarmersCommodities.Domain
         public string ItemName { get; set; }
         public int Quantity { get; set; }
         public decimal ItemCost { get; set; }
+        [ForeignKey("Commodity")]
+        public int CommodityId { get; set; }
+        public Commodity Commodity { get; set; }
         [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }
         public Invoice Invoice { get; set; }

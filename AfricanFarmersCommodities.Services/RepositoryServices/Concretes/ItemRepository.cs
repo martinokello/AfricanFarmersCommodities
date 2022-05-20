@@ -42,6 +42,7 @@ namespace SimbaToursEastAfrica.Services.RepositoryServices.Concretes
                 item.ItemName = toUpdate.ItemName;
                 item.ItemCost= toUpdate.ItemCost;
                 item.Quantity = toUpdate.Quantity;
+                item.CommodityId = toUpdate.CommodityId;
                 item.DateUpdated = DateTime.Now;
                 return true;
             }

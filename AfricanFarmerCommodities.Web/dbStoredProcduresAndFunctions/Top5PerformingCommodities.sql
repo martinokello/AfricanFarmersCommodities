@@ -13,7 +13,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId 
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 go
@@ -29,7 +29,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId 
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 go
@@ -45,7 +45,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId 
   where DateDiff(Y,getDate(), inv.DateCreated) <= 1
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
@@ -62,7 +62,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId 
   where DateDiff(Y,getDate(), inv.DateCreated) <= 1
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
@@ -79,7 +79,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
@@ -97,7 +97,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId  join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where DateDiff(Y,getDate(), inv.DateCreated) <= 1
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
@@ -116,7 +116,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
@@ -135,7 +135,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where DateDiff(Y,getDate(), inv.DateCreated) <= 1
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
@@ -159,7 +159,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName 
+  dbo.Commodities cmd on it.CommodityId = cmd.CommodityId 
   where inv.DateCreated >= @dateBegin and inv.DateCreated <= @dateEnd
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
@@ -181,7 +181,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId
   where inv.DateCreated >= @dateBegin and inv.DateCreated <= @dateEnd
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
@@ -203,7 +203,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   dbo.Users us on inv.UserId = us.UserId join
   dbo.TransportLogs trLog on trLog.InvoiceId = inv.InvoiceId join
   dbo.TransportSchedules transh on transh.TransportScheduleId = trLog.TransportScheduleId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where inv.DateCreated >= @dateBegin and inv.DateCreated <= @dateEnd
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
@@ -302,7 +302,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
   dbo.Invoices inv on inv.InvoiceId = trLog.InvoiceId join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where DateDiff(Y,getDate(), transch.DateEndAtDestination) <= 1 and  DateDiff(Y,getDate(), transch.DateStartFromOrigin) <= 1 
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
@@ -326,7 +326,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
   dbo.Invoices inv on inv.InvoiceId = trLog.InvoiceId join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where transch.DateStartFromOrigin <= @dateBegin and transch.DateEndAtDestination <= @dateEnd
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
@@ -347,7 +347,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
   dbo.Invoices inv on inv.InvoiceId = trLog.InvoiceId join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where DateDiff(Y,getDate(), transch.DateEndAtDestination) <= 1 and  DateDiff(Y,getDate(), transch.DateStartFromOrigin) <= 1 
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
@@ -372,7 +372,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   dbo.TransportLogs trLog on trLog.TransportScheduleId = transch.TransportScheduleId join
   dbo.Invoices inv on inv.InvoiceId = trLog.InvoiceId join
   dbo.Items it on it.InvoiceId = inv.InvoiceId join
-  dbo.Commodities cmd on it.ItemName = cmd.CommodityName join
+  dbo.Commodities cmd on cmd.CommodityId = it.CommodityId join
   dbo.Farmers fam on cmd.FarmerId = fam.FarmerId
   where transch.DateStartFromOrigin <= @dateBegin and transch.DateEndAtDestination <= @dateEnd
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
