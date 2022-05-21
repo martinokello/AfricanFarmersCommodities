@@ -2403,15 +2403,13 @@ export interface ICommodityUnit {
 }
 export interface IFoodHubStorage {
   foodHubStorageId: number;
+  foodHubId: number;
+  commodityUnitId: number;
   foodHubStorageName: string;
   dryStorageCapacity: number;
   usedDryStorageCapacity: number;
   refreigeratedStorageCapacity: number;
   usedRefreigeratedStorageCapacity: number;
-  commodityUnitId: number;
-  commodityUnit: ICommodityUnit;
-  foodHub: IFoodHub;
-  foodHubId: number;
 }
 export interface ILocation {
   locationId: number;
