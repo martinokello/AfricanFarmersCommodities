@@ -22,11 +22,21 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
   public foodHubStorage: IFoodHubStorage | any;
 
   public addFoodHubStorage(): void {
-    this.foodHubStorage.foodHubStorageId = 0;
-    this.foodHubStorage.foodHubId = this.foodHubStorage.foodHub.foodHubId;
-    this.foodHubStorage.commodityUnitId = this.foodHubStorage.commodityUnit.commodityUnitId;
 
-    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.PostOrCreateFoodHubStorage(this.foodHubStorage);
+    let foodHubStorageToAdd: IFoodHubStorage = {
+      foodHubStorageId: 0,
+      foodHubId: this.foodHubStorage.foodHubId,
+      commodityUnitId: this.foodHubStorage.commodityUnitId,
+      foodHubStorageName: this.foodHubStorage.foodHubStorageName,
+      dryStorageCapacity: this.foodHubStorage.dryStorageCapacity,
+      usedDryStorageCapacity: this.foodHubStorage.usedDryStorageCapacity,
+      refreigeratedStorageCapacity: this.foodHubStorage.refreigeratedStorageCapacity,
+      usedRefreigeratedStorageCapacity: this.foodHubStorage.usedRefreigeratedStorageCapacity,
+      commodityUnit: this.foodHubStorage.commodityUnit,
+      foodHub: this.foodHubStorage.foodHub
+    };
+
+    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.PostOrCreateFoodHubStorage(foodHubStorageToAdd);
     actualResult.map((p: any) => {
       alert('FoodHub Storgae Added: ' + p.result); if (p.result) {
         this.router.navigateByUrl('success');
@@ -38,10 +48,20 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
     $('form#locationView').css('display', 'block').slideDown();
   }
   public updateFoodHubStorage() {
-    this.foodHubStorage.foodHubId = this.foodHubStorage.foodHub.foodHubId;
-    this.foodHubStorage.commodityUnitId = this.foodHubStorage.commodityUnit.commodityUnitId;
 
-    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.UpdateFoodHubStorage(this.foodHubStorage);
+    let foodHubStorageToUpdate: IFoodHubStorage = {
+      foodHubStorageId: this.foodHubStorage.foodHubStorageId,
+      foodHubId: this.foodHubStorage.foodHubId,
+      commodityUnitId: this.foodHubStorage.commodityUnitId,
+      foodHubStorageName: this.foodHubStorage.foodHubStorageName,
+      dryStorageCapacity: this.foodHubStorage.dryStorageCapacity,
+      usedDryStorageCapacity: this.foodHubStorage.usedDryStorageCapacity,
+      refreigeratedStorageCapacity: this.foodHubStorage.refreigeratedStorageCapacity,
+      usedRefreigeratedStorageCapacity: this.foodHubStorage.usedRefreigeratedStorageCapacity,
+      commodityUnit: this.foodHubStorage.commodityUnit,
+      foodHub: this.foodHubStorage.foodHub
+    };
+    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.UpdateFoodHubStorage(foodHubStorageToUpdate);
     actualResult.map((p: any) => {
       alert('FoodHub Updated: ' + p.result); if (p.result) {
         this.router.navigateByUrl('success');
@@ -56,15 +76,24 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.GetFoodHubStorageById(this.foodHubStorage.foodHubStorageId);
     actualResult.map((p: any) => {
       this.foodHubStorage = p;
-      this.foodHubStorage.foodHub.foodHubId = this.foodHubStorage.foodHubId;
-      this.foodHubStorage.commodityUnit.commodityUnitId = this.foodHubStorage.commodityId ;
-      this.foodHubStorage.foodHub = { foodHubId: this.foodHubStorage.foodHub.foodHubId };
-      this.foodHubStorage.commodityUnit.commodityUnitId = this.foodHubStorage.commodityUnitId;
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
   public deleteFoodHubStorage() {
-    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteFoodHubStorage(this.foodHubStorage);
+
+    let foodHubStorageToDelete: IFoodHubStorage = {
+      foodHubStorageId: this.foodHubStorage.foodHubStorageId,
+      foodHubId: this.foodHubStorage.foodHubId,
+      commodityUnitId: this.foodHubStorage.commodityUnitId,
+      foodHubStorageName: this.foodHubStorage.foodHubStorageName,
+      dryStorageCapacity: this.foodHubStorage.dryStorageCapacity,
+      usedDryStorageCapacity: this.foodHubStorage.usedDryStorageCapacity,
+      refreigeratedStorageCapacity: this.foodHubStorage.refreigeratedStorageCapacity,
+      usedRefreigeratedStorageCapacity: this.foodHubStorage.usedRefreigeratedStorageCapacity,
+      commodityUnit: this.foodHubStorage.commodityUnit,
+      foodHub: this.foodHubStorage.foodHub
+    };
+    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteFoodHubStorage(foodHubStorageToDelete);
     actualResult.map((p: any) => {
       alert('FoodHub Deleted: ' + p.result); if (p.result) {
         this.router.navigateByUrl('success');

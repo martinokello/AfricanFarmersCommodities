@@ -81,3 +81,4 @@ C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.Core
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.dll
 C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.pdb
+C:\Development\AfricanFarmersCommoditiesV2\Twitter\obj\Debug\Twitter.csproj.AssemblyReference.cache
