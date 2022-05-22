@@ -20,7 +20,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
 
   public intemediateShedules: IIntermediateSchedule[];
-  public invoiceId: number;
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
   }
@@ -46,7 +45,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public updateTransportSchedule() {
     this.transportSchedule.dateStartFromOrigin = $('input#dateStartFromOrigin').val();
@@ -65,7 +63,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public selectTransportSchedule(): void {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.GetTransportScheduleId(this.transportSchedule.transportScheduleId);
@@ -118,7 +115,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
     const addsObs: Observable<ITransportPricing[]> = this.africanFarmerCommoditiesService.GetAllTransportPricings();
     const locatObs: Observable<ILocation[]> = this.africanFarmerCommoditiesService.GetAllLocations();
     const vehsObs: Observable<IVehicle[]> = this.africanFarmerCommoditiesService.GetAllVehicles();
-    const tsOrders: Observable<any[]> = this.africanFarmerCommoditiesService.GetUserInvoicedItems(AfricanFarmerCommoditiesService.clientEmailAddress);
 
     let optionElem: HTMLOptionElement = document.createElement('option');
     optionElem.selected = true;
@@ -147,11 +143,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
     optionElem.text = "Select Vehicle";
     document.querySelector('select#tsvehicleId').append(optionElem);
 
-    optionElem = document.createElement('option');
-    optionElem.selected = true;
-    optionElem.value = (0).toString();
-    optionElem.text = "Select Invoiced Order";
-    document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
 
     addschedObs.map((cmds: ITransportSchedule[]) => {
       cmds.forEach((cmd: ITransportSchedule, index: number, cmds) => {
@@ -197,14 +188,6 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
       });
     }).subscribe();
 
-    tsOrders.map((cmds: IInvoice[]) => {
-      cmds.forEach((cmd: IInvoice, index: number, cmds) => {
-        let optionElem: HTMLOptionElement = document.createElement('option');
-        optionElem.value = cmd.invoiceId.toString();
-        optionElem.text = cmd.invoiceName + new Date(cmd.dateUpdated).toUTCString();
-        document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
-      });
-    }).subscribe();
   }
   showIntermediateVehicleSchedules(): void {
     //Get schedules for vehicleId:
@@ -225,53 +208,7 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
       }
     }).subscribe();
   }
-  addInvoicedOrderToTransportSchedule(): void {
-    let invoiceName = $('select#tsPaidInvoicedOrdersId').text();
-    let invoiceId: any = $('select#tsPaidInvoicedOrdersId').val();
-    let transLog: ITransportLog = {
-      transportLogId: 0,
-      invoiceId: invoiceId,
-      transportLogName: invoiceName,
-      transportScheduleId: this.transportSchedule.transportScheduleId
-    }
-
-    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.CreateTransportScheduleLog(transLog);
-    actualResult.map((p: any) => {
-      alert('TransportSchedule Added: ' + p.message);
-      if (p.result) {
-
-        this.router.navigateByUrl('success');
-      }
-      else {
-        this.router.navigateByUrl('failure');
-      }
-    }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
-  }
-  removeInvoicedOrderToTransportSchedule(): void {
-    let invoiceName = $('select#tsPaidInvoicedOrdersId').text();
-    let invoiceId: any = $('select#tsPaidInvoicedOrdersId').val();
-    let transLog: ITransportLog = {
-      transportLogId: 0,
-      invoiceId: invoiceId,
-      transportLogName: invoiceName,
-      transportScheduleId: this.transportSchedule.transportScheduleId
-    }
-
-    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteTransportScheduleLog(transLog);
-    actualResult.map((p: any) => {
-      alert('Invoice Removed: ' + p.message);
-      if (p.result) {
-
-        this.router.navigateByUrl('success');
-      }
-      else {
-        this.router.navigateByUrl('failure');
-      }
-    }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
-  }
-  addIntermediateVehicleSchedules(): void {
+addIntermediateVehicleSchedules(): void {
     //Add Intemediate Drops:
     this.router.navigateByUrl("/addintermediateschedule")
   }

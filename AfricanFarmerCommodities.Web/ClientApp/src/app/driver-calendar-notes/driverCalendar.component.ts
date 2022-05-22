@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IDriver, IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicle, ITransportSchedule, IDriverNote } from '../../services/africanFarmerCommoditiesService';
+import { IDriver, IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicle, ITransportSchedule, IDriverNote, ITransportLog, IInvoice } from '../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
 import * as $ from 'jquery';
 import * as moment from 'moment';
@@ -31,13 +31,58 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
   public driverOriginNoteContent: string;
   public driverDestinationNoteContent: string;
-
+  public invoiceId: number;
 
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
   }
   public driver: IDriver | any
   public transportSchedule: ITransportSchedule | any;
+  addInvoicedOrderToTransportSchedule(): void {
+    let invoiceIdSelect: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
+    let invoiceName: string = invoiceIdSelect.selectedOptions[0].text;
+    let invoiceId: number = parseInt(invoiceIdSelect.value);
+    let transLog: ITransportLog = {
+      transportLogId: 0,
+      invoiceId: invoiceId,
+      transportLogName: invoiceName,
+      transportScheduleId: this.transportSchedule.transportScheduleId
+    }
+
+    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.CreateTransportScheduleLog(transLog);
+    actualResult.map((p: any) => {
+      if (p.result) {
+        alert('TransportSchedule Added: ' + p.message);
+        this.router.navigateByUrl('success');
+      }
+      else {
+        this.router.navigateByUrl('failure');
+      }
+    }).subscribe();
+  }
+  removeInvoicedOrderFromTransportSchedule(): void {
+    let invoiceIdSelect: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
+    let invoiceName: string = invoiceIdSelect.selectedOptions[0].text;
+    let invoiceId:number = parseInt(invoiceIdSelect.value);
+    let transLog: ITransportLog = {
+      transportLogId: 0,
+      invoiceId: invoiceId,
+      transportLogName: invoiceName,
+      transportScheduleId: this.transportSchedule.transportScheduleId
+    }
+
+    let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteTransportScheduleLog(transLog);
+    actualResult.map((p: any) => {
+      alert('Invoice Removed: ' + p.message);
+      if (p.result) {
+
+        this.router.navigateByUrl('success');
+      }
+      else {
+        this.router.navigateByUrl('failure');
+      }
+    }).subscribe();
+  }
 
   public addDriver(): void {
 
@@ -46,14 +91,14 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
     this.driver.transportScheduleId = this.driver.transportSchedule.transportScheduleId;
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.PostOrCreateDriver(this.driver);
     actualResult.map((p: any) => {
-      alert('Driver Added: ' + p.result); if (p.result) {
+      if (p.result) {
+        alert('Driver Added: ' + p.result);
         this.router.navigateByUrl('success');
       }
       else {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
 
   public updateDriver() {
@@ -68,7 +113,6 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
 
   public selectDriver(): void {
@@ -105,7 +149,6 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
       }
 
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
 
   public deleteDriver() {
@@ -118,18 +161,34 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public goToDateAtOrigin(): void {
-    this.calendar.gotoDate(this.driver.transportSchedule.dateStartFromOrigin);
-    document.getElementById('mainbodycontent').scrollIntoView({
-      behavior: "smooth"
-    });
+
+    if (this.driver.transportSchedule.dateStartFromOrigin) {
+      this.calendar.gotoDate(this.driver.transportSchedule.dateStartFromOrigin);
+      document.getElementById('mainbodycontent').scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+    else {
+      this.calendar.gotoDate(new Date());
+      document.getElementById('mainbodycontent').scrollIntoView({
+        behavior: "smooth"
+      });
+    }
   }
   public goToDateAtDestination(): void {
-    this.calendar.gotoDate(this.driver.transportSchedule.dateEndAtDestination); document.getElementById('mainbodycontent').scrollIntoView({
-      behavior: "smooth"
-    });
+    if (this.driver.transportSchedule.dateEndAtDestination) {
+      this.calendar.gotoDate(this.driver.transportSchedule.dateEndAtDestination);
+      document.getElementById('mainbodycontent').scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+    else {
+      this.calendar.gotoDate(new Date()); document.getElementById('mainbodycontent').scrollIntoView({
+        behavior: "smooth"
+      });
+    }
   }
   public ngOnInit(): void {
     this.events = [];
@@ -148,7 +207,50 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
     let driverNotesObs: Observable<IDriverNote[]> = this.africanFarmerCommoditiesService.GetDriverScheduleNotes();
     let schedsObs: Observable<ITransportSchedule[]> = this.africanFarmerCommoditiesService.GetAllTransportSchedules();
     let driversObs: Observable<IDriver[]> = this.africanFarmerCommoditiesService.GetAllDrivers();
+    var calendarDiv: HTMLElement = document.querySelector('div#driverCalendar');
 
+    let calOptions: CalendarOptions = {
+
+      plugins: [timeGridPlugin, dayGridPlugin, momentPlugin, interactionPlugin],
+      initialView: 'dayGridMonth',
+      themeSystem: 'jquery-ui',
+      initialDate: new Date().toISOString(),
+      headerToolbar: {
+        left: 'prev,next,today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      handleWindowResize: true,
+      contentHeight: 650,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      events: this.events
+    };
+
+    this.calendar = new Calendar(calendarDiv, calOptions);
+    this.calendar.render();
+
+    let cal = this.calendar;
+    $('a#previousMonth').click(function () {
+      var currentDate = new Date();
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      cal.gotoDate(currentDate);
+      //fullCallendar.pignoseCalendar({ date: currentDate});
+      return false;
+    });
+    $('a#nextMonth').click(function () {
+      var currentDate = new Date();
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      cal.gotoDate(currentDate);
+      //fullCallendar.pignoseCalendar({ date: currentDate });
+      return false;
+    });
+    $('a#currentMonth').click(function () {
+      var currentDate = new Date();
+      cal.gotoDate(currentDate);
+      //fullCallendar.pignoseCalendar({ date: currentDate});
+      return false;
+    });
     driverNotesObs.map((resDrNotes: IDriverNote[]) => {
       this.driverNotes = resDrNotes;
 
@@ -196,69 +298,14 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
                   start: endDate,
                   title: transportSched + '\rNotes for Destination: ' + '\r\r' + destContent
                 });
+
+                this.calendar.addEventSource(this.events);
+                this.calendar.render();
               }
             }
           }
           document.querySelector('style').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
-          var calendarDiv: HTMLElement = document.querySelector('div#driverCalendar');
 
-          let calOptions: CalendarOptions = {
-
-            plugins: [timeGridPlugin, dayGridPlugin, momentPlugin, interactionPlugin],
-            initialView: 'dayGridMonth',
-            themeSystem: 'jquery-ui',
-            initialDate: new Date().toISOString(),
-            headerToolbar: {
-              left: 'prev,next,today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            handleWindowResize: true,
-            contentHeight: 650,
-            navLinks: true, // can click day/week names to navigate views
-            editable: true,
-            events: this.events
-          };
-
-          this.calendar = new Calendar(calendarDiv, calOptions);
-          this.calendar.addEventSource(this.events);
-          this.calendar.render();
-
-
-          /* $()({
-             header: {
-               left: 'prev,next today',
-               center: 'title',
-               right: 'month,basicWeek,basicDay'
-             },
-             defaultDate: new Date().toUTCString(),
-             navLinks: true, // can click day/week names to navigate views
-             editable: true,
-             eventLimit: true, // allow "more" link when too many events
-             events: this.events
-           });
-           */
-          let cal = this.calendar;
-          $('a#previousMonth').click(function () {
-            var currentDate = new Date();
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            cal.gotoDate(currentDate);
-            //fullCallendar.pignoseCalendar({ date: currentDate});
-            return false;
-          });
-          $('a#nextMonth').click(function () {
-            var currentDate = new Date();
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            cal.gotoDate(currentDate);
-            //fullCallendar.pignoseCalendar({ date: currentDate });
-            return false;
-          });
-          $('a#currentMonth').click(function () {
-            var currentDate = new Date();
-            cal.gotoDate(currentDate);
-            //fullCallendar.pignoseCalendar({ date: currentDate});
-            return false;
-          });
         }).subscribe();
       }).subscribe();
     }).subscribe();
@@ -268,6 +315,8 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
     const driversObs: Observable<IDriver[]> = this.africanFarmerCommoditiesService.GetAllDrivers();
     const vehObs: Observable<IVehicle[]> = this.africanFarmerCommoditiesService.GetAllVehicles();
     const schedsObs: Observable<ITransportSchedule[]> = this.africanFarmerCommoditiesService.GetAllTransportSchedules();
+    const tsOrders: Observable<any[]> = this.africanFarmerCommoditiesService.GetUserInvoicedItems(AfricanFarmerCommoditiesService.clientEmailAddress);
+
 
     let optionElem: HTMLOptionElement = document.createElement('option');
     optionElem.selected = true;
@@ -286,6 +335,11 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
     optionElem.text = "Select Schedule";
     document.querySelector('select#dritransportScheduleId').append(optionElem);
 
+    optionElem = document.createElement('option');
+    optionElem.selected = true;
+    optionElem.value = (0).toString();
+    optionElem.text = "Select Invoiced Order";
+    document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
 
     driversObs.map((cmds: IDriver[]) => {
       cmds.forEach((cmd: IDriver, index: number, cmds) => {
@@ -312,6 +366,15 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
         optionElem.text = cmdUnit.transportScheduleName;
         document.querySelector('select#dritransportScheduleId').append(optionElem);
       });
+
+      tsOrders.map((cmds: IInvoice[]) => {
+        cmds.forEach((cmd: IInvoice, index: number, cmds) => {
+          let optionElem: HTMLOptionElement = document.createElement('option');
+          optionElem.value = cmd.invoiceId.toString();
+          optionElem.text = cmd.invoiceName + new Date(cmd.dateUpdated).toUTCString();
+          document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
+        });
+      }).subscribe();
     }).subscribe();
   }
 

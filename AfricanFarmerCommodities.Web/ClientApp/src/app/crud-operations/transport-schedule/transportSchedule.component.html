@@ -44,12 +44,6 @@
       <label>Date At Destination</label>
       <input type="text" name="dateEndAtDestination" id="dateEndAtDestination" [(ngModel)]="transportSchedule.dateEndAtDestination" />
     </div>
-    <div class="form-group">
-      <label>Add Paid Invoiced Orders</label>
-      <select id="tsPaidInvoicedOrdersId" name="invoiceId" [(ngModel)]="invoiceId"></select><br />
-      <input type="button" value="Add Invoiced Order" class="but-primary" (click)="addInvoicedOrderToTransportSchedule()" style="margin-top:10px;" />
-      <input type="button" value="Remove Invoiced Order" class="but-primary" (click)="removeInvoicedOrderToTransportSchedule()" style="margin-top:10px;" /><br />
-    </div>
     <br /><hr /><br />
     <input type="button" value="Select Schedule" class="but-primary" (click)="selectTransportSchedule()" style="margin-top:10px;" />
     <input type="button" value="Add Schedule" class="but-primary" (click)="addTransportSchedule()" style="margin-top:10px;" />
