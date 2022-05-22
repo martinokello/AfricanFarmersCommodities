@@ -22,11 +22,11 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
   public foodHubStorage: IFoodHubStorage | any;
 
   public addFoodHubStorage(): void {
-    let fhId: any = $('select[name="foodHubId"]').val();
-    let cuId: any = $('select[name="commodityUnitId"]').val();
+    let fhId: HTMLSelectElement = document.querySelector('select#fhsfoodHubId');//$('select[name="foodHubId"]').val();
+    let cuId: HTMLSelectElement = document.querySelector('select#fhscommodityUnitId'); //$('select[name="commodityUnitId"]').val();
 
-    let foodHubId: number = parseInt(fhId);
-    let commodityUnitId: number = parseInt(cuId);
+    let foodHubId: number = parseInt(fhId.value);
+    let commodityUnitId: number = parseInt(cuId.value);
 
     let foodHubStorageToAdd: IFoodHubStorage = {
       foodHubStorageId: this.foodHubStorage.foodHubStorageId,
@@ -48,13 +48,14 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public updateFoodHubStorage() {
-    let fhId:any = $('select[name="foodHubId"]').val();
-    let foodHubId = parseInt(fhId);
-    let cuId: any = $('select[name="commodityUnitId"]').val();
-    let commodityUnitId: number = parseInt(cuId);
+
+    let fhId: HTMLSelectElement = document.querySelector('select#fhsfoodHubId');//$('select[name="foodHubId"]').val();
+    let cuId: HTMLSelectElement = document.querySelector('select#fhscommodityUnitId'); //$('select[name="commodityUnitId"]').val();
+
+    let foodHubId: number = parseInt(fhId.value);
+    let commodityUnitId: number = parseInt(cuId.value);
 
     let foodHubStorageToUpdate: IFoodHubStorage = {
       foodHubStorageId: this.foodHubStorage.foodHubStorageId,
@@ -76,22 +77,20 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public selectFoodHubStorage(): void {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.GetFoodHubStorageById(this.foodHubStorage.foodHubStorageId);
     actualResult.map((p: any) => {
       this.foodHubStorage = p;
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public deleteFoodHubStorage() {
 
-    let fhId: any = $('select[name="foodHubId"]').val();
-    let cuId: any = $('select[name="commodityUnitId"]').val();
+    let fhId: HTMLSelectElement = document.querySelector('select#fhsfoodHubId');//$('select[name="foodHubId"]').val();
+    let cuId: HTMLSelectElement = document.querySelector('select#fhscommodityUnitId'); //$('select[name="commodityUnitId"]').val();
 
-    let foodHubId: number = parseInt(fhId);
-    let commodityUnitId: number = parseInt(cuId);
+    let foodHubId: number = parseInt(fhId.value);
+    let commodityUnitId: number = parseInt(cuId.value);
 
     let foodHubStorageToDelete: IFoodHubStorage = {
       foodHubStorageId: this.foodHubStorage.foodHubStorageId,
@@ -112,7 +111,6 @@ export class FoodHubStorageComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
   }
   public ngOnInit(): void {
     this.foodHubStorage = {};

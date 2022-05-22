@@ -98,7 +98,8 @@ export class BasketComponent implements OnInit, AfterViewInit {
     let currentCommodity: ICommodity = this.contentOrders.find((q: ICommodity) => { return q.commodityId == commodityId });
 
     let form: HTMLFormElement = document.querySelector('form[id="form' + commodityId + '"]');
-    let numberOfUnits: number = parseFloat(form.querySelector("input[name='numberOfUnits']").nodeValue);
+    let numbUnitsEle: HTMLInputElement = form.querySelector("input#numberOfUnits");
+    let numberOfUnits: number = parseFloat(numbUnitsEle.value);
     currentCommodity.numberOfUnits = numberOfUnits.toString();
 
     if (numberOfUnits > currentCommodity.unitsAvailable) {

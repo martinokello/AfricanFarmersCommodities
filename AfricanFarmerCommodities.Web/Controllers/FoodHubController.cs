@@ -176,20 +176,18 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                foodHubStorageViewModel.CommodityUnit = null;
-                foodHubStorageViewModel.FoodHubViewModel = null;
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 FoodHubStorage foodHubStorage = _Mapper.Map<FoodHubStorage>(foodHubStorageViewModel);
                 bool result = await _serviceEndPoint.PostCreateFoodHubStorage(foodHubStorage);
                 if (!result)
                 {
-                    return NotFound(foodHubStorageViewModel);
+                    return NotFound(new { message = "Failed to Create!", result = result });
                 }
                 return Ok(new { message = "Succesfully Created!", result = result });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message , result = "Failed Creation!" });
             }
         }
         [HttpPost]
