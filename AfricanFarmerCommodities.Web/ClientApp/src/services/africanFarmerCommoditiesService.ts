@@ -19,7 +19,8 @@ export class AfricanFarmerCommoditiesService {
   public postRemoveVehicleFromMonitorUrl: string = this.baseServerUrl + "/VehicleSchedules/RemoveVehicleFromMonitor";
   public getUnpaidInvoicesUrl: string = this.baseServerUrl + "/Home/GetUnpaidInvoices";
   public createTransLogUrl: string = this.baseServerUrl + "/Home/CreateOrUpdateTransportScheduleLog";
-  public deleteTransLogUrl: string = this.baseServerUrl + "/Home/DeleteTransportScheduleLog"
+  public deleteTransLogUrl: string = this.baseServerUrl + "/Home/DeleteTransportScheduleLogs"
+  public getCurrentTransScheduleInvoiceLogUrl: string = this.baseServerUrl + "/Home/GetCurrentTransScheduleInvoiceLog";
   public getDriverMobileLocationAppUrl: string = this.baseServerUrl + "/Transport/GetLocationEmitterApp";
 
   public getVehicleRealTimeLocations: string = this.baseServerUrl + "/VehicleSchedules/GetVehicleLocations";
@@ -481,6 +482,21 @@ export class AfricanFarmerCommoditiesService {
     });
   }
 
+  public GetCurrentTransScheduleInvoiceLog(transportScheduleId: number): Observable<ITransportLog> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getCurrentTransScheduleInvoiceLogUrl + "/" +transportScheduleId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): ITransportLog => {
+      let transportLog : ITransportLog = res;
+      return transportLog;
+    });
+  }
   public GetAllUserRoles(username: string): Observable<string[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getAllUserRoles + "?username=" + username;

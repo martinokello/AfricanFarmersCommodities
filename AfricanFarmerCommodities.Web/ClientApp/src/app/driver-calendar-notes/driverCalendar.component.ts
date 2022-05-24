@@ -38,6 +38,7 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
   }
   public driver: IDriver | any
   public transportSchedule: ITransportSchedule | any;
+
   addInvoicedOrderToTransportSchedule(): void {
     let invoiceIdSelect: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
     let invoiceName: string = invoiceIdSelect.selectedOptions[0].text;
@@ -73,9 +74,8 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
 
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteTransportScheduleLog(transLog);
     actualResult.map((p: any) => {
-      alert('Invoice Removed: ' + p.message);
       if (p.result) {
-
+        alert('Invoice Removed: ' + p.message);
         this.router.navigateByUrl('success');
       }
       else {
@@ -83,7 +83,24 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
       }
     }).subscribe();
   }
+  public onchangeTransportSchedule() {
 
+    let tranSchIdSelect: HTMLSelectElement = document.querySelector('select#dritransportScheduleId');
+    //let invoiceName: string = tranSchIdSelect.selectedOptions[0].text;
+    let transportScheduleId: number = parseInt(tranSchIdSelect.value);
+
+    let transShed: Observable<ITransportSchedule> = this.africanFarmerCommoditiesService.GetTransportScheduleId(transportScheduleId);
+    transShed.map((p: ITransportSchedule) => {
+      this.driver.transportSchedule = p;
+      let transScheLog: Observable<ITransportLog> = this.africanFarmerCommoditiesService.GetCurrentTransScheduleInvoiceLog(p.transportScheduleId);
+      transScheLog.map((q: ITransportLog) => {
+        let selectInvoice: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
+        selectInvoice.value = q.invoiceId.toString();
+        this.invoiceId = q.invoiceId;
+      }).subscribe();
+      this.setDriverCalendarNotes();
+    }).subscribe();
+  }
   public addDriver(): void {
 
     this.driver.driverId = 0;
@@ -131,8 +148,21 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
       this.driver.transportSchedule = this.transportSchedule;
       this.driver.transportScheduleId = this.driver.transportSchedule.transportScheduleId;
 
+      let transScheLog: Observable<ITransportLog> = this.africanFarmerCommoditiesService.GetCurrentTransScheduleInvoiceLog(this.transportSchedule.transportScheduleId);
+      transScheLog.map((q: ITransportLog) => {
+        let selectInvoice: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
+        selectInvoice.value = q.invoiceId.toString();
+        this.invoiceId = q.invoiceId;
+      }).subscribe();
+      this.setDriverCalendarNotes();
+
+    }).subscribe();
+  }
+  public setDriverCalendarNotes() {
+    if (this.driverNotes.length > 0) {
+
       let currentOriginDriverNote: IDriverNote = this.driverNotes.find((q: IDriverNote) => {
-       return q.transportScheduleId == this.driver.transportSchedule.transportScheduleId &&
+        return q.transportScheduleId == this.driver.transportSchedule.transportScheduleId &&
           q.isOriginNote
       });
       if (currentOriginDriverNote) {
@@ -147,10 +177,8 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
       if (currentDestinationDriverNote) {
         this.driverDestinationNoteContent = currentDestinationDriverNote.driverNote;
       }
-
-    }).subscribe();
+    }
   }
-
   public deleteDriver() {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteDriver(this.driver);
     actualResult.map((p: any) => {
@@ -227,88 +255,118 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
       events: this.events
     };
 
+    //this.calendar.destroy();
     this.calendar = new Calendar(calendarDiv, calOptions);
-    this.calendar.render();
-
     let cal = this.calendar;
-    $('a#previousMonth').click(function () {
-      var currentDate = new Date();
-      currentDate.setMonth(currentDate.getMonth() - 1);
-      cal.gotoDate(currentDate);
-      //fullCallendar.pignoseCalendar({ date: currentDate});
-      return false;
-    });
-    $('a#nextMonth').click(function () {
-      var currentDate = new Date();
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      cal.gotoDate(currentDate);
-      //fullCallendar.pignoseCalendar({ date: currentDate });
-      return false;
-    });
-    $('a#currentMonth').click(function () {
-      var currentDate = new Date();
-      cal.gotoDate(currentDate);
-      //fullCallendar.pignoseCalendar({ date: currentDate});
-      return false;
-    });
-    driverNotesObs.map((resDrNotes: IDriverNote[]) => {
-      this.driverNotes = resDrNotes;
 
-      schedsObs.map((tranSches: ITransportSchedule[]) => {
-        this.transportSchedules = tranSches;
+      $('a#previousMonth').click(function () {
+        var currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate});
+        return false;
+      });
+      $('a#nextMonth').click(function () {
+        var currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate });
+        return false;
+      });
+      $('a#currentMonth').click(function () {
+        var currentDate = new Date();
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate});
+        return false;
+      });
+      $('a#previousMonth').click(function () {
+        var currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate});
+        return false;
+      });
+      $('a#nextMonth').click(function () {
+        var currentDate = new Date();
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate });
+        return false;
+      });
+      $('a#currentMonth').click(function () {
+        var currentDate = new Date();
+        cal.gotoDate(currentDate);
+        //fullCallendar.pignoseCalendar({ date: currentDate});
+        return false;
+      });
 
-        driversObs.map((d: IDriver[]) => {
-          this.drivers = d;
+      driverNotesObs.map((resDrNotes: IDriverNote[]) => {
+        if (resDrNotes.length > 0) {
 
-          if (this.transportSchedules && this.transportSchedules.length > 0) {
+          this.driverNotes = resDrNotes;
+          schedsObs.map((tranSches: ITransportSchedule[]) => {
+            this.transportSchedules = tranSches;
 
-            for (var n = 0; n < this.transportSchedules.length; n++) {
+            driversObs.map((d: IDriver[]) => {
+              this.drivers = d;
 
-              let calendarScheduleItem: ITransportSchedule = this.transportSchedules[n];
+              if (this.transportSchedules && this.transportSchedules.length > 0) {
 
-              if (this.driverNotes && this.driverNotes.length > 0) {
-                let originContent: string = "";
-                let destContent: string = "";
+                for (var n = 0; n < this.transportSchedules.length; n++) {
 
-                let driverOriNote: IDriverNote = this.driverNotes.find((q: IDriverNote) => {
-                  return q.transportScheduleId === calendarScheduleItem.transportScheduleId &&
-                    q.isOriginNote;
-                });
-                let driverDestNote: IDriverNote = this.driverNotes.find((q: IDriverNote) => {
-                  return q.transportScheduleId === calendarScheduleItem.transportScheduleId &&
-                    !q.isOriginNote;
-                });
-                this.driver.transportSchedule = calendarScheduleItem;
+                  let calendarScheduleItem: ITransportSchedule = this.transportSchedules[n];
 
-                if (driverOriNote) {
+                  if (this.driverNotes && this.driverNotes.length > 0) {
+                    let originContent: string = "";
+                    let destContent: string = "";
 
-                  originContent = calendarScheduleItem.originName.locationName + ", " + driverOriNote.driverName + ', driver Id: ' + driverOriNote.driverId + '\r' + driverOriNote.isOriginNote.toString() + "\r" + driverOriNote.driverNote + "\r";
+                    let driverOriNote: IDriverNote = this.driverNotes.find((q: IDriverNote) => {
+                      return q.transportScheduleId === calendarScheduleItem.transportScheduleId &&
+                        q.isOriginNote;
+                    });
+                    let driverDestNote: IDriverNote = this.driverNotes.find((q: IDriverNote) => {
+                      return q.transportScheduleId === calendarScheduleItem.transportScheduleId &&
+                        !q.isOriginNote;
+                    });
+                    this.driver.transportSchedule = calendarScheduleItem;
+
+                    if (driverOriNote) {
+
+                      originContent = calendarScheduleItem.originName.locationName + ", " + driverOriNote.driverName + ', driver Id: ' + driverOriNote.driverId + '\r' + driverOriNote.isOriginNote.toString() + "\r" + driverOriNote.driverNote + "\r";
+                    }
+                    if (driverDestNote) {
+                      destContent = calendarScheduleItem.destinationName.locationName + ", " + driverDestNote.driverName + ', driver Id: ' + driverDestNote.driverId + '\r' + driverDestNote.isOriginNote.toString() + "\r" + driverDestNote.driverNote + "\r";
+                    }
+                    let transportSched: string = calendarScheduleItem.transportScheduleName + '\r TransportScheduleId: ' + calendarScheduleItem.transportScheduleId + '\rOrigin Name\r' + calendarScheduleItem.originName.locationName + ', to \rDestination Name\r ' + calendarScheduleItem.destinationName.locationName;
+                    var startDate = new Date(calendarScheduleItem.dateStartFromOrigin).toISOString();
+                    var endDate = new Date(calendarScheduleItem.dateEndAtDestination).toISOString();
+                    this.events.push({
+                      start: startDate,
+                      title: transportSched + '\rDriver Notes for Origin: ' + '\r\r' + originContent
+                    });
+                    this.events.push({
+                      start: endDate,
+                      title: transportSched + '\rNotes for Destination: ' + '\r\r' + destContent
+                    });
+
+                    //this.calendar.destroy();
+                    this.calendar = new Calendar(calendarDiv, calOptions);
+                    this.calendar.addEventSource(this.events);
+                    this.calendar.render();
+                  }
                 }
-                if (driverDestNote) {
-                  destContent = calendarScheduleItem.destinationName.locationName + ", " + driverDestNote.driverName + ', driver Id: ' + driverDestNote.driverId + '\r' + driverDestNote.isOriginNote.toString() + "\r" + driverDestNote.driverNote + "\r";
-                }
-                let transportSched: string = calendarScheduleItem.transportScheduleName + '\r TransportScheduleId: ' + calendarScheduleItem.transportScheduleId + '\rOrigin Name\r' + calendarScheduleItem.originName.locationName + ', to \rDestination Name\r ' + calendarScheduleItem.destinationName.locationName;
-                var startDate = new Date(calendarScheduleItem.dateStartFromOrigin).toISOString();
-                var endDate = new Date(calendarScheduleItem.dateEndAtDestination).toISOString();
-                this.events.push({
-                  start: startDate,
-                  title: transportSched + '\rDriver Notes for Origin: ' + '\r\r' + originContent
-                });
-                this.events.push({
-                  start: endDate,
-                  title: transportSched + '\rNotes for Destination: ' + '\r\r' + destContent
-                });
-
-                this.calendar.addEventSource(this.events);
-                this.calendar.render();
               }
-            }
-          }
-          document.querySelector('style').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
+              document.querySelector('style').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
 
-        }).subscribe();
+            }).subscribe();
+          }).subscribe();
+        }
+        else {
+          //this.calendar.destroy();
+          this.calendar = new Calendar(calendarDiv, calOptions);
+          this.calendar.render();
+        }
       }).subscribe();
-    }).subscribe();
   }
 
   ngAfterContentInit(): void {
@@ -395,7 +453,7 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
         let actualResult: Observable<any> = this.africanFarmerCommoditiesService.addDriverNote(originNoteObj);
         actualResult.map((p: any) => {
           alert(p.message);
-          this.ngOnInit();
+         //this.ngOnInit();
         }).subscribe();
       }
       else {
@@ -421,7 +479,7 @@ export class DriverCalendarComponent implements OnInit, AfterContentInit {
         let actualResult: Observable<any> = this.africanFarmerCommoditiesService.addDriverNote(destinationNoteObj);
         actualResult.map((p: any) => {
           alert(p.message);
-          this.ngOnInit();
+          //this.ngOnInit();
         }).subscribe();
       }
       else {

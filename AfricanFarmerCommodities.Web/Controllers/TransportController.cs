@@ -63,10 +63,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var results = await _serviceEndPoint.GetAllDriverScheduleNotes();
                 var actResults = _Mapper.Map<DriverSchedulesNoteViewModle[]>(results);
 
-                if (!actResults.Any())
-                {
-                    return await Task.FromResult(NotFound(actResults));
-                }
                 return await Task.FromResult(Ok(actResults));
             }
             catch (Exception ex)
@@ -407,11 +403,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 TransportSchedule tpresult = await _serviceEndPoint.GetTransportScheduleById(transportSchedulesId);
-                TransportScheduleViewModel result = _Mapper.Map<TransportScheduleViewModel>(tpresult);
-                if (result == null)
+                if (tpresult == null)
                 {
-                    return NotFound(result);
+                    return NotFound(new {Message = "Transport Schedule Not Found"});
                 }
+                TransportScheduleViewModel result = _Mapper.Map<TransportScheduleViewModel>(tpresult);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -336,6 +336,9 @@ namespace AfricanFarmersCommodities.Web
                 conf.CreateMap<TransportLogViewModel, TransportLog>();
                 conf.CreateMap<TransportLogViewModel, TransportLog>().ReverseMap();
 
+                conf.CreateMap<DriverSchedulesNoteViewModle, DriverSchedulesNote>();
+                conf.CreateMap<DriverSchedulesNoteViewModle, DriverSchedulesNote>().ReverseMap();
+
                 conf.CreateMap<InvoiceViewModel, AfricanFarmersCommodities.Domain.Invoice>();
                 conf.CreateMap<InvoiceViewModel, AfricanFarmersCommodities.Domain.Invoice > ().ReverseMap();
             });

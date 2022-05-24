@@ -163,6 +163,22 @@ namespace AfricanFarmerCommodities.Web.Controllers
             }
             return NotFound(new { message = "Failed to Update!", result = false });
         }
+        
+
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/Home/GetCurrentTransScheduleInvoiceLog/{transportScheduleId}")]
+        public async Task<ActionResult> GetCurrentTransScheduleInvoiceId(int transportScheduleId)
+        {
+            var transLog = this._unitOfWork._transportLogRepository.GetAll().FirstOrDefault(q=> q.TransportScheduleId == transportScheduleId);
+            if (transLog != null)
+            {
+                var transLogViewModel = _mapper.Map<TransportLogViewModel>(transLog);
+                return await Task.FromResult(Ok(transLogViewModel));
+            }
+            return await Task.FromResult(NotFound(new { Message = "User has no invoices for transport scheduling"}));
+        }
+
 
         [HttpPost]
         [AuthorizeIdentity]

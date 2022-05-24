@@ -280,10 +280,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 Driver driver = await _serviceEndPoint.GetDriverByTransportScheduleId(transportScheduleId);
                 DriverViewModel result = _Mapper.Map<DriverViewModel>(driver);
-                if (result == null)
-                {
-                    return NotFound(result);
-                }
                 return Ok(result);
             }
             catch (Exception ex)
