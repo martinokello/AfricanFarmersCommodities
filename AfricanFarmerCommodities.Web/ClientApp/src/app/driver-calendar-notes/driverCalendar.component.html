@@ -10,11 +10,12 @@
       <h4>Driver</h4>
       <div class="form-group">
         <label>DriverId - optional</label>
-        <select id="driverId" name="driverId" value="-1" [(ngModel)]="driver.driverId"></select>
+        <select id="driverId" name="driverId" value="" [(ngModel)]="driver.driverId"></select>
       </div>
       <div class="form-group">
         <label>Transport ScheduleId</label>
         <select id="dritransportScheduleId" name="transportScheduleId" [ngModel]="driver.transportSchedule.transportScheduleId" (change)="onchangeTransportSchedule()"></select>
+        <ul id="listInvoices"></ul>
       </div>
       <div class="form-group">
         <label>Add Paid Invoiced Orders</label>
@@ -31,8 +32,9 @@
         <input type="text" name="lastName" [(ngModel)]="driver.lastName" />
       </div>
       <div class="form-group">
-        <label>VehicleId</label>
-        <select id="drivehicleId" name="vehicleId" [(ngModel)]="driver.vehicle.vehicleId"></select>
+        <label>Vehicle Reg</label>
+        <input type="hidden" readonly id="drivehicleId" name="vehicleId" [(ngModel)]="transportSchedule.vehicle.vehicleId"/><br/>
+        <span>{{transportSchedule.vehicle.vehicleRegistration}}</span>
       </div>
       <div class="form-group">
         <label>Date From Origin</label>
@@ -56,7 +58,6 @@
         <hr /><br />
       </div>
       <input type="button" value="Select Driver" class="but-primary" (click)="selectDriver()" style="margin-top:10px;" />
-      <input type="button" value="Add Driver" class="but-primary" (click)="addDriver()" style="margin-top:10px;" />
       <input type="button" value="Update Driver" class="but-primary" (click)="updateDriver()" style="margin-top:10px;" />
       <input type="button" value="Delete Driver" class="but-primary" (click)="deleteDriver()" style="margin-top:10px;" />
     </form>

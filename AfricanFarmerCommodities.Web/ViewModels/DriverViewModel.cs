@@ -10,8 +10,6 @@ namespace AfricanFarmerCommodities.Web.ViewModels
         public int DriverId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public VehicleViewModel Vehicle { get; set; }
-        public int VehicleId { get; set; }
         public int TransportScheduleId { get; set; }
         public TransportScheduleViewModel TransportSchedule { get; set; }
     }

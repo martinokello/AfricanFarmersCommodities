@@ -468,7 +468,7 @@ export class AfricanFarmerCommoditiesService {
 
   public GetUserInvoicedItems(username: string): Observable<IInvoice[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    let requestUrl = this.getUserInvoicedItems + "?username=" + username;
+    let requestUrl = this.getUserInvoicedItems + "/" + username;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
@@ -482,7 +482,7 @@ export class AfricanFarmerCommoditiesService {
     });
   }
 
-  public GetCurrentTransScheduleInvoiceLog(transportScheduleId: number): Observable<ITransportLog> {
+  public GetCurrentTransScheduleInvoiceLog(transportScheduleId: number): Observable<ITransportLog[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getCurrentTransScheduleInvoiceLogUrl + "/" +transportScheduleId;
     let requestOptions: any = {
@@ -492,8 +492,8 @@ export class AfricanFarmerCommoditiesService {
       responseType: 'application/json'
     };
 
-    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): ITransportLog => {
-      let transportLog : ITransportLog = res;
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): ITransportLog[] => {
+      let transportLog : ITransportLog[] = res;
       return transportLog;
     });
   }
@@ -2373,8 +2373,6 @@ export interface IDriver {
   lastName: string;
   transportScheduleId: number;
   transportSchedule: ITransportSchedule;
-  vehicleId: number;
-  vehicle: IVehicle;
 }
 export interface ICommodity {
   commodityId: number;
@@ -2466,6 +2464,8 @@ export interface ITransportLog {
   invoiceId: number;
   transportLogName: string;
   transportScheduleId: number;
+  transportSchedule: any;
+  invoice: any;
 }
 export interface ITransportSchedule {
   transportScheduleId: number;

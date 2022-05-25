@@ -42,7 +42,6 @@ namespace SimbaToursEastAfrica.Services.RepositoryServices.Concretes
                 driver.FirstName = toUpdate.FirstName;
                 driver.LastName = toUpdate.LastName;
                 driver.TransportScheduleId = toUpdate.TransportScheduleId;
-                driver.VehicleId = toUpdate.VehicleId;
                 driver.DateUpdated = DateTime.Now;
                 return true;
             }

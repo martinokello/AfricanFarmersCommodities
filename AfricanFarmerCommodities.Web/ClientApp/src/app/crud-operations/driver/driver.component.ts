@@ -24,8 +24,8 @@ export class DriverComponent implements OnInit, AfterContentInit {
   public addDriver(): void {
 
     this.driver.driverId = 0;
-    this.driver.vehicleId = this.driver.vehicle.vehicleId;
     this.driver.transportScheduleId = this.driver.transportSchedule.transportScheduleId;
+    this.driver.transportSchedule = null;
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.PostOrCreateDriver(this.driver);
     actualResult.map((p: any) => {
       alert('Driver Added: ' + p.result); if (p.result) {
@@ -38,7 +38,6 @@ export class DriverComponent implements OnInit, AfterContentInit {
     $('form#locationView').css('display', 'block').slideDown();
   }
   public updateDriver() {
-    this.driver.vehicleId = this.driver.vehicle.vehicleId;
     this.driver.transportScheduleId = this.driver.transportSchedule.transportScheduleId;
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.UpdateDriver(this.driver);
     actualResult.map((p: any) => {
@@ -56,7 +55,6 @@ export class DriverComponent implements OnInit, AfterContentInit {
     actualResult.map((p: any) => {
       this.driver.firstName = p.firstName;
       this.driver.lastName = p.lastName;
-      this.driver.vehicle.vehicleId = p.vehicleId;
       this.driver.transportSchedule.transportScheduleId = p.transportScheduleId;
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
@@ -82,15 +80,13 @@ export class DriverComponent implements OnInit, AfterContentInit {
       lastName:"",
       transportScheduleId: 0,
       transportSchedule: {},
-      vehicleId: 0,
-      vehicle: {},
       dateCreated:"",
       dateUpdated: ""
     };
   }
   ngAfterContentInit(): void {
     const driversObs: Observable<IDriver[]> = this.africanFarmerCommoditiesService.GetAllDrivers();
-    const vehObs: Observable<IVehicle[]> = this.africanFarmerCommoditiesService.GetAllVehicles();
+    //const vehObs: Observable<IVehicle[]> = this.africanFarmerCommoditiesService.GetAllVehicles();
     const schedsObs: Observable<ITransportSchedule[]> = this.africanFarmerCommoditiesService.GetAllTransportSchedules();
 
     let optionElem: HTMLOptionElement = document.createElement('option');
@@ -100,10 +96,10 @@ export class DriverComponent implements OnInit, AfterContentInit {
     document.querySelector('select#driverId').append(optionElem);
 
 
-    optionElem = document.createElement('option');
+   /* optionElem = document.createElement('option');
     optionElem.value = (0).toString();
     optionElem.text = "Select Vehicle";
-    document.querySelector('select#drivehicleId').append(optionElem);
+    document.querySelector('select#drivehicleId').append(optionElem);*/
 
     optionElem = document.createElement('option');
     optionElem.value = (0).toString();
@@ -120,14 +116,14 @@ export class DriverComponent implements OnInit, AfterContentInit {
       });
     }).subscribe();
 
-    vehObs.map((cmdCats: IVehicle[]) => {
+    /*vehObs.map((cmdCats: IVehicle[]) => {
       cmdCats.forEach((comCat: IVehicle, index: number, cmdCats) => {
         let optionElem: HTMLOptionElement = document.createElement('option');
         optionElem.value = comCat.vehicleId.toString();
         optionElem.text = comCat.vehicleRegistration;
         document.querySelector('select#drivehicleId').append(optionElem);
       });
-    }).subscribe();
+    }).subscribe();*/
 
     schedsObs.map((cmdUnits: ITransportSchedule[]) => {
       cmdUnits.forEach((cmdUnit: ITransportSchedule, index: number, cmdUnits) => {

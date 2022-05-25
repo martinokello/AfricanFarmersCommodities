@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Http;
 using AfricanFarmersCommodities.Services.EmailServices;
 using AfricanFarmersCommodities.Web.IdentityServices;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace AfricanFarmerCommodities.Web.Controllers
 {
@@ -82,6 +83,25 @@ namespace AfricanFarmerCommodities.Web.Controllers
             return Ok(pricing);
         }
         
+       [AuthorizeIdentity]
+        [Route("~/Home/GetUserInvoicedItems/{emailAddress}")]
+        public async Task<IActionResult> GetUserInvoicedItems(string emailAddress)
+        {
+
+            _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+            var user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Email.ToLower().Equals(emailAddress.ToLower()));
+            if (user != null)
+            {
+                var invoices = await _serviceEndPoint.GetUserInvoicedItems(user.UserId);
+                if (invoices.Any())
+                {
+                    var userInvoicesViewModel = _mapper.Map<InvoiceViewModel[]>(invoices);
+
+                    return await Task.FromResult(Ok(userInvoicesViewModel));
+                }
+            }
+            return await Task.FromResult(NotFound(new { Message = "No Invoices are unpaid" }));
+        }
         [AuthorizeIdentity]
         [Route("~/Home/GetUnpaidInvoices/{emailAddress}")]
         public async Task<IActionResult> GetUnpaidInvoices(string emailAddress)
@@ -116,7 +136,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
         [HttpGet]
         [AuthorizeIdentity]
-        public async Task<ActionResult> GetUserInvoicedItems(string username)
+        public async Task<ActionResult> GetTransportScheduleLogs(string username)
         {
             var curUser = this._unitOfWork.AfricanFarmerCommoditiesDbContext.Users.FirstOrDefault(u => u.Email.ToLower().Equals(username.ToLower()));
             if (curUser != null)
@@ -135,7 +155,8 @@ namespace AfricanFarmerCommodities.Web.Controllers
             {
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 var transportLog = _mapper.Map<TransportLog>(transportLogViewModel);
-                var currentTrLog =_unitOfWork._transportLogRepository.GetById(transportLogViewModel.TransportLogId);
+                var currentTrLog =_unitOfWork._transportLogRepository.GetAll().FirstOrDefault(q=> q.TransportScheduleId == transportLog.TransportScheduleId
+                && q.InvoiceId == transportLog.InvoiceId);
                 
                 if(currentTrLog == null)
                 {
@@ -170,11 +191,11 @@ namespace AfricanFarmerCommodities.Web.Controllers
         [Route("~/Home/GetCurrentTransScheduleInvoiceLog/{transportScheduleId}")]
         public async Task<ActionResult> GetCurrentTransScheduleInvoiceId(int transportScheduleId)
         {
-            var transLog = this._unitOfWork._transportLogRepository.GetAll().FirstOrDefault(q=> q.TransportScheduleId == transportScheduleId);
-            if (transLog != null)
+            var transLogs = this._unitOfWork._transportLogRepository.AfricanFarmerCommoditiesDBContext.TransportLogs.Where(q => q.TransportScheduleId == transportScheduleId).Include(q => q.Invoice);
+            if (transLogs.Any())
             {
-                var transLogViewModel = _mapper.Map<TransportLogViewModel>(transLog);
-                return await Task.FromResult(Ok(transLogViewModel));
+                var transLogsViewModel = _mapper.Map<TransportLogViewModel[]>(transLogs.ToList());
+                return await Task.FromResult(Ok(transLogsViewModel));
             }
             return await Task.FromResult(NotFound(new { Message = "User has no invoices for transport scheduling"}));
         }

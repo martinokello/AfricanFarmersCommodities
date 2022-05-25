@@ -115,11 +115,28 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
             }
         }
 
+        public async Task<Invoice[]> GetUserInvoicedItems(Guid userId)
+        {
+            try
+            {
+                var result = _africanFarmersCommoditiesUnitOfWork._invoiceRepository.GetAll().Where(q =>  q.UserId.Equals(userId));
+                if (result.Any())
+                {
+                    return await Task.FromResult(result.ToArray());
+                }
+                return await Task.FromResult(new Invoice[0]);
+
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(new Invoice[0]);
+            }
+        }
         public async Task<Invoice[]> GetUnpaidInvoicesByUsername(Guid userId)
         {
             try
             {
-                var result = _africanFarmersCommoditiesUnitOfWork._invoiceRepository.GetAll().Where(q=> !q.HasFullyPaid && q.UserId.Equals(userId));
+                var result = _africanFarmersCommoditiesUnitOfWork._invoiceRepository.GetAll().Where(q => !q.HasFullyPaid && q.UserId.Equals(userId));
                 if (result.Any())
                 {
                     return await Task.FromResult(result.ToArray());
@@ -207,7 +224,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
                 _africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.SaveChanges();
                 return await Task.FromResult(true);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return await Task.FromResult(false);
             }
@@ -218,7 +235,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
             try
             {
                 var currentNote = _africanFarmersCommoditiesUnitOfWork._driverSchedulesNotesRepository.GetById(driverNote.DriveScheduleNoteId);
-                if(currentNote != null)
+                if (currentNote != null)
                 {
                     _africanFarmersCommoditiesUnitOfWork._driverSchedulesNotesRepository.Update(driverNote);
                     _africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.SaveChanges();
@@ -241,9 +258,9 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
         {
             try
             {
-                var transportLogItem =_africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.TransportLogs.FirstOrDefault(q => q.InvoiceId == transportLog.InvoiceId && q.TransportScheduleId == transportLog.TransportScheduleId); 
+                var transportLogItem = _africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.TransportLogs.FirstOrDefault(q => q.InvoiceId == transportLog.InvoiceId && q.TransportScheduleId == transportLog.TransportScheduleId);
 
-                if(transportLogItem != null)
+                if (transportLogItem != null)
                 {
                     _africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.TransportLogs.Remove(transportLogItem);
                     _africanFarmersCommoditiesUnitOfWork.AfricanFarmerCommoditiesDbContext.SaveChanges();
@@ -281,7 +298,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
         }
         public async Task<Driver[]> GetAllDrivers()
         {
-            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._driverRepository.GetAll()?.Include(q => q.Vehicle).Include(q => q.TransportSchedule).Select(q => q).ToArray());
+            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._driverRepository.GetAll()?.Include(q => q.TransportSchedule).Select(q => q).ToArray());
         }
         public async Task<bool> PostCreateDriver(Driver driver)
         {
@@ -317,8 +334,8 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
         {
             try
             {
-                var result = _africanFarmersCommoditiesUnitOfWork._driverRepository.GetAll().FirstOrDefault(q=> q.TransportScheduleId == transportScheduleId);
-                
+                var result = _africanFarmersCommoditiesUnitOfWork._driverRepository.GetAll().FirstOrDefault(q => q.TransportScheduleId == transportScheduleId);
+
                 return await Task.FromResult(result);
             }
             catch (Exception e)
@@ -390,7 +407,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
         {
             try
             {
-                var actTranShe = _africanFarmersCommoditiesUnitOfWork._intermediateScheduleRepository.GetAll().Where(q=> q.TransportScheduleId == transportSchedulesId)?.Include(q=> q.Vehicle).Include(q=> q.OriginName).Include(q=> q.DestinationName).ToArray();
+                var actTranShe = _africanFarmersCommoditiesUnitOfWork._intermediateScheduleRepository.GetAll().Where(q => q.TransportScheduleId == transportSchedulesId)?.Include(q => q.Vehicle).Include(q => q.OriginName).Include(q => q.DestinationName).ToArray();
                 if (actTranShe == null || !actTranShe.Any())
                 {
                     return null;
@@ -1261,7 +1278,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
 
         public async Task<TransportSchedule[]> GetTransportVehicleSchedulesByVehicleId(int vehicleId)
         {
-            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._transportScheduleRepostiory.GetAll()?.Include(q => q.Vehicle).Include(q=> q.Vehicle.VehicleCapacity).Include(q => q.DestinationName).Include(q => q.OriginName).Include(q => q.Vehicle).Where(q => q.VehicleId == vehicleId).Select(q => q).ToArray());
+            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._transportScheduleRepostiory.GetAll()?.Include(q => q.Vehicle).Include(q => q.Vehicle.VehicleCapacity).Include(q => q.DestinationName).Include(q => q.OriginName).Include(q => q.Vehicle).Where(q => q.VehicleId == vehicleId).Select(q => q).ToArray());
         }
 
         public async Task<VehicleCategory[]> GetAllVehicleCategories()
@@ -1277,7 +1294,7 @@ namespace AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices
 
         public async Task<Vehicle> GetCompanyTransportVehicleByCompanyId(int companyId, int vehicleId)
         {
-            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._vehicleRepository.GetAll()?.Include(q=> q.VehicleCapacity).Include(q => q.VehicleCategory).Include(q => q.Company).Include(q => q.Company.Location).Include(q => q.Company.Location.Address).Where(q => q.CompanyId == companyId).FirstOrDefault(q => q.VehicleId == vehicleId && q.CompanyId == companyId));
+            return await Task.FromResult(_africanFarmersCommoditiesUnitOfWork._vehicleRepository.GetAll()?.Include(q => q.VehicleCapacity).Include(q => q.VehicleCategory).Include(q => q.Company).Include(q => q.Company.Location).Include(q => q.Company.Location.Address).Where(q => q.CompanyId == companyId).FirstOrDefault(q => q.VehicleId == vehicleId && q.CompanyId == companyId));
         }
 
         public async Task<bool> PostCreateTransportVehicleScheduleBy(TransportSchedule transportSchedule)

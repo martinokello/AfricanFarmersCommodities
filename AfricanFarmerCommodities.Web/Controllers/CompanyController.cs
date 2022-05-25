@@ -196,8 +196,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                driverViewModel.TransportSchedule = null;
-                driverViewModel.Vehicle = null;
                 var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 var driver = _Mapper.Map<Driver>(driverViewModel);
                 bool result = await _serviceEndPoint.PostCreateDriver(driver);
