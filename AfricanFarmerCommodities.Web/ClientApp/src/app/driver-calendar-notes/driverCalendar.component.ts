@@ -48,8 +48,8 @@ export class DriverCalendarComponent implements OnInit {
       transportLogId: 0,
       invoiceId: invoiceId,
       transportLogName: invoiceName,
-      invoice: {},
-      transportSchedule: {},
+      invoice:null,
+      transportSchedule:null,
       transportScheduleId: this.driver.transportSchedule.transportScheduleId
     }
 
@@ -72,8 +72,8 @@ export class DriverCalendarComponent implements OnInit {
       transportLogId: 0,
       invoiceId: invoiceId,
       transportLogName: invoiceName,
-      invoice: {},
-      transportSchedule: {},
+      invoice: null,
+      transportSchedule: null,
       transportScheduleId: this.driver.transportSchedule.transportScheduleId
     }
 
