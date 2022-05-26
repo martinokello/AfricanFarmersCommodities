@@ -47,7 +47,7 @@ export class Top5FarmerVehicleCategoryUsageByNumberComponent implements OnInit, 
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IFarmerVehicleCategoryUsageByNumber) => {
+    dataGroups.forEach((q: IFarmerVehicleCategoryUsageByNumber) => {
       labels.push(q.farmerName + ", " + q.vehicleCategoryName);
       data.push(q.numberOfVehicles);
     });

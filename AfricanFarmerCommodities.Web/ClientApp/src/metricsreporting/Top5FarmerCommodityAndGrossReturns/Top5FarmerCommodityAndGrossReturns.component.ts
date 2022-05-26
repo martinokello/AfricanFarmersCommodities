@@ -47,7 +47,7 @@ export class Top5FarmerCommodityAndGrossReturnsComponent implements OnInit, Afte
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IFarmerCommodityAndGrossReturns) => {
+    dataGroups.forEach((q: IFarmerCommodityAndGrossReturns) => {
       labels.push(q.farmerName+", "+q.commodityName);
       data.push(q.grossReturns);
     });

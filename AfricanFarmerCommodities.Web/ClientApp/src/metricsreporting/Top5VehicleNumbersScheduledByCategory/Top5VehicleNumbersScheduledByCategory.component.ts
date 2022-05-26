@@ -48,7 +48,7 @@ export class Top5VehicleNumbersScheduledByCategoryComponent implements OnInit, A
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IVehicleNumbersScheduled) => {
+    dataGroups.forEach((q: IVehicleNumbersScheduled) => {
       labels.push(q.vehicleCategoryName);
       data.push(q.numbersOfSchedules);
     });

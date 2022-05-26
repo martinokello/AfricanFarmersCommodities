@@ -2602,7 +2602,7 @@ export interface ICommodityAndQuantity {
 export interface ICommodityAndGrossReturns {
   commodityId: number,
   commodityName: string,
-  GrossReturns: number
+  grossReturns: number
 }
 
 export interface IFarmerCommodityAndQuantity {

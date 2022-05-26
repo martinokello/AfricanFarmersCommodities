@@ -46,9 +46,9 @@ export class Top5CommodityAndGrossReturnsComponent implements OnInit, AfterConte
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: ICommodityAndGrossReturns) => {
+    dataGroups.forEach((q: ICommodityAndGrossReturns) => {
       labels.push(q.commodityName);
-      data.push(q.GrossReturns);
+      data.push(q.grossReturns);
     });
 
     if(this.unScheduledVehiclesChart) this.unScheduledVehiclesChart.destroy();

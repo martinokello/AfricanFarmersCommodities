@@ -46,7 +46,7 @@ export class Top5FarmerVehicleCategoryUsageByCostReturnsComponent implements OnI
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IFarmerVehicleCategoryUsageByCostReturns) => {
+    dataGroups.forEach((q: IFarmerVehicleCategoryUsageByCostReturns) => {
       labels.push(q.farmerName + ", " + q.vehicleCategoryName);
       data.push(q.grossReturns);
     });

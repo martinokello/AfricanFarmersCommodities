@@ -47,7 +47,7 @@ export class Top5FarmerCommodityAndQuantityComponent implements OnInit, AfterCon
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IFarmerCommodityAndQuantity) => {
+    dataGroups.forEach((q: IFarmerCommodityAndQuantity) => {
       labels.push(q.farmerName + ", " + q.commodityName);
       data.push(q.quantity);
     });

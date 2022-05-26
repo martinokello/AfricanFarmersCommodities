@@ -47,7 +47,7 @@ export class Top5VehicleCostReturnsScheduledByCategoryComponent implements OnIni
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: IVehicleCostReturnsScheduled) => {
+    dataGroups.forEach((q: IVehicleCostReturnsScheduled) => {
       labels.push( q.vehicleCategoryName);
       data.push(q.grossReturns);
     });

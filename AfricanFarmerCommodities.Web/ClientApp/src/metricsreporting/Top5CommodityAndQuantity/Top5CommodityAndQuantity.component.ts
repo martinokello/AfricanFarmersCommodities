@@ -47,7 +47,7 @@ export class Top5CommodityAndQuantityComponent implements OnInit, AfterContentIn
     let labels: string[] = [];
     let data: number[] = [];
 
-    dataGroups.map((q: ICommodityAndQuantity) => {
+    dataGroups.forEach((q: ICommodityAndQuantity) => {
       labels.push(q.commodityName);
       data.push(q.quantity);
     });

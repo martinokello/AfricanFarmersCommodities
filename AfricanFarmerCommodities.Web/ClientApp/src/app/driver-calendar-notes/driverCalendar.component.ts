@@ -111,6 +111,7 @@ export class DriverCalendarComponent implements OnInit {
           });
           //selectInvoice.value = q[0].invoiceId.toString();
           this.invoiceId = q[0].invoiceId;
+          selectInvoice.value = q[0].invoiceId.toString();
         }
         this.getDriverNotes();
         let vhs: Observable<IVehicle> = this.africanFarmerCommoditiesService.GetVehiclById(p.vehicleId);
