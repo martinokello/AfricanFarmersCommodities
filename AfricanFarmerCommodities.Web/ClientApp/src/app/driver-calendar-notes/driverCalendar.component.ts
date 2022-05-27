@@ -104,14 +104,13 @@ export class DriverCalendarComponent implements OnInit {
           let invoiceList = document.querySelector('ul#listInvoices');
           $('ul#listInvoices').children('li').remove();
 
-          q.forEach((q: ITransportLog) => {
+          q.forEach((vl: ITransportLog) => {
             let li = document.createElement('li');
-            li.innerHTML = q.invoice.invoiceName;
+            li.innerHTML = vl.invoice.invoiceName;
             invoiceList.appendChild(li);
           });
-          //selectInvoice.value = q[0].invoiceId.toString();
-          this.invoiceId = q[0].invoiceId;
           selectInvoice.value = q[0].invoiceId.toString();
+          this.invoiceId = q[0].invoiceId;
         }
         this.getDriverNotes();
         let vhs: Observable<IVehicle> = this.africanFarmerCommoditiesService.GetVehiclById(p.vehicleId);
