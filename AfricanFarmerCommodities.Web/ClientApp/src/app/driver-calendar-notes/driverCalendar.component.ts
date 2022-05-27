@@ -43,10 +43,10 @@ export class DriverCalendarComponent implements OnInit {
   addInvoicedOrderToTransportSchedule(): void {
     let invoiceIdSelect: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
     let invoiceName: string = invoiceIdSelect.selectedOptions[0].text;
-    let invoiceId: number = parseInt(invoiceIdSelect.value);
+    this.invoiceId = parseInt(invoiceIdSelect.value);
     let transLog: ITransportLog = {
       transportLogId: 0,
-      invoiceId: invoiceId,
+      invoiceId: this.invoiceId,
       transportLogName: invoiceName,
       invoice:null,
       transportSchedule:null,
@@ -67,10 +67,10 @@ export class DriverCalendarComponent implements OnInit {
   removeInvoicedOrderFromTransportSchedule(): void {
     let invoiceIdSelect: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
     let invoiceName: string = invoiceIdSelect.selectedOptions[0].text;
-    let invoiceId:number = parseInt(invoiceIdSelect.value);
+    this.invoiceId = parseInt(invoiceIdSelect.value);
     let transLog: ITransportLog = {
       transportLogId: 0,
-      invoiceId: invoiceId,
+      invoiceId: this.invoiceId,
       transportLogName: invoiceName,
       invoice: null,
       transportSchedule: null,
@@ -100,6 +100,13 @@ export class DriverCalendarComponent implements OnInit {
       let transScheLog: Observable<ITransportLog[]> = this.africanFarmerCommoditiesService.GetCurrentTransScheduleInvoiceLog(p.transportScheduleId);
       transScheLog.map((q: ITransportLog[]) => {
         let selectInvoice: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
+        $('select#tsPaidInvoicedOrdersId').children('option').remove();
+
+        let optionElem = document.createElement('option');
+        optionElem.value = (0).toString();
+        optionElem.text = "Select Invoiced Order";
+        document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
+
         if (q.length > 0) {
           let invoiceList = document.querySelector('ul#listInvoices');
           $('ul#listInvoices').children('li').remove();
@@ -108,8 +115,13 @@ export class DriverCalendarComponent implements OnInit {
             let li = document.createElement('li');
             li.innerHTML = vl.invoice.invoiceName;
             invoiceList.appendChild(li);
+
+            optionElem = document.createElement('option');
+            optionElem.value = vl.invoice.invoiceId.toString();
+            optionElem.text = vl.invoice.invoiceName;
+            document.querySelector('select#tsPaidInvoicedOrdersId').append(optionElem);
           });
-          selectInvoice.value = q[0].invoiceId.toString();
+          //selectInvoice.value = q[0].invoiceId.toString();
           this.invoiceId = q[0].invoiceId;
         }
         this.getDriverNotes();
