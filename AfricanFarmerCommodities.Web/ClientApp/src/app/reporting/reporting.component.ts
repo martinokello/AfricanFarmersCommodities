@@ -18,7 +18,7 @@ export class ReportingComponent {
   }
 
   scrollIntoView(htmlElement: HTMLElement) {
-    htmlElement.scrollIntoView();
+    htmlElement.scrollIntoView({ behavior:"smooth", block: "start" });
   }
   ShowTop5CommodityAndQuantity($event): void {
     $('div.reports').css('display', 'none');
