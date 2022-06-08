@@ -4,9 +4,9 @@
     <div class="row">
       <div class="col-lg-6">
         <h4>Show Usage Chart</h4>
-        <ul>
+        <ul id="chartsLinks">
           <li id="listTop5CommodityAndQuantity" class="nav-item"><a class="nav-link active" href="#" (click)="ShowTop5CommodityAndQuantity($event)">Top 5 Commodities Sold By Quantity</a></li>
-          <li id="listTop5CommodityAndGrossReturns" class="nav-item"><a class="nav-link"  href="#" (click)="ShowTop5CommodityAndGrossReturns($event)">Top 5 Commodities Gross Returns</a></li>
+          <li id="listTop5CommodityAndGrossReturns" class="nav-item"><a class="nav-link" href="#" (click)="ShowTop5CommodityAndGrossReturns($event)">Top 5 Commodities Gross Returns</a></li>
           <li id="listTop5FarmerCommodityAndGrossReturns" class="nav-item"><a class="nav-link" href="#" (click)="ShowTop5FarmerCommodityAndGrossReturns($event)">Top 5 Farmer Commodities Gross Returns</a></li>
           <li id="listTop5FarmerVehicleCategoryUsageByCostReturns" class="nav-item"><a class="nav-link" href="#" (click)="ShowTop5FarmerVehicleCategoryUsageByCostReturns($event)">Top 5 Farmer Vehicle Categories Used By Gross Returns</a></li>
           <li id="listTop5FarmerVehicleCategoryUsageByNumber" class="nav-item"><a class="nav-link" href="#" (click)="ShowTop5FarmerVehicleCategoryUsageByNumber($event)">Top 5 Farmer Vehicle Categories Usage By Number</a></li>
@@ -18,36 +18,37 @@
         <h4>Download Excel Reports</h4>
         <ul>
           <li id="excelReplistTop5CommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Com By Quantity" (click)="GetReportTop5CommodityAndQuantity($event)" /></li>
-          <li id="excelReplistTop5CommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Com By Returns" (click)="GetReportTop5CommodityAndGrossReturns($event)"/></li>
-          <li id="excelReplistTop5FarmerCommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Com Returns" (click)="GetReportTop5FarmerCommoditiesByGrossReturns($event)"/></li>
-          <li id="excelReplistTop5FarmerCommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Com Quantity" (click)="GetReportTop5FarmerVehicleCategoryUsageByCostReturns($event)"/></li>
-          <li id="excelReplistTop5FarmerVehicleCategoryUsageByNumber" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Vehicle Cat" (click)="GetReportTop5FarmerVehicleCategoryUsageByNumber($event)"/></li>
-          <li id="excelReplistTop5VehicleCostReturnsScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Vehicle Returns" (click)="GetReportTop5VehicleCostReturnsScheduledByCategory($event)"/></li>
-          <li id="excelReplistTop5VehicleNumbersScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Vehicle Scheduled" (click)="GetReportTop5VehicleNumbersScheduledByCategory($event)"/></li>
+          <li id="excelReplistTop5CommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Com By Returns" (click)="GetReportTop5CommodityAndGrossReturns($event)" /></li>
+          <li id="excelReplistTop5FarmerCommodityAndGrossReturns" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Com Returns" (click)="GetReportTop5FarmerCommoditiesByGrossReturns($event)" /></li>
+          <li id="excelReplistTop5FarmerCommodityAndQuantity" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Com Quantity" (click)="GetReportTop5FarmerVehicleCategoryUsageByCostReturns($event)" /></li>
+          <li id="excelReplistTop5FarmerVehicleCategoryUsageByNumber" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Farmer Vehicle Cat" (click)="GetReportTop5FarmerVehicleCategoryUsageByNumber($event)" /></li>
+          <li id="excelReplistTop5VehicleCostReturnsScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Vehicle Returns" (click)="GetReportTop5VehicleCostReturnsScheduledByCategory($event)" /></li>
+          <li id="excelReplistTop5VehicleNumbersScheduledByCategory" class="nav-item"><input type="button" class="btn-primary" value="Top 5 Vehicle Scheduled" (click)="GetReportTop5VehicleNumbersScheduledByCategory($event)" /></li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="container  reports" id="Top5CommodityAndQuantity" style="display:none;">
-    <Top5CommodityAndQuantity></Top5CommodityAndQuantity>
-  </div>
-  <div class="container reports" id="Top5CommodityAndGrossReturns" style="display:none;">
-    <Top5CommodityAndGrossReturns></Top5CommodityAndGrossReturns>
-  </div>
-  <div class="container  reports" id="Top5FarmerCommodityAndGrossReturns" style="display:none;">
-    <Top5FarmerCommodityAndGrossReturns></Top5FarmerCommodityAndGrossReturns>
-  </div>
-  <div class="container  reports" id="Top5FarmerVehicleCategoryUsageByCostReturns" style="display:none;">
-    <Top5FarmerVehicleCategoryUsageByCostReturns></Top5FarmerVehicleCategoryUsageByCostReturns>
-  </div>
-  <div class="container  reports" id="Top5FarmerVehicleCategoryUsageByNumber" style="display:none;">
-    <Top5FarmerVehicleCategoryUsageByNumber></Top5FarmerVehicleCategoryUsageByNumber>
-  </div>
-  <div class="container  reports" id="Top5VehicleCostReturnsScheduledByCategory" style="display:none;">
-    <Top5VehicleCostReturnsScheduledByCategory></Top5VehicleCostReturnsScheduledByCategory>
-  </div>
-  <div class="container  reports" id="Top5VehicleNumbersScheduledByCategory" style="display:none;">
-    <Top5VehicleNumbersScheduledByCategory></Top5VehicleNumbersScheduledByCategory>
+  <div id="chartResults">
+    <div class="container  reports" id="Top5CommodityAndQuantity" style="display:none;">
+      <Top5CommodityAndQuantity></Top5CommodityAndQuantity>
+    </div>
+    <div class="container reports" id="Top5CommodityAndGrossReturns" style="display:none;">
+      <Top5CommodityAndGrossReturns></Top5CommodityAndGrossReturns>
+    </div>
+    <div class="container  reports" id="Top5FarmerCommodityAndGrossReturns" style="display:none;">
+      <Top5FarmerCommodityAndGrossReturns></Top5FarmerCommodityAndGrossReturns>
+    </div>
+    <div class="container  reports" id="Top5FarmerVehicleCategoryUsageByCostReturns" style="display:none;">
+      <Top5FarmerVehicleCategoryUsageByCostReturns></Top5FarmerVehicleCategoryUsageByCostReturns>
+    </div>
+    <div class="container  reports" id="Top5FarmerVehicleCategoryUsageByNumber" style="display:none;">
+      <Top5FarmerVehicleCategoryUsageByNumber></Top5FarmerVehicleCategoryUsageByNumber>
+    </div>
+    <div class="container  reports" id="Top5VehicleCostReturnsScheduledByCategory" style="display:none;">
+      <Top5VehicleCostReturnsScheduledByCategory></Top5VehicleCostReturnsScheduledByCategory>
+    </div>
+    <div class="container  reports" id="Top5VehicleNumbersScheduledByCategory" style="display:none;">
+      <Top5VehicleNumbersScheduledByCategory></Top5VehicleNumbersScheduledByCategory>
+    </div>
   </div>
 </div>
-

@@ -17,40 +17,57 @@ export class ReportingComponent {
 
   }
 
+  scrollIntoView(htmlElement: HTMLElement) {
+    htmlElement.scrollIntoView();
+  }
   ShowTop5CommodityAndQuantity($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5CommodityAndQuantity').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5CommodityAndGrossReturns($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5CommodityAndGrossReturns').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5FarmerCommodityAndGrossReturns($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5FarmerCommodityAndGrossReturns').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5FarmerVehicleCategoryUsageByCostReturns($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5FarmerVehicleCategoryUsageByCostReturns').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5VehicleCostReturnsScheduledByCategory($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5VehicleCostReturnsScheduledByCategory').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5VehicleNumbersScheduledByCategory($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5VehicleNumbersScheduledByCategory').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
   ShowTop5FarmerVehicleCategoryUsageByNumber($event): void {
     $('div.reports').css('display', 'none');
     $('div#Top5FarmerVehicleCategoryUsageByNumber').css('display', 'block');
     $event.preventDefault();
+    let chartsView: HTMLElement = document.querySelector("div#chartResults");
+    this.scrollIntoView(chartsView);
   }
 
   //////////////////
