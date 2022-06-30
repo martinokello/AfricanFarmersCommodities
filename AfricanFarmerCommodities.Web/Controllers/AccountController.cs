@@ -32,6 +32,7 @@ namespace SimbaToursEastAfrica.Controllers
         public readonly IUserService _userService;
         private readonly IRoleService _roleService;
         private readonly IMailService _emailService;
+        
         public AccountController(IUserService userService, IRoleService roleService, AfricanFarmerCommoditiesUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, IMailService emailService)
         {
             _unitOfWork = unitOfWork;
