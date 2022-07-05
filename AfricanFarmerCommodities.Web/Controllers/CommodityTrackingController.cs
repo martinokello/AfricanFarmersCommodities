@@ -25,7 +25,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             _emailService = emailService;
             _unitOfWork = unitOfWork;
-
         }
         [HttpGet]
         [Route("~/api/{Controller}/{Action}/{commodityId}")]
