@@ -16,6 +16,7 @@ namespace PaymentGateway
         {
             _PayPalHandler = paypalHandler;
         }
+        
         public async Task<string> MakePayments(string username,List<Product> products)
         {
             _PayPalHandler.BuyerEmail = username;
