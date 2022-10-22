@@ -10,8 +10,8 @@ import * as Recaptcha from 'ng-recaptcha';
 
 
 @Component({
-    selector: 'recaptcha',
-    templateUrl: './recaptcha.component.html',
+    selector: 'myrecaptcha',
+  templateUrl: './myrecaptcha.component.html',
   providers: [HttpClient, Router, AfricanFarmerCommoditiesService]
 })
 export class myRecaptchaComponent implements OnInit, AfterViewInit {
