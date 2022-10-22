@@ -83,6 +83,8 @@ import { Top5VehicleNumbersScheduledByCategoryComponent } from '../metricsreport
 import { ReportingComponent } from './reporting/reporting.component';
 import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metricsreporting/Top5FarmerVehicleCategoryUsageByCostReturns/Top5FarmerVehicleCategoryUsageByCostReturns.component';
 import { UnpaidInvoicesComponent } from './unpaid-invoices/unpaidinvoices.component';
+import { RecaptchaComponent } from 'ng-recaptcha';
+import { myRecaptchaComponent } from './recaptcha/recaptcha.component';
 
 @NgModule({
   declarations: [
@@ -156,7 +158,8 @@ import { UnpaidInvoicesComponent } from './unpaid-invoices/unpaidinvoices.compon
     Top5FarmerVehicleCategoryUsageByNumberComponent,
     Top5VehicleCostReturnsScheduledByCategoryComponent,
     Top5VehicleNumbersScheduledByCategoryComponent,
-    Top5FarmerVehicleCategoryUsageByCostReturnsComponent
+    Top5FarmerVehicleCategoryUsageByCostReturnsComponent,
+    myRecaptchaComponent
     
   ],
   imports: [

@@ -103,11 +103,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.110\\RuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
-        }
       }
     },
     "C:\\Development\\AfricanFarmersCommoditiesV2\\AfricanFarmersCommodities.Domain\\AfricanFarmersCommodities.Domain.csproj": {
@@ -202,11 +197,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.110\\RuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
-        }
       }
     },
     "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
@@ -214,24 +204,11 @@
         "projectUniqueName": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj",
         "projectName": "ExcelAccessDataEngine",
         "projectPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj",
-        "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "projectStyle": "PackagesConfig",
-        "configFilePaths": [
-          "C:\\Users\\mart4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
           "net472": {
             "projectReferences": {}
           }
-        },
-        "packagesConfigPath": "C:\\Development\\AfricanFarmersCommoditiesV2\\ExcelAccessDataEngine\\packages.config"
+        }
       },
       "frameworks": {
         "net472": {}
