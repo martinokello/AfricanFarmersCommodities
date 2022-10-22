@@ -17,10 +17,10 @@ import * as Recaptcha from 'ng-recaptcha';
 export class myRecaptchaComponent implements OnInit, AfterViewInit {
 
   private googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-  private siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
+  private siteKey = "6LcSj6AiAAAAACU4kxqRiMCGxMyY5D4IOdfh1Yz1"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
   private isRecaptchaVerified: boolean;
   private showContent: boolean;
-  private recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";  /*localhost: '6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr';*/
+  private recaptchaSecretKey = "6LcSj6AiAAAAAEwSC0xK7pxkpr5wx5Ujou3J4Xku";  /*localhost: '6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr';*/
 
   constructor(private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router, private httpClient: HttpClient) {
 

@@ -1,9 +1,6 @@
 USE [africanfarmerscommodities]
 GO
-/****** Object:  Schema [martinlateachersuper]    Script Date: 25/05/2022 23:03:51 ******/
-CREATE SCHEMA [martinlateachersuper]
-GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +14,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ActiveEnrouteCommodityMonitors]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[ActiveEnrouteCommodityMonitors]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -33,7 +30,7 @@ CREATE TABLE [dbo].[ActiveEnrouteCommodityMonitors](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Addresses]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Addresses]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -54,7 +51,7 @@ CREATE TABLE [dbo].[Addresses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Commodities]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Commodities]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -78,7 +75,7 @@ CREATE TABLE [dbo].[Commodities](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CommodityCategories]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[CommodityCategories]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -95,7 +92,7 @@ CREATE TABLE [dbo].[CommodityCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CommodityUnits]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[CommodityUnits]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,7 +109,7 @@ CREATE TABLE [dbo].[CommodityUnits](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Companies]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Companies]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -130,7 +127,7 @@ CREATE TABLE [dbo].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DealsPricings]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[DealsPricings]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +145,7 @@ CREATE TABLE [dbo].[DealsPricings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Drivers]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Drivers]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,7 +163,7 @@ CREATE TABLE [dbo].[Drivers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DriverSchedulesNotes]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[DriverSchedulesNotes]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -185,7 +182,7 @@ CREATE TABLE [dbo].[DriverSchedulesNotes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Farmers]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Farmers]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -203,7 +200,7 @@ CREATE TABLE [dbo].[Farmers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FoodHubs]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[FoodHubs]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +218,7 @@ CREATE TABLE [dbo].[FoodHubs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FoodHubStorages]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[FoodHubStorages]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -243,7 +240,7 @@ CREATE TABLE [dbo].[FoodHubStorages](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IntermediateSchedule]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[IntermediateSchedule]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -269,7 +266,7 @@ CREATE TABLE [dbo].[IntermediateSchedule](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Invoices]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Invoices]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -290,7 +287,7 @@ CREATE TABLE [dbo].[Invoices](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Items]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Items]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -310,7 +307,7 @@ CREATE TABLE [dbo].[Items](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -322,13 +319,15 @@ CREATE TABLE [dbo].[Locations](
 	[LocationName] [nvarchar](max) NULL,
 	[DateCreated] [datetime2](7) NOT NULL,
 	[DateUpdated] [datetime2](7) NOT NULL,
+	[Lattitude] [real] NOT NULL,
+	[Longitude] [real] NOT NULL,
  CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
 (
 	[LocationId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -342,7 +341,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TransportLogs]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[TransportLogs]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -360,7 +359,7 @@ CREATE TABLE [dbo].[TransportLogs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TransportPricings]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[TransportPricings]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -387,7 +386,7 @@ CREATE TABLE [dbo].[TransportPricings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TransportSchedules]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[TransportSchedules]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -411,7 +410,7 @@ CREATE TABLE [dbo].[TransportSchedules](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -426,7 +425,7 @@ CREATE TABLE [dbo].[UserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -451,7 +450,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[VehicleCapacities]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[VehicleCapacities]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -469,7 +468,7 @@ CREATE TABLE [dbo].[VehicleCapacities](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[VehicleCategories]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[VehicleCategories]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -486,7 +485,7 @@ CREATE TABLE [dbo].[VehicleCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Vehicles]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Table [dbo].[Vehicles]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -506,7 +505,7 @@ CREATE TABLE [dbo].[Vehicles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  UserDefinedFunction [dbo].[AllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  UserDefinedFunction [dbo].[AllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -537,7 +536,7 @@ As
 		)
 		select * from TransportCosts
 GO
-/****** Object:  UserDefinedFunction [dbo].[Top5PricingAllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  UserDefinedFunction [dbo].[Top5PricingAllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -659,6 +658,8 @@ GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220520091253_removeFKCommodityIdToItem', N'3.1.14')
 GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220525170854_introduceInvoiceTransScheToTransportLog', N'3.1.14')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20221022113453_addLocationLatLong', N'3.1.14')
 GO
 SET IDENTITY_INSERT [dbo].[Addresses] ON 
 GO
@@ -842,15 +843,15 @@ SET IDENTITY_INSERT [dbo].[Items] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Locations] ON 
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated]) VALUES (1, NULL, 1, N'MartinLayooInc HQ', CAST(N'2022-05-20T10:46:03.8984918' AS DateTime2), CAST(N'2022-05-20T10:46:03.8985656' AS DateTime2))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Lattitude], [Longitude]) VALUES (1, NULL, 1, N'MartinLayooInc HQ', CAST(N'2022-05-20T10:46:03.8984918' AS DateTime2), CAST(N'2022-05-20T10:46:03.8985656' AS DateTime2), 0, 0)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated]) VALUES (2, NULL, 5, N'Lailla Rice Company ', CAST(N'2022-05-21T18:11:28.7724011' AS DateTime2), CAST(N'2022-05-21T18:11:28.7724026' AS DateTime2))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Lattitude], [Longitude]) VALUES (2, NULL, 5, N'Lailla Rice Company ', CAST(N'2022-05-21T18:11:28.7724011' AS DateTime2), CAST(N'2022-05-21T18:11:28.7724026' AS DateTime2), 0, 0)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated]) VALUES (3, NULL, 4, N'Alobo & Family Corporation ', CAST(N'2022-05-21T18:12:19.8527169' AS DateTime2), CAST(N'2022-05-21T18:12:19.8527174' AS DateTime2))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Lattitude], [Longitude]) VALUES (3, NULL, 4, N'Alobo & Family Corporation ', CAST(N'2022-05-21T18:12:19.8527169' AS DateTime2), CAST(N'2022-05-21T18:12:19.8527174' AS DateTime2), 0, 0)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated]) VALUES (4, NULL, 3, N'Dre & Sons Farms, Jinja', CAST(N'2022-05-21T18:13:20.4910161' AS DateTime2), CAST(N'2022-05-21T18:13:20.4910166' AS DateTime2))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Lattitude], [Longitude]) VALUES (4, NULL, 3, N'Dre & Sons Farms, Jinja', CAST(N'2022-05-21T18:13:20.4910161' AS DateTime2), CAST(N'2022-05-21T18:13:20.4910166' AS DateTime2), 0, 0)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated]) VALUES (5, NULL, 2, N'Greg''s & Madhivani, Kampala Sugar Works w', CAST(N'2022-05-21T18:14:42.3368470' AS DateTime2), CAST(N'2022-05-21T18:14:42.3368480' AS DateTime2))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Lattitude], [Longitude]) VALUES (5, NULL, 2, N'Greg''s & Madhivani, Kampala Sugar Works w', CAST(N'2022-05-21T18:14:42.3368470' AS DateTime2), CAST(N'2022-05-21T18:14:42.3368480' AS DateTime2), 0, 0)
 GO
 SET IDENTITY_INSERT [dbo].[Locations] OFF
 GO
@@ -904,7 +905,7 @@ INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password],
 GO
 INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'df964f22-96b1-4217-5763-08da3a4cbce0', N'Martin', N'Okello', N'martin.okello@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'martin.okello@martinlayooinc.com', N'07809773365', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkEQtu417uIVHxF+6z2rPYrpeBlIxo8kIKhy+ih3YUOOJIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgIMbgRIccavFIJF2H1jFQmGz+ofARpNMchWTj/BUSee3Xjyz9xQhYfEMOWC+CoKv8873AJ4j7iRkggAaHNA223VlaDp8p70v0ngKMlu5wkpv6PY7s6/TeZ5bHl2zkbhifCXr+7ZVNZyAXg/7swBDAfg48FEbXuiRAB5O6PjefG7Oh+U0smVT4O+bxl5cK46sEnHhxVM0rq/EHQRuqiQtV6CxzFQABKrliIfjJLbTFW2ypKuiTLugea3w4ZL/Pg/sJMp94yosh7s9RcKFIaW1TBmtpx1qi3JsEzoStzYifknLEHZu4CWpPjmdJF9vfAKul89LN2Pw21+mK0hmudtswb+VeKdyzuWYrakvkthxmLZkApr8lUTJrwst8V7jvG0Wj7gPPwdUc/2ypjkVyvRukJy2BaicFn8YHnreE4hleI5HOL5MHDcP+FJNaqApfRi7wFJC0C4/QdeGuqHKwFS6OExAre/+6T+JyzI7UMwH6wN6oeBLKajakgfCVHAtEOpz5GcK5lLTTkJHcYR+x1j10wczHTheJZ9FMFGmjwB3ph+kys4OGSWalVmnuS7av0vCzig8GRzM1X3mIMSENryZz8v1pGYAiJFEppyzAxMafipzhEbwIu/Idz3f0uc1ngNjcWg==', 0, CAST(N'2022-05-20T12:37:28.7009732' AS DateTime2), CAST(N'2022-05-23T11:35:11.9411667' AS DateTime2), 1, 0)
 GO
-INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'6856985d-4203-4ceb-bdb4-08da3beb8960', N'Joseph', N'Lee', N'Joseph.lee@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'Joseph.lee@martinlayooinc.com', N'07984221186', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkCP2BM4kxXkYIfTQNX6+O7ZXoCnG+pcVJTIl230V7ekZIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgIMbgRIccavFIJF2H1jFQmGz+ofARpNMchWTj/BUSee3X9JYoSld1sBsBD1gRXSO94cT4kATnTh2sNj5XnA1Z8mc99pzWYlLNSllsi5nDwwnW5DAewSHqRYhWS1WSi/OItCAou69lJUPdy+GHzdEl6GHx6f2HnbIo/fC7LTrA6vF16BkN9CwpIHztV8ZBa5epR9t4E/euC81Ld66QNZZ9iV83DgSjvFLQGKuJIOzot5TnQyvYWIuOoe1we2JwGsac1Kon1kxVC2qnpBYuvsVW0fMh+SoJ7Er0w/Kbii22lHPKm54xwWIAsGAGHuA1qi5dT72tNPczPaEm472/F5k/fHAHPadq6IaNFqBiIsVrGC+c7/lS1Em8VITCigjFAiei53g9W5KXSTxmNYBIq/unrFsBu6aAX6nI0R04QgQ2SxDgmnxMoLQGHeqsEOU9ligxSpFIh0zvlvTgt7TzQis2QsyPLDyUAP6o82Jb68nWxigP4avik6lXbNCHULph9qrDURmnS/2jbdT9RiW4UTLbpozY2gcoKNz9w1yWCx3x25aaq/Vkw1oSm7IgqT7Nd7MRpDKd4adjHuckXd1HhMnKULdzEKsCS0EABycycwF4MWdGPc5dKLNKBlPMazGsBXVAbg==', 0, CAST(N'2022-05-22T14:06:43.4348925' AS DateTime2), CAST(N'2022-05-25T22:57:19.9344453' AS DateTime2), 1, 0)
+INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'6856985d-4203-4ceb-bdb4-08da3beb8960', N'Joseph', N'Lee', N'Joseph.lee@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'Joseph.lee@martinlayooinc.com', N'07984221186', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpnxmmcgSf4MTsSZFtijL3s7ygZvZWisz/IrUhuT4jRHjZIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgIMbgRIccavFIJF2H1jFQmGz+ofARpNMchWTj/BUSee3X9JYoSld1sBsBD1gRXSO94cT4kATnTh2sNj5XnA1Z8mc99pzWYlLNSllsi5nDwwnW5DAewSHqRYhWS1WSi/OItCAou69lJUPdy+GHzdEl6GHx6f2HnbIo/fC7LTrA6vF16BkN9CwpIHztV8ZBa5epR9t4E/euC81Ld66QNZZ9iV83DgSjvFLQGKuJIOzot5TnQyvYWIuOoe1we2JwGsac1Kon1kxVC2qnpBYuvsVW0fMh+SoJ7Er0w/Kbii22lHPKm54xwWIAsGAGHuA1qi5dT72tNPczPaEm472/F5k/fHAHPadq6IaNFqBiIsVrGC+c7/lS1Em8VITCigjFAiei53g9W5KXSTxmNYBIq/unrFsBu6aAX6nI0R04QgQ2SxDgmnxMoLQGHeqsEOU9ligxSpFIh0zvlvTgt7TzQis2QsyPLDyUAP6o82Jb68nWxigP4avik6lXbNCHULph9qrDURmnS/2jbdT9RiW4UTLbpozY2gcoKNz9w1yWCx3x25aaq/Vkw1oSm7IgqT7Nd7MRpDKd4adjHuckXd1HhMnKULdzEKsCS0EABycycwF4MWdGPc5dKLNKBlPMazGsBXVAbg==', 0, CAST(N'2022-05-22T14:06:43.4348925' AS DateTime2), CAST(N'2022-05-26T16:55:37.9036744' AS DateTime2), 1, 0)
 GO
 SET IDENTITY_INSERT [dbo].[VehicleCapacities] ON 
 GO
@@ -956,7 +957,7 @@ INSERT [dbo].[Vehicles] ([VehicleId], [VehicleRegistration], [CompanyId], [Vehic
 GO
 SET IDENTITY_INSERT [dbo].[Vehicles] OFF
 GO
-/****** Object:  Index [UserRole_UserIdRoleId]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Index [UserRole_UserIdRoleId]    Script Date: 22/10/2022 12:45:14 ******/
 ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [UserRole_UserIdRoleId] UNIQUE NONCLUSTERED 
 (
 	[UserId] ASC,
@@ -965,7 +966,7 @@ ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [UserRole_UserIdRoleId] UNIQUE NON
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [User_Username]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  Index [User_Username]    Script Date: 22/10/2022 12:45:14 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [User_Username] UNIQUE NONCLUSTERED 
 (
 	[Username] ASC
@@ -996,6 +997,10 @@ GO
 ALTER TABLE [dbo].[Invoices] ADD  DEFAULT (CONVERT([bit],(0))) FOR [HasFullyPaid]
 GO
 ALTER TABLE [dbo].[Items] ADD  DEFAULT ((0)) FOR [CommodityId]
+GO
+ALTER TABLE [dbo].[Locations] ADD  DEFAULT (CONVERT([real],(0))) FOR [Lattitude]
+GO
+ALTER TABLE [dbo].[Locations] ADD  DEFAULT (CONVERT([real],(0))) FOR [Longitude]
 GO
 ALTER TABLE [dbo].[TransportLogs] ADD  DEFAULT ('0001-01-01T00:00:00.0000000') FOR [DateCreated]
 GO
@@ -1229,7 +1234,7 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Vehicles] CHECK CONSTRAINT [FK_Vehicles_VehicleCategories_VehicleCategoryId]
 GO
-/****** Object:  StoredProcedure [dbo].[AllFoodHubDateAnalysisCommoditiesStockStorageUsage]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[AllFoodHubDateAnalysisCommoditiesStockStorageUsage]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1241,7 +1246,7 @@ Begin
 	 from dbo.FoodHubStorages fhs join dbo.FoodHubs fh on fhs.FoodHubId = fh.FoodHubId	 
 end
 GO
-/****** Object:  StoredProcedure [dbo].[AllUnScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[AllUnScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1266,7 +1271,7 @@ Begin
 		order by cost asc
 End
 GO
-/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageByFoodHubId]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageByFoodHubId]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1282,7 +1287,7 @@ Begin
 	 group by fh.FoodHubId, fh.FoodHubName, fs.FoodHubStorageId
 end
 GO
-/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageByFoodHubIdOverDateDuration]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageByFoodHubIdOverDateDuration]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1300,7 +1305,7 @@ Begin
 	 group by fh.FoodHubId, fh.FoodHubName, fs.FoodHubStorageId
 end
 GO
-/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageOverDateDuration]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[FoodHubCommoditiesStockStorageUsageOverDateDuration]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1317,7 +1322,7 @@ Begin
 	 group by fh.FoodHubId, fh.FoodHubName, fs.FoodHubStorageId
 end
 GO
-/****** Object:  StoredProcedure [dbo].[spAllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[spAllScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1348,7 +1353,7 @@ Begin
 end
 
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverAll]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverAll]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1366,7 +1371,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1389,7 +1394,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverthePastYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCapacityOverthePastYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1408,7 +1413,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCostReturnsOverAll]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCostReturnsOverAll]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1426,7 +1431,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesByFarmerSoldByCostReturnsOverthePastYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1447,7 +1452,7 @@ SELECT TOP (5) fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName,
   group by fam.FarmerId, fam.FarmerName, cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverAll]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverAll]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1464,7 +1469,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverDate]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverDate]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1487,7 +1492,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverthePastYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCapacityOverthePastYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1505,7 +1510,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.Quantity) as Quantity
   group by cmd.CommodityId, cmd.CommodityName 
   order by Quantity desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverAll]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverAll]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1522,7 +1527,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1544,7 +1549,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverthePastYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5CommoditiesSoldByCostReturnsOverthePastYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1562,7 +1567,7 @@ SELECT TOP (5) cmd.CommodityId, cmd.CommodityName, sum(it.ItemCost) as GrossRetu
   group by cmd.CommodityId, cmd.CommodityName 
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FarmerHighesRefreigeratedStoragePriceUsageBtwDates]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FarmerHighesRefreigeratedStoragePriceUsageBtwDates]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1581,7 +1586,7 @@ Begin
 	 order by  FarmerCommodityUnitPrice desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestDryStoragePriceUsageBtwDates]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestDryStoragePriceUsageBtwDates]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1600,7 +1605,7 @@ Begin
 	 order by  FarmerCommodityUnitPrice desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestPriceOfCommoditiesInStorage]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestPriceOfCommoditiesInStorage]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1616,7 +1621,7 @@ Begin
 	 order by  FarmerCommodityUnitPrice desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestPriceOfCommoditiesInStorageBtnDates]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FarmerHighestPriceOfCommoditiesInStorageBtnDates]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1635,7 +1640,7 @@ Begin
 	 order by  FarmerCommodityUnitPrice desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FoodHubDryStorageUsage]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FoodHubDryStorageUsage]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1652,7 +1657,7 @@ Begin
 	 order by  TotalUsedDryStorageCapacity desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5FoodHubRefreigeratedStorageUsage]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5FoodHubRefreigeratedStorageUsage]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1668,7 +1673,7 @@ Begin
 	 order by  TotalUsedReferigeratedCapacity desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1697,7 +1702,7 @@ Begin
 		order by  Cost desc
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehicleCategoriesUsedByCapacityOvertheyear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehicleCategoriesUsedByCapacityOvertheyear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1713,7 +1718,7 @@ SELECT TOP (5) vhcat.VehicleCategoryName, count(*) NumbersOfSchedules
   group by vhcat.VehicleCategoryName
   order by NumbersOfSchedules desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCapacityOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1732,7 +1737,7 @@ SELECT TOP (5) vhcat.VehicleCategoryName, count(*) NumbersOfSchedules
   group by vhcat.VehicleCategoryName
   order by NumbersOfSchedules desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCostReturnsOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1753,7 +1758,7 @@ SELECT TOP (5) vhcat.VehicleCategoryName, sum(inv.GrossCost) GrossCostReturns
   group by vhcat.VehicleCategoryName
   order by GrossCostReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCostReturnsOverYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByCostReturnsOverYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1771,7 +1776,7 @@ SELECT TOP (5) vhcat.VehicleCategoryName, sum(inv.GrossCost) GrossCostReturns
   group by vhcat.VehicleCategoryName
   order by GrossCostReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCapacityOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1796,7 +1801,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
   order by NumberOfVehicles desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCapacityOverYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1818,7 +1823,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
   order by NumberOfVehicles desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverDateBeginDateEnd]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1843,7 +1848,7 @@ SELECT TOP (5) fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity,
   group by fam.FarmerName, vhcat.VehicleCategoryName, vcap.VechicleCapacity
   order by GrossReturns desc
 GO
-/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear]    Script Date: 25/05/2022 23:03:51 ******/
+/****** Object:  StoredProcedure [dbo].[Top5VehiclesCategoriesUsedByFarmerByCostReturnsOverYear]    Script Date: 22/10/2022 12:45:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
