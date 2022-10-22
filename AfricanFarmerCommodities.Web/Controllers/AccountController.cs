@@ -25,6 +25,7 @@ using AfricanFarmerCommodities.Web.ViewModels;
 
 namespace SimbaToursEastAfrica.Controllers
 {
+    //Account bespoke controller with bespoke membership and roles with strobg encryption. 
     [EnableCors(PolicyName = "CorsPolicy")]
     public class AccountController : Controller
     {
