@@ -83,7 +83,6 @@ import { Top5VehicleNumbersScheduledByCategoryComponent } from '../metricsreport
 import { ReportingComponent } from './reporting/reporting.component';
 import { Top5FarmerVehicleCategoryUsageByCostReturnsComponent } from '../metricsreporting/Top5FarmerVehicleCategoryUsageByCostReturns/Top5FarmerVehicleCategoryUsageByCostReturns.component';
 import { UnpaidInvoicesComponent } from './unpaid-invoices/unpaidinvoices.component';
-import { RecaptchaComponent } from 'ng-recaptcha';
 import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
 
 @NgModule({

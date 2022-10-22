@@ -230,10 +230,15 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bi
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\ExcelAccessDataEngine.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.dll
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.Interfaces.dll
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.System.Drawing.dll
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmerCommodities.DataAccess.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.AppConfigurations.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\AfricanFarmersCommodities.Domain.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\ExcelAccessDataEngine.pdb
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.xml
+C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\Microsoft.IO.RecyclableMemoryStream.xml
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.AssemblyInfoInputs.cache
@@ -243,8 +248,3 @@ C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\ob
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.dll
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.pdb
 C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\obj\Debug\netcoreapp3.1\AfricanFarmersCommodities.Services.genruntimeconfig.cache
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.Interfaces.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.System.Drawing.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\EPPlus.xml
-C:\Development\AfricanFarmersCommoditiesV2\AfricanFarmersCommodities.Services\bin\Debug\netcoreapp3.1\Microsoft.IO.RecyclableMemoryStream.xml
