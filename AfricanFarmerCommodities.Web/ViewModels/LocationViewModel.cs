@@ -9,5 +9,7 @@ namespace AfricanFarmerCommodities.Web.ViewModels
         public virtual AddressViewModel Address { get; set; }
         public int AddressId { get; set; }
         public string LocationName { get; set; }
+        public float Lattitude { get; set; }
+        public float Longitude { get; set; }
     }
 }

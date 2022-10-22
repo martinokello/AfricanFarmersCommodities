@@ -528,6 +528,19 @@ export class AfricanFarmerCommoditiesService {
       return res;
     });
   }
+
+  PostToRecaptchaVerify(googleUrl: string, dataStr: string): Promise<any> {
+    let body = dataStr;
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let requestOptions: any = {
+      url: googleUrl,
+      headers: headers,
+      body: body
+    };
+
+    return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).toPromise();
+  }
   public CreateTransportScheduleLog(transLog: ITransportLog): Observable<any> {
     let body = JSON.stringify(transLog);
 
@@ -2311,11 +2324,16 @@ export interface IVehicleCapacity {
   vechicleCapacity: number;
   description: string;
 }
+
 export interface ILocation {
   locationId: number;
+  country: string;
   locationName: string;
-  address: IAddress;
+  latitude: number;
+  longitude: number;
   addressId: number;
+  address: IAddress;
+  isGeocoded: boolean;
 }
 export interface IAddress {
   addressId: number;
@@ -2431,6 +2449,10 @@ export interface ILocation {
   locationName: string;
   addressId: number;
   address: IAddress;
+}
+export interface ICoordinate {
+  latitude: number;
+  longitude: number;
 }
 export interface ITransportPricing {
   transportPricingId: number;

@@ -671,7 +671,6 @@
     <TypeScriptCompile Include="ClientApp\src\guards\AuthGuestGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\guards\AuthStandardUserGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\guards\AuthGuard.ts" />
-    <TypeScriptCompile Include="ClientApp\src\interceptors\app.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\services\africanFarmerCommoditiesService.ts" />
     <TypeScriptCompile Include="ClientApp\src\socialmedia\twitterfeeds\twitterprofilefeeds.component.ts" />
   </ItemGroup>
@@ -705,8 +704,8 @@
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build --prod --aot=false --build-optimizer=false" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
