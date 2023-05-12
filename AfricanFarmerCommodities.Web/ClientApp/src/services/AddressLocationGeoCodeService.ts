@@ -23,7 +23,7 @@ export class AddressLocationGeoCodeService {
   operation: string;
   googleGeocodeBaseUrl: string = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCNPbLu2PRqU9dWbtw6WE5qijg9o7B3FDQ&address=";
 
-  constructor(private httpClient: HttpClient, private africanFarmersCommoditiesService: AfricanFarmerCommoditiesService) {
+  constructor(private httpClient: HttpClient, private africanFarmersCommoditiesServices: AfricanFarmerCommoditiesService) {
   }
   ngOnInit() {
 
@@ -126,7 +126,7 @@ export class AddressLocationGeoCodeService {
   setCreateUpdateLocation(operation: string, loc: ILocation) {
 
     if (operation.toLowerCase() === "create") {
-      let actualResult: Observable<any> = this.africanFarmersCommoditiesService.PostOrCreateLocation(loc);
+      let actualResult: Observable<any> = this.africanFarmersCommoditiesServices.PostOrCreateLocation(loc);
       actualResult.map((p: any) => {
         alert('Location Added: ' + p.result);
         this.successGeocode = true;
@@ -134,7 +134,7 @@ export class AddressLocationGeoCodeService {
       }).subscribe();
     }
     else if (operation.toLowerCase() === "update") {
-      let actualResult: Observable<any> = this.africanFarmersCommoditiesService.UpdateLocation(loc);
+      let actualResult: Observable<any> = this.africanFarmersCommoditiesServices.UpdateLocation(loc);
       actualResult.map((p: any) => {
         alert('Location Updated: ' + p.result);
         this.successGeocode = true;

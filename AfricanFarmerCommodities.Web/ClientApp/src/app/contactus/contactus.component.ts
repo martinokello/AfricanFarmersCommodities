@@ -22,28 +22,28 @@ export class ContactUsComponent implements OnInit {
 
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
     }
-    sendEmail(): void {
+  sendEmail($event): void {
 
-        let formView = this.emailFormView;
-        let form = formView.nativeElement.querySelector("form");
-        if (form.checkValidity())
-        form.submit();
-        /*
-        let form = new FormData();
-        form.append('emailBody', this.email.emailBody);
-        form.append('emailTo', this.email.emailTo);
-        form.append('emailFrom', this.email.emailFrom);
-        form.append('emailSubject', this.email.emailSubject);
-        form.append('attachment', this.email.attachment);
-        let result: Observable<boolean> = this.safariTourService.SendEmail(form);
-        result.subscribe((value: any) => {
-            alert('email ' + (value.result ? 'sent' : 'failed sending'));
-        });
-        */
+    let formView = this.emailFormView;
+    let form: HTMLFormElement = formView.nativeElement.querySelector("form");
+    if (form.checkValidity()) {
+
+      let formData = new FormData();
+      formData.append('emailBody', this.email.emailBody);
+      formData.append('emailTo', this.email.emailTo);
+      formData.append('emailFrom', this.email.emailFrom);
+      formData.append('emailSubject', this.email.emailSubject);
+      formData.append('fileUpload', this.email.attachment);
+      let result: Observable<boolean> = this.africanFarmerCommoditiesService.SendEmail(formData);
+      result.subscribe((value: any) => {
+        alert(value.message);
+      });
     }
-    getFiles(event) {
-        this.email.attachment = event.target.files;
-    } 
+    $event.preventDefault();
+  }
+  getFiles(event) {
+    this.email.attachment = event.target.files.item(0);
+  } 
     ngOnInit() {
         this.email = {
             emailBody: "",

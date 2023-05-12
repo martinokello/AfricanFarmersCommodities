@@ -358,7 +358,7 @@ namespace AfricanFarmersCommodities.Web
             services.AddTransient<AesExternalProcedures>(s => new AesExternalProcedures(masterkeyDirPath));
             services.AddScoped<AppSettingsConfigurations>();
             services.AddScoped<DbContext, AfricanFarmerCommoditiesDBContext>();
-            services.AddScoped<IMailService, EmailService>(smtp=> new EmailService(new AppSettingsConfigurations(Configuration)));
+            services.AddScoped<IMailService, EmailService>(smtp=> new EmailService(Configuration));
             services.AddScoped<AfricanFarmerCommoditiesUnitOfWork>();
             services.AddTransient<BLGLocationWeatherRequests>(weatherReq => new BLGLocationWeatherRequests(httpClient, new AppSettingsConfigurations(Configuration).GetConfigSetting("OpenWeatherMapAPIKey")));
             services.AddScoped<IUserService, UserService>();

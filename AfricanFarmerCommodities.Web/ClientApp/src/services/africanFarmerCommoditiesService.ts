@@ -622,10 +622,9 @@ export class AfricanFarmerCommoditiesService {
     });
   }
   public SendEmail(body: FormData): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+    const headers = new HttpHeaders({ 'Content-Type': "multipart/form-data" });
     let requestOptions: any = {
-      url: this.postSendEmail,
-      headers: headers
+      url: this.postSendEmail
     };
 
     return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {

@@ -27,7 +27,7 @@ MartinLayooInc Team.";
                 case EmailTemplate.WelcomeMessage:
                     return @"Dear [[FirstName]],
                     
-We would like to welcome you to the African Farmers Commodities site. The site offers ways to systematically buy or trade with very high secure means.
+We would like to welcome you to the My Fundi site. The site offers ways to systematically buy or trade with very high secure means.
 
 After registration you will be able to start using the site straight away.
 
@@ -38,7 +38,7 @@ MartinLayooInc Team.";
                 case EmailTemplate.InvoiceMessage:
                     return @"Dear [[FirstName]],
                     
-We would like to let you know that the following transactions were created by yourself, within the African Farmers Commodities site.
+We would like to let you know that the following transactions were created by yourself, within the My Fundi site.
 
 [[TransactionCommoditesList]]
 
@@ -78,12 +78,15 @@ Many thanks
 MartinLayooInc Team.";
                 case EmailTemplate.PasswordResetMessage:
                     return @"Dear [[FirstName]],
-                    
+Please copy this token:
+
+[[PasswordToken]] 
+
+as it is and paste onto the Token Field of Page your've been directed to, then type new password and submit the form.
+
 We would like to let you know that you have requested your password to be reset.
 
-Use this link to reset your password [[PasswordResetLink]].
-
-Please not that you will get an email to reset password. Follow the instructions and reset your password.
+Follow the instructions and reset your password.
 
 We take security concerns very highly. If you didn't request password reset, then do please contact us immediately.
 
