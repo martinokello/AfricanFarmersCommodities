@@ -54,22 +54,52 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             return View();
         }
-
         [AuthorizeIdentity]
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public IActionResult SendEmail()
+        public async Task<IActionResult> SendEmail([FromForm] IFormFile fileUpload)
         {
             try
             {
-                _emailService.BusinessEmailDetails = _businessSmtpDetails;
                 //Send Email:
-                _emailService.SendEmail(new EmailDao { Attachment = Request.Form.Files.Any() ? Request.Form.Files[0] : null, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
-                return View("Index");
+                _emailService.SendEmail(new EmailDao { Attachment = fileUpload, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
+                return await Task.FromResult(Ok(new { Succeded = true, Message = "Succesfully Sent Your Email!" }));
             }
             catch (Exception e)
             {
-                return Json(new { Result = false });
+                return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!\n" + e.Message + "\n" + e.StackTrace }));
+            }
+        }
+
+        [AuthorizeIdentity]
+        [HttpPost]
+        public async Task<IActionResult> SendEmailMultiAttachments()
+        {
+            try
+            {
+                //Send Email:
+                _emailService.SendEmail(new EmailDao
+                {
+                    Attachments = Request.Form.Files,
+                    EmailBody = @"" +
+                "First Name:    " + Request.Form["firstName"] + System.Environment.NewLine +
+                "Last Name:    " + Request.Form["lastName"] + System.Environment.NewLine +
+                "Preferred Mobile Number:    " + Request.Form["mobileNumber"] + System.Environment.NewLine +
+                "Bid Rate Per Hour:    " + Request.Form["bidRatePerHour"] + System.Environment.NewLine +
+                "Earliest Start Date    " + Request.Form["earliestStartDate"] + System.Environment.NewLine +
+                "Total Amount Per Hour:    " + Request.Form["totalAmountPerHour"] + System.Environment.NewLine +
+                "Amount You Will Recieve Minus Service:    " + Request.Form["amountYouWillRecieveMinusService"] + System.Environment.NewLine +
+                "Justify Percent Of ServiceFee:    " + Request.Form["justifyPercentOfServiceFee"] + System.Environment.NewLine +
+                "Preferred Interview Date:    " + Request.Form["preferredInterviewDate"] + System.Environment.NewLine +
+                "Cover Letter:  " + System.Environment.NewLine + Request.Form["coverLetter"],
+                    EmailFrom = Request.Form["emailFrom"],
+                    EmailSubject = Request.Form["emailSubject"],
+                    EmailTo = Request.Form["emailTo"]
+                });
+                return await Task.FromResult(Ok(new { Succeded = true, Message = "Succesfully Sent Your Email!" }));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!\n" + e.Message + "\n" + e.StackTrace }));
             }
         }
 

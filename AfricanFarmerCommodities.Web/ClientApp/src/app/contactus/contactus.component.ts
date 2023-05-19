@@ -35,9 +35,9 @@ export class ContactUsComponent implements OnInit {
       formData.append('emailSubject', this.email.emailSubject);
       formData.append('fileUpload', this.email.attachment);
       let result: Observable<boolean> = this.africanFarmerCommoditiesService.SendEmail(formData);
-      result.subscribe((value: any) => {
+      result.map((value: any) => {
         alert(value.message);
-      });
+      }).subscribe();
     }
     $event.preventDefault();
   }
