@@ -17,15 +17,13 @@ export class ContactUsComponent implements OnInit {
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService | any;
     email: IEmailMessage | any;
 
-  @ViewChild('emailFormView', { static: false }) emailFormView: HTMLElement | any; 
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService) {
 
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
     }
   sendEmail($event): void {
 
-    let formView = this.emailFormView;
-    let form: HTMLFormElement = formView.nativeElement.querySelector("form");
+    let form: HTMLFormElement = document.getElementById('emailFormView').querySelector("form");
     if (form.checkValidity()) {
 
       let formData = new FormData();

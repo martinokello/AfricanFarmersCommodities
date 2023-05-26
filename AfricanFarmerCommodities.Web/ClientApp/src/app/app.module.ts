@@ -169,6 +169,7 @@ import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'basket', component: BasketComponent },
+      { path: 'order-commodity', component: CommodityComponent, canActivate: [AuthGuard] },
       { path: 'crud', component: ActiveCrudOperationsComponent, canActivate:[AuthGuard] },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard]},
       { path: 'schedules-admin', component: TransportScheduleComponent, canActivate: [AuthGuard] },

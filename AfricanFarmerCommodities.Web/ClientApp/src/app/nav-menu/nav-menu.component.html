@@ -13,6 +13,9 @@
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a [routerLink]="['/crud']">Manage Entities</a>
           </li>
+          <li style="margin: 10px 0px !important; padding: 10px !important;">
+            <a [routerLink]="['/order-commodity']">Order Commodity</a>
+          </li>
         </ng-container>
         <li style="margin: 10px 0px !important; padding: 10px !important;">
           <a [routerLink]="['/fetch-data']">Weather Focus</a>
@@ -108,7 +111,7 @@
       <nav style="text-align:left !important;">
         <ul style="margin: 6px 0px !important;">
           <li style="margin:10px 0px !important;padding:10px !important;" *ngFor="let role of userRoles">
-            <a routerLink="/{{role}}" routerLinkActive='link-active' style="text-align: left !important; color: white !important;">{{role}}</a>
+            <a routerLink="/{{role}}" routerLinkActive='link-active' style="text-align: left !important; color: white !important;display:inline-block;">{{role}}</a>
           </li>
         </ul>
       </nav>
@@ -118,25 +121,25 @@
       <nav style="text-align:center !important;">
         <ul style="margin: 6px 0px !important;">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/allFoodHubCommoditiesStockStorageUsage']" style="text-align: left !important; color: white !important;">All Stock Storage Usage</a>
+            <a [routerLink]="['/allFoodHubCommoditiesStockStorageUsage']" style="text-align: left !important; color: white !important; display: inline-block;">All Stock Storage Usage</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/foodHubByIdCommoditiesStockStorageUsage']" style="text-align:left !important;color:white !important;">FoodHub Storage Usage</a>
+            <a [routerLink]="['/foodHubByIdCommoditiesStockStorageUsage']" style="text-align: left !important; color: white !important; display: inline-block;">FoodHub Storage Usage</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/unscheduledvehiclesByStorageCapacity']" style="text-align: left !important; color: white !important;">Unscheduled Vehicles</a>
+            <a [routerLink]="['/unscheduledvehiclesByStorageCapacity']" style="text-align: left !important; color: white !important; display: inline-block;">Unscheduled Vehicles</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/top5FarmerCommodScheduledvehiclesByStorageCapacity']" style="text-align: left !important; color: white !important;">Scheduled Vehicles</a>
+            <a [routerLink]="['/top5FarmerCommodScheduledvehiclesByStorageCapacity']" style="text-align: left !important; color: white !important; display: inline-block;">Scheduled Vehicles</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/top5FarmerCommoditiesunitpricing']" style="text-align: left !important; color: white !important;">Commodities By Unit Price</a>
+            <a [routerLink]="['/top5FarmerCommoditiesunitpricing']" style="text-align: left !important; color: white !important; display: inline-block;">Commodities By Unit Price</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/top5DryInDemandByStorageUsage']" style="text-align: left !important; color: white !important;">Top Dry Storage Usage</a>
+            <a [routerLink]="['/top5DryInDemandByStorageUsage']" style="text-align: left !important; color: white !important; display: inline-block;">Top Dry Storage Usage</a>
           </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/top5RefreigeratedInDemandByStorageUsage']" style="text-align: left !important; color: white !important;">Top Referigerated Storage Usage</a>
+            <a [routerLink]="['/top5RefreigeratedInDemandByStorageUsage']" style="text-align: left !important; color: white !important; display: inline-block;">Top Referigerated Storage Usage</a>
           </li>
         </ul>
       </nav>

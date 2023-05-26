@@ -19,8 +19,9 @@ export class TwitterProfileFeedsComponent implements OnInit{
   ngOnInit(): void {
     let twitterFeeds: Observable<any[]> = this.africanFarmerCommoditiesService.GetTwitterFeeds();
 
-    twitterFeeds.map((feed: any[]) => {
+    twitterFeeds.toPromise().then((feed: any[]) => {
       document.querySelector('h3#tweetheader').innerHTML = feed[0].groupHeaderText;
+
       if (feed.length > 2) {
         document.querySelector('p#tweet1').innerHTML = feed[0].groupDescription;
         document.querySelector('p#tweet2').innerHTML = feed[1].groupDescription;
@@ -35,10 +36,14 @@ export class TwitterProfileFeedsComponent implements OnInit{
         document.querySelector('p#tweet1').innerHTML = feed[0].groupDescription;
       }
       else {
-        document.querySelector('p#tweet1').innerHTML = "No tweets available";
-        document.querySelector('p#tweet2').innerHTML = "No tweets available";
-        document.querySelector('p#tweet3').innerHTML = "No tweets available";
-      }
-    }).subscribe();
+        document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+        document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:8px !important;width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+        document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+     }
+    }).catch((reason: any) => {
+      document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+      document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:8px !important;width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+      document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+    });
   }
 }

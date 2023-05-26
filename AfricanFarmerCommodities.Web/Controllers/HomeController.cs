@@ -56,12 +56,12 @@ namespace AfricanFarmerCommodities.Web.Controllers
         }
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> SendEmail([FromForm] IFormFile fileUpload)
+        public async Task<IActionResult> SendEmail()
         {
             try
             {
                 //Send Email:
-                _emailService.SendEmail(new EmailDao { Attachment = fileUpload, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
+                _emailService.SendEmail(new EmailDao { Attachment = (Request.Form.Files.Any()?Request.Form.Files[0]:null), EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
                 return await Task.FromResult(Ok(new { Succeded = true, Message = "Succesfully Sent Your Email!" }));
             }
             catch (Exception e)
@@ -80,17 +80,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
                 _emailService.SendEmail(new EmailDao
                 {
                     Attachments = Request.Form.Files,
-                    EmailBody = @"" +
-                "First Name:    " + Request.Form["firstName"] + System.Environment.NewLine +
-                "Last Name:    " + Request.Form["lastName"] + System.Environment.NewLine +
-                "Preferred Mobile Number:    " + Request.Form["mobileNumber"] + System.Environment.NewLine +
-                "Bid Rate Per Hour:    " + Request.Form["bidRatePerHour"] + System.Environment.NewLine +
-                "Earliest Start Date    " + Request.Form["earliestStartDate"] + System.Environment.NewLine +
-                "Total Amount Per Hour:    " + Request.Form["totalAmountPerHour"] + System.Environment.NewLine +
-                "Amount You Will Recieve Minus Service:    " + Request.Form["amountYouWillRecieveMinusService"] + System.Environment.NewLine +
-                "Justify Percent Of ServiceFee:    " + Request.Form["justifyPercentOfServiceFee"] + System.Environment.NewLine +
-                "Preferred Interview Date:    " + Request.Form["preferredInterviewDate"] + System.Environment.NewLine +
-                "Cover Letter:  " + System.Environment.NewLine + Request.Form["coverLetter"],
+                    EmailBody =  Request.Form["emailBody"],
                     EmailFrom = Request.Form["emailFrom"],
                     EmailSubject = Request.Form["emailSubject"],
                     EmailTo = Request.Form["emailTo"]
