@@ -47,6 +47,8 @@ using AfricanFarmerCommodities.Domain;
 using AfricanFarmerCommodities.Web.IdentityServices;
 using AesCryptoSystemExtra.AESCryptoSystem.ExternalCryptoUnit;
 using ExcelAccessDataEngine.Concretes;
+using SimbaToursEastAfrica.Caching.Interfaces;
+using SimbaToursEastAfrica.Caching.Concretes;
 
 namespace AfricanFarmersCommodities.Web
 {
@@ -388,6 +390,7 @@ namespace AfricanFarmersCommodities.Web
             services.AddScoped<AbstractRepository<Company>, CompanyRepository>();
             services.AddScoped<AbstractRepository<DriverSchedulesNote>, DriverSchedulesNotesRepository>();
             services.AddScoped<AbstractRepository<TransportLog>, TransportLogRepository>();
+            services.AddSingleton<ICaching, SimbaToursEastAfricaCahing>(); 
             services.AddScoped<AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint, AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
             services.AddScoped<InitializeDatabaseRoles>();
 

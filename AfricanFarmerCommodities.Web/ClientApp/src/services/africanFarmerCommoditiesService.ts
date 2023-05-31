@@ -51,6 +51,9 @@ export class AfricanFarmerCommoditiesService {
   public getDriverTransportSchedulesUrl: string = "/Transport/GetDriverTransportSchedules";
   public getDriverScheduleNotesUrl: string = "/Transport/GetDriverScheduleNotes";
 
+
+  public getCivilEngineeringFeedsUrl: string = this.baseServerUrl + "/SocialMedia/GetCivilEngineeringFeeds";
+
   public getallFoodHubStorageAvailabilityStorage: string = this.baseServerUrl + "/AdhocReporting/GetAllFoodHubCommoditiesStockStorageUsage";
   public getFoodHubStorageAvailabiliyStorageByFoodHubId: string = this.baseServerUrl + "/AdhocReporting/GetFoodHubCommoditiesStockStorageUsage";
   public getTop5DryCommoditiesInDemandRatingAccordingToStorageFacilities: string = this.baseServerUrl + "/AdhocReporting/GetTop5DryCommoditiesInDemandRatingAccordingToStorageFacilities";
@@ -482,6 +485,22 @@ export class AfricanFarmerCommoditiesService {
     });
   }
 
+  GetCivilEngineeringFeeds(): Observable<any> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getCivilEngineeringFeedsUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
+      let clientProf: any[] = res;
+      return clientProf;
+    });
+  }
   public GetCurrentTransScheduleInvoiceLog(transportScheduleId: number): Observable<ITransportLog[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getCurrentTransScheduleInvoiceLogUrl + "/" +transportScheduleId;
