@@ -1,4 +1,7 @@
-<div id="page-wrapper">
+<div id="linkToMainMenu" style="text-align:center !important;top: 0px;left:0px; position:fixed;z-index:599999">
+  <input id="mobilemenu" class="button" type="button" value="mobile menu" style="background-color:slateblue !important; color:white !important;padding:5px !important;height:auto !important;" />
+</div>
+<div id="page-wrapper" sytle="margin-top:35px !important;">
   <!-- Header -->
   <div id="header">
     <!-- Logo -->
@@ -26,14 +29,11 @@
       <router-outlet></router-outlet>
       <ng-container *ngIf="presentLearnMore" ngModel="presentLearnMore" ngDefaultControl>
         <div style="margin: 20px 0px;">
-          <a [routerLink]="['/aboutus']" class="button">
+          <a href="#" class="button" (click)="goToAboutUsPage($event)">
             About Us
           </a>
         </div>
       </ng-container>
-      <div id="linkToMainMenu" style="text-align:center !important;margin: 20px 0px;">
-        <input id="mobilemenu" class="button" type="button" value="mobile menu" style="background-color:slateblue !important; color:white !important;" />
-      </div>
     </div>
   </section>
   <div id="twitterProfileFeeds">

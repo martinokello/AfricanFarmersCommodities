@@ -18,15 +18,15 @@
   <link rel='stylesheet' href="/africanfarmerscommodities/assets/fullcalendar-3.10.0/fullcalendar.min.css" />
   <style type="text/css">
 
-    .ui-menu, .ui-menu .ui-menu-item-wrapper:hover, .ui-menu .ui-menu-item-wrapper.ui-state-active {
+    .ui-menu, .ui-menu .ui-menu-item-wrapper:hover, .ui-menu .ui-menu-item-wrapper.ui-state-active, .ui-autocomplete-input {
       background-color: wheat;
       border: #fff 1px solid;
       list-style: none;
     }
 
     @media screen and (min-width: 969px) {
-      .ui-menu {
-        max-width: 30% !important;
+      .ui-menu, .ui-autocomplete-input {
+        max-width: 100% !important;
       }
 
       div#mainmenucontent ul > li {
@@ -36,15 +36,17 @@
       div#linkToMainMenu {
         top: 0px;
         left: 0px;
-        padding-top: 15px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
         width: 100% !important;
         position: fixed !important;
+        display: none;
       }
     }
 
     @media screen and (max-width: 968px) {
-      .ui-menu {
-        max-width: 95% !important;
+      .ui-menu, .ui-autocomplete-input {
+        max-width: 100% !important;
       }
 
       div#mainmenucontent ul > li {
@@ -55,9 +57,10 @@
         top: 0px;
         left: 0px;
         padding-top: 5px !important;
-        padding-bottom: 3px !important;
+        padding-bottom: 5px !important;
         width: 100% !important;
         position: fixed !important;
+        display: block;
       }
     }
 
@@ -65,14 +68,15 @@
       z-index: 1000 !important;
     }
   </style>
-  <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.min.js" type="text/javascript"></script>
-  <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.ui.js" type="text/javascript"></script>
-  <script src="/africanfarmerscommodities/assets/js/bootstrap.js" type="text/javascript"></script>
+  <script src="/africanfarmerscommodities/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="/africanfarmerscommodities/assets/js/jquery.ui.min.js" type="text/javascript"></script>
+  <script src="/africanfarmerscommodities/assets/bootstrap-4.5.3/js/bootstrap.js" type="text/javascript"></script>
   <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.datetimepicker.js" type="text/javascript"></script>
   <script src="/africanfarmerscommodities/assets/fullcalendar-3.10.0/lib/moment.min.js"></script>
   <script src="/africanfarmerscommodities/assets/fullcalendar-3.10.0/fullcalendar.min.js"></script>
-  <script src="/myfundi/assets/jquery-rateit/web-font.js"></script>
-  <script src="/myfundi/assets/jquery-rateit/rateit.js"></script>
+  <script src="/africanfarmerscommodities/assets/jquery-rateit/web-font.js"></script>
+  <script src="/africanfarmerscommodities/assets/jquery-rateit/rateit.js"></script>
+  <script src="/africanfarmerscommodities/assets/js/jquery.dropotron.min.js" type="text/javascript"></script>
 
 
   <script type="text/javascript">
@@ -151,7 +155,6 @@
       }
     }
   </script>
-  <script src="/africanfarmerscommodities/assets/js/jquery.dropotron.min.js" type="text/javascript"></script>
   <script src="/africanfarmerscommodities/assets/js/browser.min.js" type="text/javascript"></script>
   <script src="/africanfarmerscommodities/assets/js/breakpoints.min.js" type="text/javascript"></script>
   <script src="/africanfarmerscommodities/assets/js/util.js" type="text/javascript"></script>

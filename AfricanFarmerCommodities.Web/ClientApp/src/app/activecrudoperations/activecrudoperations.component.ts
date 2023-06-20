@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit, AfterViewInit,AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'active-crud-operations',

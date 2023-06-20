@@ -24,7 +24,7 @@ E:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeat
 E:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.pdb
 C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\bin\Release\BLGWeather.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\bin\Release\BLGWeather.Domain.pdb
+C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.csproj.CoreCompileInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.dll
 C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.pdb
-C:\Development\AfricanFarmersCommoditiesV2\BLGWeather.Domain\obj\Release\BLGWeather.Domain.csproj.AssemblyReference.cache

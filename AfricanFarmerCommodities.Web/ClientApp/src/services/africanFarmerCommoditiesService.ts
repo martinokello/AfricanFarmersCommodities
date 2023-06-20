@@ -9,7 +9,9 @@ import { APP_BASE_HREF } from '@angular/common';
 @Injectable()
 export class AfricanFarmerCommoditiesService {
 
-  private baseServerUrl: string = /*"https://localhost:44387";*/ "https://africanfarmerscommodities.martinlayooinc.com";
+  //private baseServerUrl: string = "https://localhost:44387";
+  private baseServerUrl: string = "https://africanfarmerscommodities.martinlayooinc.com";
+
   public static isLoginPage: boolean = false;
   public actionResult: any;
   public httpClient: HttpClient;

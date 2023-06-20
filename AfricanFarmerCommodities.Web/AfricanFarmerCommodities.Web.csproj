@@ -154,7 +154,6 @@
     <Content Remove="wwwroot\assets\js\browser.min.js" />
     <Content Remove="wwwroot\assets\js\html5-qrcode\html5-qrcode.min.js" />
     <Content Remove="wwwroot\assets\js\jquery.dropotron.min.js" />
-    <Content Remove="wwwroot\assets\js\jquery.min.js" />
     <Content Remove="wwwroot\assets\js\main.js" />
     <Content Remove="wwwroot\assets\js\util.js" />
     <Content Remove="wwwroot\assets\sass\libs\_breakpoints.scss" />
@@ -602,11 +601,12 @@
     <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-tw.js" />
     <None Include="wwwroot\assets\google\googleMaps.js" />
     <None Include="wwwroot\assets\images\africanFarmersLandscapedLong - Copy.jpg" />
+    <None Include="wwwroot\assets\jquery-rateit\rateit.js" />
+    <None Include="wwwroot\assets\jquery-rateit\web-font.js" />
     <None Include="wwwroot\assets\js\breakpoints.min.js" />
     <None Include="wwwroot\assets\js\browser.min.js" />
     <None Include="wwwroot\assets\js\html5-qrcode\html5-qrcode.min.js" />
     <None Include="wwwroot\assets\js\jquery.dropotron.min.js" />
-    <None Include="wwwroot\assets\js\jquery.min.js" />
     <None Include="wwwroot\assets\js\main.js" />
     <None Include="wwwroot\assets\js\util.js" />
     <None Include="wwwroot\assets\sass\libs\_breakpoints.scss" />

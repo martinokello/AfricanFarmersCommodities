@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterViewChecked } from '@angular/core';
 import { IAddress, ILocation, AfricanFarmerCommoditiesService } from '../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -12,8 +12,10 @@ import 'rxjs/add/operator/map';
     providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class AddLocationComponent implements OnInit {
+export class AddLocationComponent implements OnInit,AfterViewChecked {
+  setTo: NodeJS.Timeout;
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
+  hasPopulatedPage: boolean = false;
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
     }
@@ -25,7 +27,7 @@ export class AddLocationComponent implements OnInit {
 
             alert('Location Added: ' + p.result);
         }).subscribe();
-        $('div#locationView').css('display', 'block').slideDown();
+        jQuery('div#locationView').css('display', 'block').slideDown();
     }
     public updateLocation() {
       let actualResult: Observable<any> = this.africanFarmerCommoditiesService.UpdateLocation(this.location);
@@ -33,10 +35,66 @@ export class AddLocationComponent implements OnInit {
 
             alert('Location Added: ' + p.result);
         }).subscribe();
-        $('div#locationView').css('display', 'block').slideDown();
+        jQuery('div#locationView').css('display', 'block').slideDown();
     }
     public ngOnInit(): void {
         this.location = {}
         this.location.address = {};
+  }
+  ngAfterViewChecked() {
+    let curthis = this;
+
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-addLocation select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+
+        debugger;
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+      clearTimeout(curthis.setTo);
     }
+  }
+
 }

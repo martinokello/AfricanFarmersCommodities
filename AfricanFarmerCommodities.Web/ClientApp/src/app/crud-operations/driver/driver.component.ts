@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IDriver, IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicle, ITransportSchedule } from '../../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
     providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class DriverComponent implements OnInit, AfterContentInit {
+export class DriverComponent implements OnInit, AfterContentInit, AfterViewChecked {
+  hasPopulatedPage: boolean = false;
+  setTo: NodeJS.Timeout;
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
@@ -35,7 +37,7 @@ export class DriverComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public updateDriver() {
     this.driver.transportScheduleId = this.driver.transportSchedule.transportScheduleId;
@@ -48,7 +50,7 @@ export class DriverComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public selectDriver(): void {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.GetDriverById(this.driver.driverId);
@@ -57,7 +59,7 @@ export class DriverComponent implements OnInit, AfterContentInit {
       this.driver.lastName = p.lastName;
       this.driver.transportSchedule.transportScheduleId = p.transportScheduleId;
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public deleteDriver() {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteDriver(this.driver);
@@ -70,7 +72,7 @@ export class DriverComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public ngOnInit(): void {
     this.driver = 
@@ -133,5 +135,59 @@ export class DriverComponent implements OnInit, AfterContentInit {
         document.querySelector('select#dritransportScheduleId').append(optionElem);
       });
     }).subscribe();
+  }
+
+  ngAfterViewChecked() {
+    let curthis = this;
+
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-driver select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+      clearTimeout(curthis.setTo);
+    }
   }
 }

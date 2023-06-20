@@ -1,9 +1,9 @@
-import { AfterContentInit, Component, Injectable, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import * as $ from 'jquery';
+declare var jQuery: any;
 
 import { AfricanFarmerCommoditiesService, ITop5ReferigeratedStorageCommoditiesInDemandRating } from '../../services/africanFarmerCommoditiesService';
 
@@ -14,8 +14,9 @@ import { AfricanFarmerCommoditiesService, ITop5ReferigeratedStorageCommoditiesIn
     providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageComponent implements OnInit, AfterContentInit {
+export class Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageComponent implements OnInit, AfterContentInit, AfterViewChecked {
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
+  setTo: NodeJS.Timeout;
   public constructor(africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router) {
     this.africanFarmerCommoditiesService = africanFarmerCommoditiesService;
     }
@@ -125,5 +126,58 @@ export class Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageCompone
         responsive: false
       }
     });
+  } ngAfterViewChecked() {
+    let curthis = this;
+
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-addVehicle select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+
+      clearTimeout(curthis.setTo);
+    }
   }
 }

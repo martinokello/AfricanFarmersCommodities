@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IDriver, IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicle, ITransportSchedule, IDriverNote, ITransportLog, IInvoice, IUserDetail } from '../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -21,8 +21,8 @@ import interactionPlugin from '@fullcalendar/interaction';
   providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class DriverCalendarComponent implements OnInit {
-
+export class DriverCalendarComponent implements OnInit, AfterViewChecked {
+  setTo: NodeJS.Timeout;
   drivers: IDriver[];
   driverNotes: IDriverNote[];
   transportSchedules: ITransportSchedule[];
@@ -100,7 +100,7 @@ export class DriverCalendarComponent implements OnInit {
       let transScheLog: Observable<ITransportLog[]> = this.africanFarmerCommoditiesService.GetCurrentTransScheduleInvoiceLog(p.transportScheduleId);
       transScheLog.map((q: ITransportLog[]) => {
         let selectInvoice: HTMLSelectElement = document.querySelector('select#tsPaidInvoicedOrdersId');
-        $('select#tsPaidInvoicedOrdersId').children('option').remove();
+        jQuery('select#tsPaidInvoicedOrdersId').children('option').remove();
 
         let optionElem = document.createElement('option');
         optionElem.value = (0).toString();
@@ -109,7 +109,7 @@ export class DriverCalendarComponent implements OnInit {
 
         if (q.length > 0) {
           let invoiceList = document.querySelector('ul#listInvoices');
-          $('ul#listInvoices').children('li').remove();
+          jQuery('ul#listInvoices').children('li').remove();
 
           q.forEach((vl: ITransportLog) => {
             let li = document.createElement('li');
@@ -304,41 +304,41 @@ export class DriverCalendarComponent implements OnInit {
     this.calendar = new Calendar(calendarDiv, calOptions);
     let cal = this.calendar;
 
-      $('a#previousMonth').click(function () {
+      jQuery('a#previousMonth').click(function () {
         var currentDate = new Date();
         currentDate.setMonth(currentDate.getMonth() - 1);
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate});
         return false;
       });
-      $('a#nextMonth').click(function () {
+      jQuery('a#nextMonth').click(function () {
         var currentDate = new Date();
         currentDate.setMonth(currentDate.getMonth() + 1);
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate });
         return false;
       });
-      $('a#currentMonth').click(function () {
+      jQuery('a#currentMonth').click(function () {
         var currentDate = new Date();
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate});
         return false;
       });
-      $('a#previousMonth').click(function () {
+      jQuery('a#previousMonth').click(function () {
         var currentDate = new Date();
         currentDate.setMonth(currentDate.getMonth() - 1);
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate});
         return false;
       });
-      $('a#nextMonth').click(function () {
+      jQuery('a#nextMonth').click(function () {
         var currentDate = new Date();
         currentDate.setMonth(currentDate.getMonth() + 1);
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate });
         return false;
       });
-      $('a#currentMonth').click(function () {
+      jQuery('a#currentMonth').click(function () {
         var currentDate = new Date();
         cal.gotoDate(currentDate);
         //fullCallendar.pignoseCalendar({ date: currentDate});
@@ -475,5 +475,59 @@ export class DriverCalendarComponent implements OnInit {
       }
     }).subscribe();
   }
+  ngAfterViewChecked() {
+    let curthis = this;
 
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-drivcalendar select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+
+      jQuery('div#editableClientDetails').hide(2000);
+      clearTimeout(curthis.setTo);
+    }
+  }
 }

@@ -112,8 +112,9 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
 
             var results = await _caching.GetOrSaveToCache<RssFeedViewModel[]>("RealWireCivilEngineeringRssFeeds", 15 * 60 * 50, GetFromEngFeedsFromCache);
+            var skip = new Random().Next(0, results.Length - 1);
 
-            return await Task.FromResult(results.Take(3).ToArray());
+            return await Task.FromResult(results.Skip(skip).Take(3).ToArray());
 
         }
     }

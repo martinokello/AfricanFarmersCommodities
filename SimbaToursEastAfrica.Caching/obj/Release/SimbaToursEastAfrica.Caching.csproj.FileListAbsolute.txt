@@ -447,8 +447,8 @@ C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\bin\Rele
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\bin\Release\SimbaToursEastAfrica.Caching.pdb
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\bin\Release\Newtonsoft.Json.dll
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\bin\Release\Newtonsoft.Json.xml
+C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.AssemblyReference.cache
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.CoreCompileInputs.cache
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.CopyComplete
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.dll
 C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.pdb
-C:\Development\AfricanFarmersCommoditiesV2\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.AssemblyReference.cache

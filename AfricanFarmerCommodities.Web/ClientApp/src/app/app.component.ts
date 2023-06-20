@@ -59,4 +59,12 @@ export class AppComponent implements OnInit {
     }
     else { return true; }
   }
+
+  public goToAboutUsPage($event) {
+    this.router.navigateByUrl('aboutus');
+    document.getElementById('mainbodycontent').scrollIntoView({
+        behavior: "smooth"
+    });
+    $event.preventDefault();
+  }
 }

@@ -24,13 +24,13 @@ namespace AfricanFarmerCommodities.Web.Controllers
         private IMailService _emailService;
         private AfricanFarmerCommoditiesUnitOfWork _unitOfWork;
         private Mapper _Mapper;
-
+        private ServicesEndPoint _serviceEndPoint;
         public TransportController(IMailService emailService, AfricanFarmerCommoditiesUnitOfWork unitOfWork, Mapper mapper)
         {
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _Mapper = mapper;
-
+            _serviceEndPoint = new ServicesEndPoint(_unitOfWork,_emailService);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 Vehicle[] results = await _serviceEndPoint.GetAllCompanyTransportVehiclesByCompanyId(companyId);
                 if (!results.Any())
                 {
@@ -58,7 +58,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
 
                 var results = await _serviceEndPoint.GetAllDriverScheduleNotes();
                 var actResults = _Mapper.Map<DriverSchedulesNoteViewModle[]>(results);
@@ -78,7 +78,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
 
                 var results = await _serviceEndPoint.GetDriverTransportSchedules();
 
@@ -201,7 +201,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 Vehicle result = await _serviceEndPoint.GetCompanyTransportVehicleByCompanyId(companyId, vehicleId);
                 if (result == null)
                 {
@@ -221,7 +221,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 TransportPricing[] results = await _serviceEndPoint.GetAllTransportPricings();
                 TransportPricingViewModel[] transportPricingViewModels = _Mapper.Map<TransportPricingViewModel[]>(results);
                 if (!results.Any())
@@ -242,7 +242,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 TransportPricing tpresult = await _serviceEndPoint.GetTransportPricingById(transportPricingId);
                 TransportPricingViewModel result = _Mapper.Map<TransportPricingViewModel>(tpresult);
                 if (result == null)
@@ -261,7 +261,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportPricing = _Mapper.Map<TransportPricing>(transportPricingViewModel);
                 bool result = await _serviceEndPoint.PostCreateTransportPricing(transportPricing);
                 if (!result)
@@ -280,7 +280,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportPricing = _Mapper.Map<TransportPricing>(transportPricingViewModel);
                 bool result = await _serviceEndPoint.UpdateTransportPricing(transportPricing);
                 if (!result)
@@ -300,7 +300,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportPricing = _Mapper.Map<TransportPricing>(transportPricingViewModel);
                 bool result = await _serviceEndPoint.DeleteTransportPricing(transportPricing);
                 if (!result)
@@ -321,7 +321,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 TransportSchedule[] results = await _serviceEndPoint.GetAllTransportSchedules();
                 TransportScheduleViewModel[] transportSchedulesViewModels = _Mapper.Map<TransportScheduleViewModel[]>(results);
                 if (!results.Any())
@@ -340,7 +340,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 IntermediateSchedule[] results = await _serviceEndPoint.GetAllIntermediateSchedules();
                 IntermediateScheduleViewModel[] intermediateSchedulesViewModels = _Mapper.Map<IntermediateScheduleViewModel[]>(results);
                 if (!results.Any())
@@ -360,7 +360,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 IntermediateSchedule tpresult = await _serviceEndPoint.GetIntermediateScheduleById(intermediateSchedulesId);
                 IntermediateScheduleViewModel result = _Mapper.Map<IntermediateScheduleViewModel>(tpresult);
                 if (result == null)
@@ -381,7 +381,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 IntermediateSchedule[] tpresult = await _serviceEndPoint.GetIntermediateSchedulesByTransportScheduleId(transportSchedulesId);
                 IntermediateScheduleViewModel[] result = _Mapper.Map<IntermediateScheduleViewModel[]>(tpresult);
                 if (result == null)
@@ -401,7 +401,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 TransportSchedule tpresult = await _serviceEndPoint.GetTransportScheduleById(transportSchedulesId);
                 if (tpresult == null)
                 {
@@ -420,7 +420,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportSchedule = _Mapper.Map<TransportSchedule>(transportScheduleViewModel);
                 bool result = await _serviceEndPoint.PostCreateTransportSchedule(transportSchedule);
                 if (!result)
@@ -440,7 +440,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
 
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var intemediateSchedule = _Mapper.Map<IntermediateSchedule>(intermediateScheduleViewModel);
                 bool result = await _serviceEndPoint.PostCreateIntermediateSchedule(intemediateSchedule);
                 if (!result)
@@ -460,7 +460,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var intermediateSchedule = _Mapper.Map<IntermediateSchedule>(intermediateScheduleViewModel);
                 bool result = await _serviceEndPoint.UpdateIntermediateSchedule(intermediateSchedule);
                 if (!result)
@@ -480,7 +480,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportSchedule = _Mapper.Map<TransportSchedule>(transportScheduleViewModel);
                 bool result = await _serviceEndPoint.DeleteTransportSchedule(transportSchedule);
                 if (!result)
@@ -500,7 +500,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var intermediateSchedule = _Mapper.Map<IntermediateSchedule>(intermediateScheduleViewModel);
                 bool result = await _serviceEndPoint.DeleteIntermediateSchedule(intermediateSchedule);
                 if (!result)
@@ -521,7 +521,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 Vehicle[] vehresults = await _serviceEndPoint.GetAllVehicles();
                 VehicleViewModel[] results = _Mapper.Map<VehicleViewModel[]>(vehresults);
                 if (!results.Any())
@@ -542,7 +542,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 Vehicle tpresult = await _serviceEndPoint.GetVehicleById(vehicleId);
                 VehicleViewModel result = _Mapper.Map<VehicleViewModel>(tpresult);
                 if (result == null)
@@ -562,7 +562,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicle = _Mapper.Map<Vehicle>(vehicleViewModel);
                 bool result = await _serviceEndPoint.PostCreateVehicle(vehicle);
                 if (!result)
@@ -582,7 +582,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicle = _Mapper.Map<Vehicle>(vehicleViewModel);
                 bool result = await _serviceEndPoint.UpdateVehicle(vehicle);
                 if (!result)
@@ -602,7 +602,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicle = _Mapper.Map<Vehicle>(vehicleViewModel);
                 bool result = await _serviceEndPoint.DeleteVehicle(vehicle);
                 if (!result)
@@ -623,7 +623,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicleCapacity = _Mapper.Map<VehicleCapacity>(vehicleCapacityViewModel);
                 bool result = await _serviceEndPoint.PostCreateVehicleCapacity(vehicleCapacity);
                 if (!result)
@@ -643,7 +643,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 VehicleCapacity[] vehresults = await _serviceEndPoint.GetAllVehicleCapacities();
                 VehicleCapacityViewModel[] results = _Mapper.Map<VehicleCapacityViewModel[]>(vehresults);
                 if (!results.Any())
@@ -664,7 +664,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 VehicleCapacity tpresult = await _serviceEndPoint.GetVehicleCapacityById(vehicleCapacityId);
                 VehicleCapacityViewModel result = _Mapper.Map<VehicleCapacityViewModel>(tpresult);
                 if (result == null)
@@ -684,7 +684,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 VehicleCapacity vehicle = _Mapper.Map<VehicleCapacity>(vehicleViewModel);
                 bool result = await _serviceEndPoint.UpdateVehicleCapacity(vehicle);
                 if (!result)
@@ -704,7 +704,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 VehicleCapacity vehicleCapacity = _Mapper.Map<VehicleCapacity>(vehicleViewModel);
                 bool result = await _serviceEndPoint.DeleteVehicleCapacity(vehicleCapacity);
                 if (!result)
@@ -725,7 +725,6 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
                 VehicleCategory[] vehresults = await _serviceEndPoint.GetAllVehicleCategories();
                 VehicleCategoryViewModel[] results = _Mapper.Map<VehicleCategoryViewModel[]>(vehresults);
                 if (!results.Any())
@@ -746,7 +745,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 VehicleCategory tpresult = await _serviceEndPoint.GetVehicleCategoryById(vehicleCategoryId);
                 VehicleCategoryViewModel result = _Mapper.Map<VehicleCategoryViewModel>(tpresult);
                 if (result == null)
@@ -766,7 +765,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicleCategory = _Mapper.Map<VehicleCategory>(vehicleCategoryViewModel);
                 bool result = await _serviceEndPoint.PostCreateVehicleCategory(vehicleCategory);
                 if (!result)
@@ -785,7 +784,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicleCategory = _Mapper.Map<VehicleCategory>(vehicleCategoryViewModel);
                 bool result = await _serviceEndPoint.UpdateVehicleCategory(vehicleCategory);
                 if (!result)
@@ -804,7 +803,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var transportSchedule = _Mapper.Map<TransportSchedule>(transportScheduleViewModel);
                 bool result = await _serviceEndPoint.UpdateTransportSchedule(transportSchedule);
                 if (!result)
@@ -824,7 +823,7 @@ namespace AfricanFarmerCommodities.Web.Controllers
         {
             try
             {
-                var _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+                
                 var vehicleCategory = _Mapper.Map<VehicleCategory>(vehicleCategoryViewModel);
                 bool result = await _serviceEndPoint.DeleteVehicleCategory(vehicleCategory);
                 if (!result)

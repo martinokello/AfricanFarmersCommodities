@@ -1,8 +1,8 @@
-import { AfterContentInit, ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { AfricanFarmerCommoditiesService, ICommodity } from '../../services/africanFarmerCommoditiesService';
 import { AfterViewInit } from '@angular/core';
 import { Renderer } from '@angular/core';
@@ -13,7 +13,8 @@ import { Renderer } from '@angular/core';
   providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class BasketComponent implements OnInit, AfterViewInit {
+export class BasketComponent implements OnInit, AfterViewInit, AfterViewChecked {
+  setTo: NodeJS.Timeout;
   contentOrders: ICommodity[];
   actualOrderGoingForward: ICommodity[] = [];
   runningTotalPrice: number = 0;
@@ -29,7 +30,7 @@ export class BasketComponent implements OnInit, AfterViewInit {
     if (this.actualOrderGoingForward && this.actualOrderGoingForward.length > 0) {
       this.actualOrderGoingForward.forEach((cmd: ICommodity) => {
         let form: HTMLFormElement = document.querySelector('form[id="form' + cmd.commodityId.toString() + '"]');
-        $(form).find("input[name='numberOfUnits']").attr('value', cmd.numberOfUnits);
+        jQuery(form).find("input[name='numberOfUnits']").attr('value', cmd.numberOfUnits);
       });
     }
 
@@ -75,7 +76,7 @@ export class BasketComponent implements OnInit, AfterViewInit {
     sessionStorage.removeItem("runningTotalPrice");
     //remove the forms:
     this.cdr.detectChanges();
-    $('div#commoditiesOrder form').remove();
+    jQuery('div#commoditiesOrder form').remove();
 
   }
   public ngOnInit(): void {
@@ -129,7 +130,7 @@ export class BasketComponent implements OnInit, AfterViewInit {
     let actRem: ICommodity[] = this.actualOrderGoingForward.splice(actIndexToRem, 1);
 
     let form: HTMLFormElement = document.querySelector('form[id="form' + commodityId.toString() + '"]');
-    //let numberOfUnits: number = parseFloat($(form).find("input[name='numberOfUnits']").val());
+    //let numberOfUnits: number = parseFloat(jQuery(form).find("input[name='numberOfUnits']").val());
 
     let indexToRemove: number = this.contentOrders.findIndex(q => q.commodityId == commodityId);
     this.contentOrders.splice(indexToRemove, 1);
@@ -141,12 +142,66 @@ export class BasketComponent implements OnInit, AfterViewInit {
     else {
       this.runningTotalPrice = 0;
       sessionStorage.setItem("runningTotalPrice", "0");
-      $(form).remove();
+      jQuery(form).remove();
     }
     sessionStorage.setItem("runningTotalPrice", this.runningTotalPrice.toString());
 
     sessionStorage.setItem("ActualContents", JSON.stringify(this.actualOrderGoingForward));
     sessionStorage.setItem("Orders", JSON.stringify(this.contentOrders));
+  } ngAfterViewChecked() {
+    let curthis = this;
+
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-basket select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+
+      jQuery('div#editableClientDetails').hide(2000);
+      clearTimeout(curthis.setTo);
+    }
   }
 }
 

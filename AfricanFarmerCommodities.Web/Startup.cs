@@ -77,7 +77,7 @@ namespace AfricanFarmersCommodities.Web
 
                 //var tableName = dbContext.Model.GetEntityTypes().First().GetTableName();
                 // dbContext.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {tableName} ON");
-                var serviceEndPoint = scope.ServiceProvider.GetService<AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
+                var serviceEndPoint = scope.ServiceProvider.GetService<ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
                 var vehCategories =  await serviceEndPoint.GetAllVehicleCategories();
                 if (!vehCategories.Any())
                 {
@@ -88,6 +88,7 @@ namespace AfricanFarmersCommodities.Web
                         await serviceEndPoint.PostCreateVehicleCategory(new VehicleCategory { DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Description = $"{catg} - Vehicle Type", VehicleCategoryName = catg });
                     }
                 }
+                
                 var adminRole = new Role();
                 adminRole.RoleName = "Administrator";
                 UserInteractionResults result = UserInteractionResults.Failed;
@@ -250,7 +251,11 @@ namespace AfricanFarmersCommodities.Web
 
             services.AddDbContext<AfricanFarmerCommoditiesDBContext>(options =>
             {
-                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("AfricanFarmerCommodities.Web"));
+                options.UseSqlServer(connectionString, b =>
+                {
+                    b.MigrationsAssembly("AfricanFarmerCommodities.Web");
+                    b.EnableRetryOnFailure();
+                });
             });
 
             services.AddControllersWithViews();
@@ -391,7 +396,7 @@ namespace AfricanFarmersCommodities.Web
             services.AddScoped<AbstractRepository<DriverSchedulesNote>, DriverSchedulesNotesRepository>();
             services.AddScoped<AbstractRepository<TransportLog>, TransportLogRepository>();
             services.AddSingleton<ICaching, SimbaToursEastAfricaCahing>(); 
-            services.AddScoped<AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint, AfricanFarmersCommodities.ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
+            services.AddScoped<ServicesEndPoint.GeneralSevices.ServicesEndPoint, ServicesEndPoint.GeneralSevices.ServicesEndPoint>();
             services.AddScoped<InitializeDatabaseRoles>();
 
         }

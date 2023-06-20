@@ -15,13 +15,15 @@ import * as Recaptcha  from 'ng-recaptcha';
 })
 export class myRecaptchaComponent implements OnInit, AfterViewInit {
 
+    //private siteKey = "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";
+    //private recaptchaSecretKey ='6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr';
     private googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-  private siteKey = "6LefGaEiAAAAAH4l4gFiF-yPQRWT95VOsh9h4eT4"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
     private isRecaptchaVerified: boolean;
     private showContent: boolean;
-  private recaptchaSecretKey = "6LefGaEiAAAAADFfUHW1989eOhM3MAeRRP0SY4BB";  /*localhost: '6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr';*/
+    private siteKey = "6LefGaEiAAAAAH4l4gFiF-yPQRWT95VOsh9h4eT4"; 
+    private recaptchaSecretKey = "6LefGaEiAAAAADFfUHW1989eOhM3MAeRRP0SY4BB";
 
-  constructor(private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router, private httpClient: HttpClient) {
+    constructor(private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService, private router: Router, private httpClient: HttpClient) {
         
     }
     ngAfterViewInit(): void {

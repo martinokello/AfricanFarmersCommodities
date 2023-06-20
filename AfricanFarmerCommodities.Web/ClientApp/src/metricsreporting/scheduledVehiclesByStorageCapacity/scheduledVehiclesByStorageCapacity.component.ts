@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IAllscheduledVehiclesByStorageCapacity, IVehicle,IAddress, ILocation, AfricanFarmerCommoditiesService, IVehicleCategory, ICompany } from '../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -15,8 +15,9 @@ import Chart from 'chart.js/auto';
     providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class ScheduledVehiclesByStorageCapacityComponent implements OnInit, AfterContentInit {
+export class ScheduledVehiclesByStorageCapacityComponent implements OnInit, AfterContentInit, AfterViewChecked {
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
+  setTo: NodeJS.Timeout;
   canvas: any;
   ctx: any;
   indexIntoData: number;
@@ -103,6 +104,38 @@ export class ScheduledVehiclesByStorageCapacityComponent implements OnInit, Afte
     });
   }
   ngOnInit() {
+    let actualResult = this.getallScheduledVehiclesGroupedByStorageCapacity();
+    actualResult.map((p: IAllscheduledVehiclesByStorageCapacity[]) => {
+      if (p && p.length > 0) {
+        this.allscheduledVehicle = p;
+        this.scheduledVehicle = p[0];
+        this.canvas = document.querySelector('canvas#vehicleScheduledCanvas');
+        this.ctx = this.canvas.getContext('2d');
+
+        let dataGroups: any = [];
+
+        this.allscheduledVehicle.forEach(
+          (availableScheduledVehicle: IAllscheduledVehiclesByStorageCapacity, index: number, elements) => {
+            let scheduledVehs = elements.filter((q: IAllscheduledVehiclesByStorageCapacity) => {
+              q.vehicleCategoryName == this.scheduledVehicle.vehicleCategoryName
+                && q.companyName == this.scheduledVehicle.companyName;
+            });
+            let cost: number = 0;
+            scheduledVehs.map((fh) => {
+              cost += fh.cost;
+            });
+            let scheduledVehiclesByCompanyAndCategory: any[] = [cost];
+            dataGroups.push(scheduledVehiclesByCompanyAndCategory);
+          });
+
+        let dataLabels: string[] = ["cost"];
+        this.drawCharts(dataGroups, dataLabels);
+      }
+      else {
+        this.allscheduledVehicle = [];
+      } 
+    }).subscribe();
+    
   }
   drawCharts(dataGroups: any, dataLabels: string[]): void {
 
@@ -127,5 +160,58 @@ export class ScheduledVehiclesByStorageCapacityComponent implements OnInit, Afte
       }
     });
   }
+  ngAfterViewChecked() {
+    let curthis = this;
 
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-addVehicle select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+
+      clearTimeout(curthis.setTo);
+    }
+  }
 }

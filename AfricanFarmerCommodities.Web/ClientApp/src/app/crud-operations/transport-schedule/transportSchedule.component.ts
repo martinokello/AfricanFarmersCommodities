@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ITransportSchedule,IAddress, ILocation, AfricanFarmerCommoditiesService, ITransportPricing, IVehicle, IIntermediateSchedule, IInvoice, ITransportLog, IDriverNote, IDriver } from '../../../services/africanFarmerCommoditiesService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { datetimepicker } from 'jquery-datetimepicker';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -16,7 +16,9 @@ import { AfterViewInit } from '@angular/core';
   providers: [AfricanFarmerCommoditiesService]
 })
 @Injectable()
-export class TransportScheduleComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class TransportScheduleComponent implements OnInit, AfterContentInit, AfterViewInit, AfterViewChecked {
+  hasPopulatedPage: boolean = false;
+  setTo: NodeJS.Timeout;
   private africanFarmerCommoditiesService: AfricanFarmerCommoditiesService;
 
   public intemediateShedules: IIntermediateSchedule[];
@@ -26,8 +28,8 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
   public transportSchedule: ITransportSchedule | any;
 
   public addTransportSchedule(): void {
-    this.transportSchedule.dateStartFromOrigin = $('input#dateStartFromOrigin').val();
-    this.transportSchedule.dateEndAtDestination = $('input#dateEndAtDestination').val();
+    this.transportSchedule.dateStartFromOrigin = jQuery('input#dateStartFromOrigin').val();
+    this.transportSchedule.dateEndAtDestination = jQuery('input#dateEndAtDestination').val();
     this.transportSchedule.transportScheduleId = 0;
     this.transportSchedule.transportPricingId = this.transportSchedule.transportPricing.transportPricingId;
     this.transportSchedule.originLocationId = this.transportSchedule.originName.locationId;
@@ -47,8 +49,8 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
     }).subscribe();
   }
   public updateTransportSchedule() {
-    this.transportSchedule.dateStartFromOrigin = $('input#dateStartFromOrigin').val();
-    this.transportSchedule.dateEndAtDestination = $('input#dateEndAtDestination').val();
+    this.transportSchedule.dateStartFromOrigin = jQuery('input#dateStartFromOrigin').val();
+    this.transportSchedule.dateEndAtDestination = jQuery('input#dateEndAtDestination').val();
     this.transportSchedule.transportPricingId = this.transportSchedule.transportPricing.transportPricingId;
     this.transportSchedule.originLocationId = this.transportSchedule.originName.locationId;
     this.transportSchedule.destinationLocationId = this.transportSchedule.destinationName.locationId;
@@ -77,7 +79,7 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
       this.transportSchedule.destinationName.locationId = this.transportSchedule.destinationLocationId;
       this.transportSchedule.vehicle.vehicleId = this.transportSchedule.vehicleId;
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public deleteTransportSchedule() {
     let actualResult: Observable<any> = this.africanFarmerCommoditiesService.DeleteTransportSchedule(this.transportSchedule);
@@ -90,7 +92,7 @@ export class TransportScheduleComponent implements OnInit, AfterContentInit, Aft
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public ngOnInit(): void {
 
@@ -214,5 +216,57 @@ addIntermediateVehicleSchedules(): void {
   }
   ngAfterViewInit() {
 
+  } ngAfterViewChecked() {
+    let curthis = this;
+
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+  }
+  runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
+
+    if (!curthis.hasPopulatedPage) {
+
+      let selects = jQuery('div#client-wrapper-trnsshed select');
+
+      if (selects && selects.length > 0) {
+        hasFoundSelectsOnPage = true;
+      }
+
+      if (hasFoundSelectsOnPage) {
+
+        jQuery(selects.each((ind, elem) => {
+          jQuery(elem).parent('ul').css('background', 'white');
+          jQuery(elem).parent('ul').css('z-index', '100');
+          let id = 'autoComplete' + jQuery(elem).attr('id');
+          jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+        }));
+        hasFoundSelectsOnPage = false;
+
+      }
+      //Check For Dom Change and Add auto complete to select elements
+      debugger;
+      jQuery('select').each((ind, sel) => {
+        let options = jQuery(sel).children('option');
+
+        let vals = [];
+        jQuery(options).each((id, el) => {
+          let optionText = jQuery(el).html();
+          vals.push(optionText);
+        });
+        //options is source of auto complete:
+        let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+        jQueryinpId.autocomplete({ source: vals });
+        jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+          jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+            return jQuery(event.target).text() == jQuery(this).html();
+          }).attr("selected", true);
+        });
+      });
+
+      curthis.hasPopulatedPage = true;
+      clearTimeout(curthis.setTo);
+    }
   }
 }
